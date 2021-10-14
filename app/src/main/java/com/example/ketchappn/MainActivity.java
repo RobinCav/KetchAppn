@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         firestore = FirebaseFirestore.getInstance();
-        collectionReference = firestore.collection("Aktiviteterr");
-        person p = new person("Fotball", "2");
+        collectionReference = firestore.collection("okgradle");
+        person p = new person("Fotball", "2222");
         collectionReference.add(p);
 
         setContentView(R. layout.activity_main);
