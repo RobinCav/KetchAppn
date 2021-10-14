@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Minner_Navigation"
+        android:enabled="true"
+        android:icon="@drawable/minner_navigation"
+        android:title="@string/minner"/>
+    <item
+        android:id="@+id/Venner_Navigation"
+        android:enabled="true"
+        android:icon="@drawable/venner_navigation"
+        android:title="@string/venner"/>
+    <item
+        android:id="@+id/Grupper_Navigation"
+        android:enabled="true"
+        android:icon="@drawable/grupper_navigation"
+        android:title="@string/grupper"/>
+    <item
+        android:id="@+id/Aktivitet_Navigation"
+        android:enabled="true"
+        android:icon="@drawable/aktivitet_navigation"
+        android:title="@string/aktivitet"/>
+</menu>
