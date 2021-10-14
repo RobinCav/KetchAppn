@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "76634369295",
+    "project_id": "ketchapp-cb298",
+    "storage_bucket": "ketchapp-cb298.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76634369295:android:f9c364acf92f79060f627a",
+        "android_client_info": {
+          "package_name": "com.example.ketchappn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76634369295-qru5cd42joh6p88bokpu105fhqucieid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfKag9tnBHd7qpWPuK_ldy4EqU9NGarM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76634369295-qru5cd42joh6p88bokpu105fhqucieid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
