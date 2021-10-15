@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -86,14 +87,10 @@ public class Aktivitet extends Fragment {
 
     }
 
-
-    public void onClick(View v){
-        generateSymbols(v);
-    }
     //Lager knapper for hver aktivitet vi har registrert i databasen
     public void generateSymbols(View v) {
 
-        ListView layout = (LinearLayout) v.findViewById(R.id.rootlayout);
+        ListView layout = (ListView) v.findViewById(R.id.aktiviteter);
         for (int i = 0; i < aktiviteter.size(); i++){
             Button btn = new Button(getActivity());
             btn.setText(String.valueOf(aktiviteter.get(i).getName()));
@@ -144,6 +141,8 @@ public class Aktivitet extends Fragment {
 
 
         View v = inflater.inflate(R.layout.activity_main, container, false);
+
+        ListView layout = (ListView) v.findViewById(R.id.aktiviteter);
 
 
         firestore = FirebaseFirestore.getInstance();
