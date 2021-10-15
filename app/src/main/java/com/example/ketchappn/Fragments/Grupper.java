@@ -7,6 +7,8 @@ import com.example.ketchappn.database.groupDB;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +21,9 @@ import android.view.View;
 
 import android.view.ViewGroup;
 
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Grupper extends Fragment {
@@ -45,6 +49,7 @@ public class Grupper extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
+
         return view;
     }
 
@@ -58,6 +63,8 @@ public class Grupper extends Fragment {
         Log.d(TAG, "Yolo");
         list = new ArrayList<>();
         list.add(new groupDB(1400, "Fredrikstad"));
+        list.add(new groupDB(1500, "Sarpsborg"));
+        list.add(new groupDB(1800, "Halden"));
 
     }
 
