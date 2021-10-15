@@ -17,6 +17,10 @@ public class User {
         this.friends = friends;
     }
 
+    public ArrayList<User> getFriends() {
+        return friends;
+    }
+
     public int getId() {
         return id;
     }
@@ -47,5 +51,18 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString(){
+        return "{" +
+                "  "   +
+                "   id: " + getId() +
+                "   username: " +getUsername() +
+                "   email: " + getEmail() +
+                "   password: " + getPassword() +
+                "   friends: " + getFriends().toString() +
+                " " +
+                "}";
     }
 }
