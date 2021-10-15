@@ -1,4 +1,4 @@
-package com.example.ketchappn;
+package com.example.ketchappn.models;
 
 public class Aktivitet {
     private String name, url;

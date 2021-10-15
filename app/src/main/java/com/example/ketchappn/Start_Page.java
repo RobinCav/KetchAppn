@@ -5,18 +5,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 
-import com.example.ketchappn.Fragments.Aktivitet;
+import com.example.ketchappn.Fragments.AktivitetFrag;
 import com.example.ketchappn.Fragments.Grupper;
 import com.example.ketchappn.Fragments.Minner;
 import com.example.ketchappn.Fragments.Venner;
-import com.example.ketchappn.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
 
 public class Start_Page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     BottomNavigationView bottomNavigationView;
@@ -39,7 +32,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     Minner fragment_minner = new Minner();
     Venner fragment_venner = new Venner();
     Grupper fragment_grupper = new Grupper();
-    Aktivitet fragment_aktivitet = new Aktivitet();
+    AktivitetFrag fragment_aktivitetFrag = new AktivitetFrag();
 
 
 
@@ -62,7 +55,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
                 return true;
 
             case R.id.Aktivitet_Navigation:
-                getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment_aktivitet).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment_aktivitetFrag).commit();
                 return true;
         }
 

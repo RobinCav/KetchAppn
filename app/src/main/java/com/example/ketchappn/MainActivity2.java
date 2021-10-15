@@ -20,7 +20,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        String aktivitet = getIntent().getStringExtra("Aktivitet");
+        String aktivitet = getIntent().getStringExtra("AktivitetFrag");
 
         TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
         timePicker.setIs24HourView(true);
