@@ -28,6 +28,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
+        System.out.println("lmao");
     }
 
     Minner fragment_minner = new Minner();
