@@ -3,6 +3,7 @@ package com.example.ketchappn;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,30 +33,48 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private DocumentReference docReference;
     private CollectionReference collectionReference;
-    private ArrayList<Aktivitet> aktiviteter;
+    public ArrayList<Aktivitet> aktiviteter;
     private FirestoreFunctions firestoreFunctions;
 
     private TextView text;
-    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R. layout.activity_main);
 
         firestore = FirebaseFirestore.getInstance();
-        aktiviteter = getMultipleDocs();
+        aktiviteter = new ArrayList<>();
+        getMultipleDocs();
+
+        //System.out.println(aktiviteter.size());
 
         text = (TextView) findViewById(R.id.textView);
+//        text.setText(String.valueOf(aktiviteter.size()));
+
+       // Log.d("Størrelse på array", String.valueOf(aktiviteter.size()));
 
 
         //setDocument("Volleyball", "jjs", 5);
 
+        Button buttonOne = findViewById(R.id.symbolChosen);
+        buttonOne.setOnClickListener(new View.OnClickListener() {
 
-        setContentView(R. layout.activity_main);
+            public void onClick(View v) {
+                System.out.println("Button Clicked");
 
+                Intent activity2Intent = new Intent(getApplicationContext(), MainActivity2.class);
+                activity2Intent.putExtra("Aktivitet", text.getText());
+                startActivity(activity2Intent);
+            }
 
+        });
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
 
@@ -70,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
 
     //Lager knapper for hver aktivitet vi har registrert i databasen
     public void generateSymbols() {
+
         LinearLayout layout = (LinearLayout) findViewById(R.id.rootlayout);
         for (int i = 0; i < aktiviteter.size(); i++){
             Button btn = new Button(this);
             btn.setText(String.valueOf(aktiviteter.get(i).getName()));
-            btn.setBackgroundResource(R.drawable.ball);
             int act = i;
             btn.setOnClickListener(new View.OnClickListener() {
 
@@ -84,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
                     text.setText(String.valueOf(aktiviteter.get(act).getName()));
                 }
             });
-            btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
             layout.addView(btn);
             Log.d("JA", String.valueOf(aktiviteter.get(i)));
         }
@@ -114,8 +135,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public ArrayList<Aktivitet> getMultipleDocs() {
-        ArrayList<Aktivitet> array = new ArrayList<>();
+    public void getMultipleDocs() {
 
         // [START get_multiple]
         firestore.collection("Aktiviteter")
@@ -126,17 +146,19 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("TAG", document.getId() + " => " + document.getData());
+                                Log.d("Goteeem", document.getId() + " => " + document.getData());
                                 Aktivitet aktivitet = document.toObject(Aktivitet.class);
-                                array.add(aktivitet);
+                                aktiviteter.add(aktivitet);
+                                Log.d("Akriviter", aktivitet.toString());
+                                Log.d("Liste", String.valueOf(aktiviteter));
+                                System.out.println("size array: " + aktiviteter.size());
                             }
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }
+                        ;
                     }
                 });
-
-        return array;
     }
 
     public void createObjectFromFB() {

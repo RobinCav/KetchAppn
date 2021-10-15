@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KetchAppn">
         <activity
+            android:name=".MainActivity2"
+            android:exported="true" />
+        <activity
+            android:name=".Activity2"
+            android:exported="true"
+            android:label="@string/title_activity_2"
+            android:theme="@style/Theme.KetchAppn.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
