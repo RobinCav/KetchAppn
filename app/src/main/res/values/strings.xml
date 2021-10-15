@@ -6,4 +6,5 @@
     <string name="venner">venner</string>
     <string name="grupper">grupper</string>
     <string name="aktivitet">aktivitet</string>
+    <string name="drawer_header">Perfect header</string>
 </resources>

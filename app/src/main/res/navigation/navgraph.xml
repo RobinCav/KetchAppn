@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/Aktivitet_Navigation">
+
+    <fragment
+        android:id="@+id/Grupper_Navigation"
+        android:name="com.example.ketchappn.fragments.Grupper"
+        android:label="Grupper"
+        tools:layout="@layout/fragment_grupper" />
+    <fragment
+        android:id="@+id/Minner_Navigation"
+        android:name="com.example.ketchappn.fragments.Minner"
+        android:label="Minner"
+        tools:layout="@layout/fragment_minner" />
+    <fragment
+        android:id="@+id/Venner_Navigation"
+        android:name="com.example.ketchappn.fragments.Venner"
+        android:label="Venner"
+        tools:layout="@layout/fragment_venner" />
+    <fragment
+        android:id="@+id/Aktivitet_Navigation"
+        android:name="com.example.ketchappn.fragments.Aktivitet"
+        android:label="fragment_aktivitet"
+        tools:layout="@layout/fragment_aktivitet" />
+</navigation>

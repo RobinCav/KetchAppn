@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
-        <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/activity_start_page.xml" value="0.20520833333333333" />
-        <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/fragment_aktivitet.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_main.xml" value="0.28804347826086957" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_start_page.xml" value="0.22" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/drawer_header.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_aktivitet.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_grupper.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_login.xml" value="0.2" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_minner.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_venner.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16770833333333332" />
       </map>
     </option>
