@@ -8,6 +8,9 @@ public class User {
     private String username, email, password;
     private ArrayList<User> friends;
 
+    public User(){
+
+    }
     //andre variabler skal være her etterhvert
     public User(int id, String username, String email, String password, ArrayList<User> friends) {
         this.id = id;
@@ -61,7 +64,7 @@ public class User {
                 "   username: " +getUsername() +
                 "   email: " + getEmail() +
                 "   password: " + getPassword() +
-                "   friends: " + getFriends().toString() +
+                "   friends: " + getFriends() +
                 " " +
                 "}";
     }

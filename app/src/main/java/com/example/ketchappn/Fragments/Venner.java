@@ -1,7 +1,11 @@
 package com.example.ketchappn.Fragments;
 
+import android.os.Build;
 import android.os.Bundle;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -9,6 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.ketchappn.R;
 import com.example.ketchappn.models.User;
@@ -29,6 +36,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,28 +95,6 @@ public class Venner extends Fragment {
 
         firestore = FirebaseFirestore.getInstance();
 
-        // Get a reference to our posts
-        DocumentReference docRef = firestore.collection("Users").document("karrar");
-
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            private static final String TAG = "TAG";
-
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-
 
     }
     /*
@@ -125,6 +111,7 @@ public class Venner extends Fragment {
 
      */
         //auth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword());
+
 
 
 
@@ -156,7 +143,60 @@ public class Venner extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+            View v = inflater.inflate(R.layout.fragment_venner, container, false);
+
+            ListView lstItems = (ListView)v.findViewById(R.id.venner);
+
+
+        // Get a reference to our posts
+        DocumentReference docRef = firestore.collection("Users").document("karrar");
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            private static final String TAG = "TAG";
+
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+
+                    //We have our list view
+                    ListView dynamic = (ListView) getView().findViewById(R.id.bottom_navigation);
+
+                    User user = document.toObject(User.class);
+
+                    ArrayList<User> friends = user.getFriends();
+                    ArrayList<String> friendsUserName = new ArrayList<String>();
+
+                    for(User fr : friends){
+                        friendsUserName.add(fr.getUsername());
+
+                    }
+
+
+
+                    ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,friendsUserName);
+
+                    lstItems.setAdapter(allItemsAdapter);
+
+
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_venner, container, false);
+        return v;
+
+
     }
 }
