@@ -1,8 +1,8 @@
 package com.example.ketchappn.database;
 
 public class groupDB {
-    private int tid;
-    private String sted;
+     int tid;
+     String sted;
 
     public groupDB(int tid, String sted){
         this.tid=tid;
