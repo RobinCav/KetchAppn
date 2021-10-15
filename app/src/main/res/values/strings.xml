@@ -15,4 +15,8 @@
     <string name="hello_blank_fragment_grupper">hello_blank_fragment_grupper</string>
     <string name="settings">Settings</string>
     <string name="friend_name">Friend name</string>
+    <string name="tid_og_sted">Tid og sted</string>
+    <string name="group_activity">Group Activity</string>
+    <string name="tid">Tid</string>
+    <string name="sted">Sted</string>
 </resources>
