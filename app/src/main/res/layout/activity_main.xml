@@ -33,7 +33,7 @@
         android:id="@+id/rootlayout"
         android:layout_width="150dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="54dp"
         android:layout_marginBottom="372dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
