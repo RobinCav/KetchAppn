@@ -1,6 +1,5 @@
 package com.example.ketchappn.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,31 +9,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.ketchappn.MainActivity2;
 import com.example.ketchappn.R;
 import com.example.ketchappn.functions.FirestoreFunctions;
+import com.example.ketchappn.models.Aktivitet;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Aktivitet#newInstance} factory method to
+ * Use the {@link AktivitetFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Aktivitet extends Fragment {
+public class AktivitetFrag extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,12 +48,12 @@ public class Aktivitet extends Fragment {
     private FirebaseFirestore firestore;
     private DocumentReference docReference;
     private CollectionReference collectionReference;
-    public ArrayList<com.example.ketchappn.Aktivitet> aktiviteter;
+    public ArrayList<Aktivitet> aktiviteter;
     private FirestoreFunctions firestoreFunctions;
 
     private TextView text;
 
-    public Aktivitet() {
+    public AktivitetFrag() {
         // Required empty public constructor
     }
 
@@ -63,11 +63,11 @@ public class Aktivitet extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Aktivitet.
+     * @return A new instance of fragment AktivitetFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static Aktivitet newInstance(String param1, String param2) {
-        Aktivitet fragment = new Aktivitet();
+    public static AktivitetFrag newInstance(String param1, String param2) {
+        AktivitetFrag fragment = new AktivitetFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -87,10 +87,11 @@ public class Aktivitet extends Fragment {
 
     }
 
-    //Lager knapper for hver aktivitet vi har registrert i databasen
-    public void generateSymbols(View v) {
 
-        ListView layout = (ListView) v.findViewById(R.id.aktiviteter);
+    //Lager knapper for hver aktivitet vi har registrert i databasen
+    public void generateSymbols(View view) {
+
+        ListView listView = (ListView) view.findViewById(R.id.acts);
         for (int i = 0; i < aktiviteter.size(); i++){
             Button btn = new Button(getActivity());
             btn.setText(String.valueOf(aktiviteter.get(i).getName()));
@@ -99,15 +100,26 @@ public class Aktivitet extends Fragment {
 
                 @Override
                 public void onClick(View view) {
-                    text = (TextView) v.findViewById(R.id.textView);
+                    text = (TextView) getView().findViewById(R.id.textView);
                     text.setText(String.valueOf(aktiviteter.get(act).getName()));
                 }
             });
             btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
-            layout.addView(btn);
+
+            ArrayList<String> friendsUserName = new ArrayList<String>();
+
+            for(com.example.ketchappn.models.Aktivitet fr : aktiviteter){
+                friendsUserName.add(fr.getName());
+
+            }
+            ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,friendsUserName);
+
+            listView.setAdapter(allItemsAdapter);
+
         }
     }
+
 
 
     public void getMultipleDocs() {
@@ -122,7 +134,7 @@ public class Aktivitet extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("Goteeem", document.getId() + " => " + document.getData());
-                                com.example.ketchappn.Aktivitet aktivitet = document.toObject(com.example.ketchappn.Aktivitet.class);
+                                com.example.ketchappn.models.Aktivitet aktivitet = document.toObject(com.example.ketchappn.models.Aktivitet.class);
                                 aktiviteter.add(aktivitet);
                                 Log.d("Akriviter", aktivitet.toString());
                             }
@@ -140,53 +152,57 @@ public class Aktivitet extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        View v = inflater.inflate(R.layout.activity_main, container, false);
-
-        ListView layout = (ListView) v.findViewById(R.id.aktiviteter);
-
+        View v = inflater.inflate(R.layout.fragment_aktivitet, container, false);
 
         firestore = FirebaseFirestore.getInstance();
         aktiviteter = new ArrayList<>();
-        getMultipleDocs();
+        ListView lstItems = (ListView)v.findViewById(R.id.acts);
 
-        //System.out.println(aktiviteter.size());
+        CollectionReference colRef = firestore.collection("Aktiviteter");
 
-        text = (TextView) v.findViewById(R.id.textView);
+        ArrayList<String> aktivnavner = new ArrayList<>();
+        ArrayList<Button> btns = new ArrayList<>();
+        colRef.whereGreaterThanOrEqualTo("id", 0).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("Goteeem", document.getId() + " => " + document.getData());
+                                Aktivitet aktivitet = document.toObject(Aktivitet.class);
+                                aktiviteter.add(aktivitet);
 
-        Button buttonOne = (Button) v.findViewById(R.id.imageButton1);
+                                Button btn = new Button(getContext());
+                                btn.setText("String.valueOf(aktiviteter.get(i).getName())");
 
-        buttonOne.setOnClickListener(new View.OnClickListener() {
+                                btn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        text = (TextView) getView().findViewById(R.id.textView);
+                                        text.setText(String.valueOf((aktivitet.getName())));
+                                    }
+                                });
+                                btns.add(btn);
 
-            public void onClick(View v) {
-                    generateSymbols(v);
-            }
-
-        });
-
-
-//        text.setText(String.valueOf(aktiviteter.size()));
-
-        // Log.d("Størrelse på array", String.valueOf(aktiviteter.size()));
+                                ArrayAdapter<Button> allItemsAdapter = new ArrayAdapter<Button>(getContext(), android.R.layout.simple_list_item_1, btns);
 
 
-        //setDocument("Volleyball", "jjs", 5);
+                                lstItems.setAdapter(allItemsAdapter);
 
-        /*
-        buttonOne.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
-                System.out.println("Button Clicked");
+                                Log.d("Akriviter", aktivitet.toString());
+                            }
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
 
-                Intent activity2Intent = new Intent((getContext(), MainActivity2.class);
-                activity2Intent.putExtra("Aktivitet", text.getText());
-                startActivity(activity2Intent);
-            }
+                        for (int i = 0; i < aktiviteter.size(); i++) {
 
-        });
+                        }
 
-         */
 
-        // Inflate the layout for this fragment
+                    }
+                });
         return v;
     }
 }

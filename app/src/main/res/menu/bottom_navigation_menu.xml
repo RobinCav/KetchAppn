@@ -19,5 +19,5 @@
         android:id="@+id/Aktivitet_Navigation"
         android:enabled="true"
         android:icon="@drawable/aktivitet_navigation"
-        android:title="aktivitet"/>
+        android:title="aktivitetFrag"/>
 </menu>
