@@ -82,10 +82,6 @@ public class MainActivity extends AppCompatActivity {
 
        generateSymbols();
 
-        text = (TextView) findViewById(R.id.textView);
-        if (v.getId() == R.id.imageButton1) {
-            text.setText(String.valueOf(aktiviteter.size()));
-        }
     }
 
     //Lager knapper for hver aktivitet vi har registrert i databasen
@@ -107,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             layout.addView(btn);
-            Log.d("JA", String.valueOf(aktiviteter.get(i)));
         }
     }
 
@@ -150,8 +145,6 @@ public class MainActivity extends AppCompatActivity {
                                 Aktivitet aktivitet = document.toObject(Aktivitet.class);
                                 aktiviteter.add(aktivitet);
                                 Log.d("Akriviter", aktivitet.toString());
-                                Log.d("Liste", String.valueOf(aktiviteter));
-                                System.out.println("size array: " + aktiviteter.size());
                             }
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
