@@ -8,22 +8,22 @@
 
     <fragment
         android:id="@+id/Grupper_Navigation"
-        android:name="com.example.ketchappn.fragments.Grupper"
+        android:name="com.example.ketchappn.Fragments.Grupper"
         android:label="Grupper"
         tools:layout="@layout/fragment_grupper" />
     <fragment
         android:id="@+id/Minner_Navigation"
-        android:name="com.example.ketchappn.fragments.Minner"
+        android:name="com.example.ketchappn.Fragments.Minner"
         android:label="Minner"
         tools:layout="@layout/fragment_minner" />
     <fragment
         android:id="@+id/Venner_Navigation"
-        android:name="com.example.ketchappn.fragments.Venner"
+        android:name="com.example.ketchappn.Fragments.Venner"
         android:label="Venner"
         tools:layout="@layout/fragment_venner" />
     <fragment
         android:id="@+id/Aktivitet_Navigation"
-        android:name="com.example.ketchappn.fragments.Aktivitet"
+        android:name="com.example.ketchappn.Fragments.Aktivitet"
         android:label="fragment_aktivitet"
         tools:layout="@layout/fragment_aktivitet" />
 </navigation>

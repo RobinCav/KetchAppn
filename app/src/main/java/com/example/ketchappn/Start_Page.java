@@ -1,21 +1,16 @@
 package com.example.ketchappn;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 
-import com.example.ketchappn.fragments.Aktivitet;
-import com.example.ketchappn.fragments.Grupper;
-import com.example.ketchappn.fragments.Minner;
-import com.example.ketchappn.fragments.Venner;
+import com.example.ketchappn.Fragments.Aktivitet;
+import com.example.ketchappn.Fragments.Grupper;
+import com.example.ketchappn.Fragments.Minner;
+import com.example.ketchappn.Fragments.Venner;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 public class Start_Page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     BottomNavigationView bottomNavigationView;
@@ -27,8 +22,8 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         setContentView(R.layout.activity_start_page);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
-        System.out.println("lmao");
     }
 
     Minner fragment_minner = new Minner();

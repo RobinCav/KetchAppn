@@ -1,4 +1,4 @@
-package com.example.ketchappn.fragments;
+package com.example.ketchappn.Fragments;
 
 import android.os.Bundle;
 
