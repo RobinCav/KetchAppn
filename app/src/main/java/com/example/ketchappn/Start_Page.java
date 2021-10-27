@@ -43,19 +43,19 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.Minner_Navigation:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_minner).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment_minner).commit();
                 return true;
 
             case R.id.Venner_Navigation:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_venner).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment_venner).commit();
                 return true;
 
             case R.id.Grupper_Navigation:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_grupper).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment_grupper).commit();
                 return true;
 
             case R.id.Aktivitet_Navigation:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_aktivitetFrag).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment_aktivitetFrag).commit();
                 return true;
         }
 

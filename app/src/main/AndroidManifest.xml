@@ -14,15 +14,6 @@
             android:exported="true"
             android:label="@string/title_activity_2"
             android:theme="@style/Theme.KetchAppn.NoActionBar" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
