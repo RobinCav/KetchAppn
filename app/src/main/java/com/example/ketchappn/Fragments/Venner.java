@@ -1,14 +1,38 @@
 package com.example.ketchappn.Fragments;
 
+import android.os.Build;
 import android.os.Bundle;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.MenuItem;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.ketchappn.R;
+import com.example.ketchappn.models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+
+
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,6 +72,11 @@ public class Venner extends Fragment {
         return fragment;
     }
 
+    private FirebaseFirestore firestore;
+    private User user;
+    private ArrayList<User> friends;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +84,112 @@ public class Venner extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+        firestore = FirebaseFirestore.getInstance();
+
+
+    }
+    /*
+        friends = new ArrayList<>();
+        friends.add(new User(1,"yaqub","yaqubsaid@gmail.com","rrr",null));
+        friends.add(new User(2,"robin","robincalv@gmail.com","rrr",null));
+        friends.add(new User(3,"aleks","aleks@gmail.com","rrr",null));
+
+        user = new User(0, "karrar", "karrara@gmail.com", "okthendude",friends);
+
+        auth = FirebaseAuth.getInstance();
+
+        setDocument(user);
+
+     */
+        //auth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword());
+
+
+
+
+    public void setDocument(User user) {
+
+        Map<String, Object> userHashMap = new HashMap<>();
+        userHashMap.put("id", user.getId());
+        userHashMap.put("username", user.getUsername());
+        userHashMap.put("email", user.getEmail());
+        userHashMap.put("password", user.getPassword());
+        userHashMap.put("friends", user.getFriends());
+
+        firestore.collection("Users").document(user.getUsername())
+                .set(userHashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error writing document", e);
+                    }
+                });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+            View v = inflater.inflate(R.layout.fragment_venner, container, false);
+
+            ListView lstItems = (ListView)v.findViewById(R.id.venner);
+
+
+        // Get a reference to our posts
+        DocumentReference docRef = firestore.collection("Users").document("karrar");
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            private static final String TAG = "TAG";
+
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+
+                    //We have our list view
+                    ListView dynamic = (ListView) getView().findViewById(R.id.bottom_navigation);
+
+                    User user = document.toObject(User.class);
+
+                    ArrayList<User> friends = user.getFriends();
+                    ArrayList<String> friendsUserName = new ArrayList<String>();
+
+                    for(User fr : friends){
+                        friendsUserName.add(fr.getUsername());
+
+                    }
+
+
+
+                    ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,friendsUserName);
+
+                    lstItems.setAdapter(allItemsAdapter);
+
+
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_venner, container, false);
+        return v;
+
+
     }
 }
