@@ -39,7 +39,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
 
 
-        @Override
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.Minner_Navigation:

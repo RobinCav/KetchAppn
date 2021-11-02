@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KetchAppn">
         <activity
+            android:name=".Fragments.RegisterAct"
+            android:exported="true" />
+        <activity
+            android:name=".Fragments.LoginAct"
+            android:exported="true" />
+        <activity
+            android:name=".Fragments.RegisterLoginAct"
+            android:exported="true" />
+        <activity
             android:name=".Start_Page"
             android:exported="true"
             android:label="@string/title_activity_2"
             android:theme="@style/Theme.KetchAppn.NoActionBar" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
