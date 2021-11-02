@@ -4,20 +4,20 @@
         android:id="@+id/Minner_Navigation"
         android:enabled="true"
         android:icon="@drawable/minner_navigation"
-        android:title="@string/minner"/>
+        android:title="minner"/>
     <item
         android:id="@+id/Venner_Navigation"
         android:enabled="true"
         android:icon="@drawable/venner_navigation"
-        android:title="@string/venner"/>
+        android:title="venner"/>
     <item
         android:id="@+id/Grupper_Navigation"
         android:enabled="true"
         android:icon="@drawable/grupper_navigation"
-        android:title="@string/grupper"/>
+        android:title="grupper"/>
     <item
         android:id="@+id/Aktivitet_Navigation"
         android:enabled="true"
         android:icon="@drawable/aktivitet_navigation"
-        android:title="@string/aktivitet"/>
+        android:title="aktivitetFrag"/>
 </menu>

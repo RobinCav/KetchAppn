@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">KetchAppn</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="minner">minner</string>
-    <string name="venner">venner</string>
-    <string name="grupper">grupper</string>
-    <string name="aktivitet">aktivitet</string>
+    <string name="next">next</string>
+    <string name="title_activity_2">Activity2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="sted">Sted</string>
+    <string name="signin">signIn</string>
+    <string name="loginusername">loginUsername</string>
+    <string name="hello_blank_fragment_minner">hello_blank_fragment_minner</string>
+    <string name="tid">tid</string>
 </resources>
