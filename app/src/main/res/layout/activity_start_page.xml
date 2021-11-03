@@ -38,10 +38,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:id="@+id/curUser"
-        android:textAlignment="center"
+        android:gravity="center"
         android:paddingVertical="100dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="30dp"
+        android:textSize="60dp"
+        android:text="dud"
+        android:textFontWeight="700"
+        android:fontFamily="cursive"
         />
 </androidx.drawerlayout.widget.DrawerLayout>
