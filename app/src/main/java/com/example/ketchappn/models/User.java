@@ -1,23 +1,49 @@
 package com.example.ketchappn.models;
 
+import android.app.Activity;
+
 import java.util.ArrayList;
 
 public class User {
 
     private int id;
     private String username, email, password;
-    private ArrayList<User> friends;
+    private ArrayList<User> friends = new ArrayList<>();
+    private ArrayList<Aktivitet> activities = new ArrayList<>();
 
     public User(){
 
     }
-    //andre variabler skal være her etterhvert
-    public User(int id, String username, String email, String password, ArrayList<User> friends) {
+    public User( String username, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.password = password;
+    }
+
+    public void removeFriend(User friend){
+        this.friends.remove(friend);
+    }
+
+    public void addFriend(User friend){
+        this.friends.add(friend);
+    }
+    public void assignToActivity(Aktivitet activity){
+        this.activities.add(activity);
+    }
+    public void removeFromActivity(Aktivitet activity){
+        this.activities.remove(activity);
+    }
+
+    public void setFriends(ArrayList<User> friends) {
         this.friends = friends;
+    }
+
+    public ArrayList<Aktivitet> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(ArrayList<Aktivitet> activities) {
+        this.activities = activities;
     }
 
     public ArrayList<User> getFriends() {

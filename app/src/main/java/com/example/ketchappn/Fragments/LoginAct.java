@@ -51,7 +51,6 @@ public class LoginAct extends AppCompatActivity implements View.OnClickListener 
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d("SignSuccess", "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
                                     Intent sendToStart = new Intent(getApplicationContext(), Start_Page.class);
                                     startActivity(sendToStart);
                                 } else {
