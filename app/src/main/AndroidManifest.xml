@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KetchAppn">
         <activity
+            android:name=".chatActivity"
+            android:exported="true" />
+        <activity
             android:name=".Start_Page"
             android:exported="true"
             android:label="@string/title_activity_2"
