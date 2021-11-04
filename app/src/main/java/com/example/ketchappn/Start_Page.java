@@ -18,16 +18,25 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     BottomNavigationView bottomNavigationView;
 
     private FirebaseAuth mAuth;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth = FirebaseAuth.getInstance();
+
+            /*
+        FirebaseUser user = mAuth.getCurrentUser();
+        TextView tview = (TextView)findViewById(R.id.curUser);
+        tview.setText("Welcome back, " + user.get());
+        @
+             */
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
 
-        mAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser user = mAuth.getCurrentUser();
-        TextView tview = (TextView)findViewById(R.id.curUser);
-        tview.setText("Welcome back, " + user.getDisplayName());
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);

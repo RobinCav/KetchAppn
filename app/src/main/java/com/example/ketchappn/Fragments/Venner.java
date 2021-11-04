@@ -3,6 +3,7 @@ package com.example.ketchappn.Fragments;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,9 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.ketchappn.R;
+import com.example.ketchappn.Start_Page;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -140,7 +145,34 @@ public class Venner extends Fragment {
             View v = inflater.inflate(R.layout.fragment_venner, container, false);
 
             ListView lstItems = (ListView)v.findViewById(R.id.venner);
-
+            Button myButton = (Button) v.findViewById(R.id.dialogButton);
+            myButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
+                   View blue = getLayoutInflater().inflate(R.layout.dialog_venner, null);
+                    EditText nUsername = (EditText) blue.findViewById(R.id.addUsername);
+                    Button nButton = (Button) blue.findViewById(R.id.addID);
+                    nButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!nUsername.getText().toString().isEmpty()){
+                                Toast.makeText(v.getContext(),
+                                        "User added!",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(v.getContext(),
+                                        "error user not found",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    mBuilder.setView(blue);
+                    AlertDialog dialog = mBuilder.create();
+                    dialog.show();
+                }
+            });
 
         // Get a reference to our posts
         DocumentReference docRef = firestore.collection("Users").document("karrar");

@@ -42,7 +42,7 @@
         android:paddingVertical="100dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="60dp"
+        android:textSize="30dp"
         android:text="dud"
         android:textFontWeight="700"
         android:fontFamily="cursive"
