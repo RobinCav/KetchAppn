@@ -1,9 +1,13 @@
 
 
 package com.example.ketchappn.Fragments;
+import com.example.ketchappn.LoginActivity;
 import com.example.ketchappn.R;
+import com.example.ketchappn.Start_Page;
 import com.example.ketchappn.recyclerViewHolder.recyclerAdapter;
 import com.example.ketchappn.database.groupDB;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -20,13 +24,14 @@ import android.view.View;
 
 
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class Grupper extends Fragment {
+public class Grupper extends Fragment  {
     static final String TAG = "watafak";
     Integer tid;
     String sted;
@@ -49,7 +54,6 @@ public class Grupper extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-
         return view;
     }
 
@@ -65,6 +69,8 @@ public class Grupper extends Fragment {
         list.add(new groupDB(1400, "Fredrikstad"));
         list.add(new groupDB(1500, "Sarpsborg"));
         list.add(new groupDB(1800, "Halden"));
+
+
 
     }
 

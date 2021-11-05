@@ -6,7 +6,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 
-import com.example.ketchappn.Fragments.AktivitetFrag;
+import com.example.ketchappn.Fragments.Aktiviteter;
 import com.example.ketchappn.Fragments.Grupper;
 import com.example.ketchappn.Fragments.Minner;
 import com.example.ketchappn.Fragments.Venner;
@@ -50,7 +50,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     Minner fragment_minner = new Minner();
     Venner fragment_venner = new Venner();
     Grupper fragment_grupper = new Grupper();
-    AktivitetFrag fragment_aktivitetFrag = new AktivitetFrag();
+    Aktiviteter fragment_aktiviteter = new Aktiviteter();
 
 
 
@@ -73,7 +73,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
                 return true;
 
             case R.id.Aktivitet_Navigation:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_aktivitetFrag).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_aktiviteter).commit();
                 return true;
         }
 
