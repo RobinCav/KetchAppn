@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_venner" />
     <fragment
         android:id="@+id/Aktivitet_Navigation"
-        android:name="com.example.ketchappn.Fragments.Aktivitet"
+        android:name="com.example.ketchappn.Fragments.Aktiviteter"
         android:label="fragment_aktivitet"
-        tools:layout="@layout/fragment_aktivitet" />
+        tools:layout="@layout/fragment_aktiviteter" />
 </navigation>

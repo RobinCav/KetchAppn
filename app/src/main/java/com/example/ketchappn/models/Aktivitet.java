@@ -5,10 +5,10 @@ public class Aktivitet {
     private int id;
 
 
-    public Aktivitet(String name, String url, int id) {
+    public Aktivitet(int id, String name, String url) {
+        this.id = id;
         this.name = name;
         this.url = url;
-        this.id = id;
     }
 
     public Aktivitet() {
