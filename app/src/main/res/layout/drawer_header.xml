@@ -21,7 +21,7 @@
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewAkt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="122dp"
@@ -32,14 +32,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/aktiviteter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+    <LinearLayout
+        android:id="@+id/rootlayout"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="104dp"
+        android:layout_marginBottom="322dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAkt"
+        app:layout_constraintVertical_bias="0.0">
 
+    </LinearLayout>
 
     <Button
         android:id="@+id/symbolChosen"

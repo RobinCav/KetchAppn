@@ -13,6 +13,9 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+
+// Klassen er ikke ferdiglaget. IKKE SLETT!
+
 public class MainActivity2 extends AppCompatActivity {
 
     @Override
