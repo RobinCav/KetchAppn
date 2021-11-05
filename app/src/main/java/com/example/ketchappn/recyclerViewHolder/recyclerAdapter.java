@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ketchappn.LoginActivity;
 import com.example.ketchappn.R;
 import com.example.ketchappn.Start_Page;
 import com.example.ketchappn.chatActivity;
