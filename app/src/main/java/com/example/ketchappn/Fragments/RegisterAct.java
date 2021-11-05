@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterAct extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,12 +27,15 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
     private FirebaseAuth mAuth;
     private EditText email;
     private EditText password;
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+
 
         Button loginbtn = (Button)findViewById(R.id.GoLogin);
         Button RegisterBtn = (Button)findViewById(R.id.RegisterNow);
@@ -63,7 +67,9 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
                                     Log.d("RegisterSuccess", "createUserWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Intent sendToLogin = new Intent(getApplicationContext(), LoginAct.class);
+
                                     User loggedInUser = new User();
+
                                     startActivity(sendToLogin);
                                 } else {
                                     // If sign in fails, display a message to the user.

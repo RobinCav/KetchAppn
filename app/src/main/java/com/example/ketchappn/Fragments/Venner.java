@@ -108,7 +108,6 @@ public class Venner extends Fragment {
         setDocument(user);
 
      */
-        //auth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword());
 
 
 
@@ -116,13 +115,11 @@ public class Venner extends Fragment {
     public void setDocument(User user) {
 
         Map<String, Object> userHashMap = new HashMap<>();
-        userHashMap.put("id", user.getId());
-        userHashMap.put("username", user.getUsername());
-        userHashMap.put("email", user.getEmail());
-        userHashMap.put("password", user.getPassword());
-        userHashMap.put("friends", user.getFriends());
+        userHashMap.put("User", user.getUsername());
+        userHashMap.put("UserFriendList", user.getFriends());
 
-        firestore.collection("Users").document(user.getUsername())
+
+        firestore.collection("FriendList").document(user.getUsername())
                 .set(userHashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -216,6 +213,7 @@ public class Venner extends Fragment {
             }
         });
 
+//        setDocument();
 
 
 
