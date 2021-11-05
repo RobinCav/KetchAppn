@@ -14,7 +14,13 @@
             android:exported="true" />
         <activity
             android:name=".Fragments.LoginAct"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Fragments.RegisterLoginAct"
             android:exported="true" />
@@ -22,7 +28,10 @@
             android:name=".Start_Page"
             android:exported="true"
             android:label="@string/title_activity_2"
-            android:theme="@style/Theme.KetchAppn.NoActionBar" />
+            android:theme="@style/Theme.KetchAppn.NoActionBar">
+
+        </activity>
+
     </application>
 
 </manifest>

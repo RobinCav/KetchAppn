@@ -106,7 +106,7 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("RegisterFail", "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(RegisterAct.this, "Authentication failed.",
+                                    Toast.makeText(RegisterAct.this, "Authentication failed. \n Passwords need to be atleast 6 characters long.",
                                             Toast.LENGTH_SHORT).show();
                                 }
 
