@@ -1,6 +1,8 @@
 package com.example.ketchappn;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -8,29 +10,35 @@ import android.widget.TextView;
 
 import com.example.ketchappn.Fragments.AktivitetFrag;
 import com.example.ketchappn.Fragments.Grupper;
+import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.Fragments.Minner;
 import com.example.ketchappn.Fragments.Venner;
+import com.example.ketchappn.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.Gson;
 
 public class Start_Page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     BottomNavigationView bottomNavigationView;
 
     private FirebaseAuth mAuth;
 
+
+
     @Override
     public void onStart() {
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
 
-            /*
-        FirebaseUser user = mAuth.getCurrentUser();
+
+
         TextView tview = (TextView)findViewById(R.id.curUser);
-        tview.setText("Welcome back, " + user.get());
-        @
-             */
+        tview.setText("Welcome back, " + LoginAct.CurUser.getUsername());
+
     }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +49,6 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
-
 
 
     }

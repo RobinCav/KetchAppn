@@ -2,11 +2,11 @@ package com.example.ketchappn.models;
 
 import android.app.Activity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
 
-    private int id;
+public class User implements Serializable {
     private String username, email, password;
     private ArrayList<User> friends = new ArrayList<>();
     private ArrayList<Aktivitet> activities = new ArrayList<>();
@@ -15,7 +15,6 @@ public class User {
 
     }
     public User( String username, String email) {
-        this.id = id;
         this.username = username;
         this.email = email;
     }
@@ -50,13 +49,7 @@ public class User {
         return friends;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -86,7 +79,6 @@ public class User {
     public String toString(){
         return "{" +
                 "  "   +
-                "   id: " + getId() +
                 "   username: " +getUsername() +
                 "   email: " + getEmail() +
                 "   password: " + getPassword() +
