@@ -5,13 +5,15 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KetchAppn">
         <activity
             android:name=".chatActivity"
             android:exported="true" />
+
+
+
         <activity
             android:name=".Start_Page"
             android:exported="true"
@@ -24,6 +26,8 @@
         <activity
             android:name=".StartAktivitetActivity"
             android:exported="true">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

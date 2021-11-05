@@ -27,6 +27,10 @@ public class StartAktivitetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(getWindow().FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_start_aktivitet);
 
         //Henter string fra fragment_activity
