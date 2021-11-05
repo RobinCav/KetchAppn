@@ -2,38 +2,57 @@ package com.example.ketchappn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import java.util.Calendar;
+import com.example.ketchappn.Fragments.Aktiviteter;
+import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
+import com.example.ketchappn.models.Aktivitet;
+import com.example.ketchappn.models.Arrangement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-// Klassen er ikke ferdiglaget. IKKE SLETT!
+public class StartAktivitetActivity extends AppCompatActivity {
 
-public class MainActivity2 extends AppCompatActivity {
+    private List<Aktivitet> aktiviteter = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_start_aktivitet);
 
-        String aktivitet = getIntent().getStringExtra("AktivitetFrag");
+        //Henter string fra fragment_activity
+        String aktivitet = getIntent().getStringExtra("Aktivitet");
+
+        //Henter array fra firebase
+        aktiviteter = AktivitetBtnAdapter.sendArray();
+
+        //Lager objekt for valgt aktivitet, denne går gjennom arraylisten fra firebase.
+        Aktivitet valgtAktivitet = new Aktivitet();
+        for (Aktivitet a : aktiviteter){
+            if (a.getName().equals(aktivitet)) {
+               valgtAktivitet = a;
+            }
+        }
 
         TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
         timePicker.setIs24HourView(true);
 
         TextView textView = (TextView) findViewById(R.id.textView2);
-        textView.setText(aktivitet);
+        textView.setText(valgtAktivitet.getName());
 
         EditText editText = (EditText) findViewById(R.id.editPlace);
 
         Button button =(Button)findViewById(R.id.button);
+        Aktivitet finalValgtAktivitet = valgtAktivitet;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +64,10 @@ public class MainActivity2 extends AppCompatActivity {
                 Editable editable = editText.getText();
                 place = editable.toString();
 
-                textView.setText("Selected time: "+ hour +":"+ minute + " " + place);
+                textView.setText(hour +":"+ minute + " " + place);
+
+                Arrangement arrangement = new Arrangement(finalValgtAktivitet,place);
+                Log.d("!!!!!", arrangement.toString());
             }
         });
 
@@ -53,6 +75,7 @@ public class MainActivity2 extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Aktiviteter.changeText("");
                 finish();
             }
         });
