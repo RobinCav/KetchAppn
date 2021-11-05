@@ -34,7 +34,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
 
         TextView tview = (TextView)findViewById(R.id.curUser);
-        tview.setText("Welcome back, " + LoginAct.CurUser.getUsername());
+//        tview.setText("Welcome back, " + LoginAct.CurUser.getUsername());
 
     }
 

@@ -1,7 +1,6 @@
 
 
 package com.example.ketchappn.Fragments;
-import com.example.ketchappn.LoginActivity;
 import com.example.ketchappn.R;
 import com.example.ketchappn.Start_Page;
 import com.example.ketchappn.recyclerViewHolder.recyclerAdapter;
