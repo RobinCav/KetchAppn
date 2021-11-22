@@ -1,13 +1,11 @@
 package com.example.ketchappn.recyclerViewHolder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.ketchappn.R;
-import com.example.ketchappn.Start_Page;
 import com.example.ketchappn.chatActivity;
 import com.example.ketchappn.database.groupDB;
 
@@ -25,30 +22,9 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
     Context context;
     ArrayList<groupDB> arrayList;
 
-    public class recyclerviewholder extends RecyclerView.ViewHolder {
-        private TextView sted;
-        private TextView tid;
-        private View layout;
-
-        public recyclerviewholder(@NonNull View itemView) {
-            super(itemView);
-            sted = itemView.findViewById(R.id.stedText);
-            tid = itemView.findViewById(R.id.tidText);
-            layout = itemView.findViewById(R.id.linearLayout);
-
-        }
-        public TextView getTid() {
-            return tid;
-        }
-        public TextView getSted() {
-            return sted;
-        }
-    }
-
-
-
-    public recyclerAdapter(ArrayList<groupDB> arrayList){
-        this.arrayList=arrayList;
+    public recyclerAdapter(Context ctx,ArrayList<groupDB> arrayList){
+        this.context=ctx;
+        this.arrayList = arrayList;
     }
 
     @NonNull
@@ -59,19 +35,20 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
         return new recyclerviewholder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull recyclerviewholder viewholder, int position) {
         groupDB db = arrayList.get(position);
-        viewholder.getSted().setText(db.getSted());
-        viewholder.getTid().setText(Integer.toString(db.getTid()));
+        viewholder.Id.setText(Integer.toString(db.getId()));
+        viewholder.name.setText((db.getName()));
+        viewholder.url.setText((db.getUrl()));
 
-        viewholder.layout.setOnClickListener(new View.OnClickListener() {
+       /* viewholder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), chatActivity.class);
-                System.out.println("Faen");
             }
-        });
+        });*/
     }
 
     @Override
@@ -80,8 +57,19 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
     }
     @Override
     public void onAttachedToRecyclerView(
-            RecyclerView recyclerView)
+            @NonNull RecyclerView recyclerView)
     {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public class recyclerviewholder extends RecyclerView.ViewHolder {
+        private TextView Id, name, url;
+
+        public recyclerviewholder(@NonNull View itemView) {
+            super(itemView);
+            Id = itemView.findViewById(R.id.nameText);
+            name = itemView.findViewById(R.id.idText);
+            url = itemView.findViewById(R.id.url_textView);
+        }
     }
 }

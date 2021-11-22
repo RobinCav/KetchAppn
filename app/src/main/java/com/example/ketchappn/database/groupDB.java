@@ -1,27 +1,35 @@
 package com.example.ketchappn.database;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+
 public class groupDB {
-     int tid;
-     String sted;
+     int id;
+     String name;
+     String url;
 
-    public groupDB(int tid, String sted){
-        this.tid=tid;
-        this.sted=sted;
+    public groupDB(int id, String name, String url){
+        this.name = name;
+        this.id=id;
+        this.url = url;
+    }
+    public groupDB(){}
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSted() {
-        return sted;
+    public String getUrl() {
+        return url;
+    }
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public void setSted(String sted) {
-        this.sted = sted;
+    public int getId() {
+        return id;
     }
-
-    public int getTid() {
-        return tid;
-    }
-
-    public void setTid(int tid) {
-        this.tid = tid;
-    }
+    public void setId(int id) { this.id = id; }
 }
