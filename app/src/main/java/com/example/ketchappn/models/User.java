@@ -49,8 +49,6 @@ public class User implements Serializable {
         return friends;
     }
 
-
-
     public String getUsername() {
         return username;
     }

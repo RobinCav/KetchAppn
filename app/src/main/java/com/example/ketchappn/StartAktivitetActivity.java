@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.ketchappn.Fragments.Aktiviteter;
+import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
@@ -42,6 +43,8 @@ public class StartAktivitetActivity extends AppCompatActivity {
                valgtAktivitet = a;
             }
         }
+
+        System.out.println(LoginAct.CurUser);
 
         TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
         timePicker.setIs24HourView(true);

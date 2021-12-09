@@ -53,7 +53,8 @@ public class AktivitetBtnAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     @Override
     public int getItemCount() {
-        return akt.size();
+        Log.d("Akt size", String.valueOf(akt.size()));
+        return akt.size() - 6;
     }
 
     public static List<Aktivitet> sendArray(){
