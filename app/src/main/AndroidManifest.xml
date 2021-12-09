@@ -20,6 +20,7 @@
             android:exported="true" />
 
         <activity android:name=".StartAktivitetActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true"/>
         <activity
             android:name=".Start_Page"

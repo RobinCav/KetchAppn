@@ -23,6 +23,11 @@ import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 import com.example.ketchappn.models.Aktivitet;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -43,31 +48,15 @@ public class Aktiviteter extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        aktivitetArray.clear();
+
         View view = inflater.inflate(R.layout.fragment_aktiviteter, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        recyclerView.setAdapter(new AktivitetBtnAdapter(aktivitetArray));
 
         chosenAkt = (TextView) view.findViewById(R.id.textViewAkt);
-
-        firestore.collection("Aktiviteter").whereGreaterThanOrEqualTo("id", 0).get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                Aktivitet aktivitet = document.toObject(Aktivitet.class) ;
-                                aktivitetArray.add(aktivitet);
-                                recyclerView.setAdapter(new AktivitetBtnAdapter(aktivitetArray));
-                            }
-                        }
-                        else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
 
         // Denne funksjonen lagrer aktivitetene fra firebase, dette må skje etter koblingen med firebase
         aktivitetArray = AktivitetBtnAdapter.sendArray();
@@ -96,9 +85,35 @@ public class Aktiviteter extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+        firestore.collection("Aktiviteter").whereGreaterThanOrEqualTo("id", 0).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            aktivitetArray.clear();
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                Aktivitet aktivitet = document.toObject(Aktivitet.class);
+                                aktivitetArray.add(aktivitet);
+                                recyclerView.setAdapter(new AktivitetBtnAdapter(aktivitetArray));
+                            }
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
         super.onCreate(savedInstanceState);
 
 
+    }
+
+    @Override
+    public void onStart() {
+
+        super.onStart();
     }
 
     @Override
