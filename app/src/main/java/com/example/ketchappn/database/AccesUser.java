@@ -26,12 +26,12 @@ public class AccesUser  {
 
 
     private FirebaseFirestore firestore;
-    private ArrayList<String> friends;
+    public ArrayList<String> friends = new ArrayList<>();
+
 
 
     public AccesUser(){
         firestore = FirebaseFirestore.getInstance();
-        friends = new ArrayList<>();
 
          /*
         friends = new ArrayList<>();
@@ -54,8 +54,10 @@ public class AccesUser  {
 
 
 
-    public void getFriendsTask (ListView lstItems, Activity activity){
-        firestore.collection("FriendList")
+    public ArrayList<String> getFriendsTask (FireBaseCallBack callback){
+
+
+         firestore.collection("FriendList")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -64,10 +66,9 @@ public class AccesUser  {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 if(document.get("Username").equals(LoginAct.CurUser.getUsername())){
                                     //We have our list view
-                                    ArrayList<String> friends = (ArrayList<String>) document.get("UserFriendList");
-                                    setFriends(friends);
-                                    ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(activity.getBaseContext(), android.R.layout.simple_list_item_1,friends);
-                                    lstItems.setAdapter(allItemsAdapter);
+                                    friends = (ArrayList<String>) document.get("UserFriendList");
+                                    callback.onCallback(friends);
+
                                 }
 
 
@@ -79,10 +80,18 @@ public class AccesUser  {
                     }
                 });
 
+         return  null;
 
     }
+    public void processData(ArrayList<String> f){
+        friends = f;
+
+    }
+
     public ArrayList<String> getFriends(){
-        return friends;
+
+        return  friends;
+
     }
 
 
