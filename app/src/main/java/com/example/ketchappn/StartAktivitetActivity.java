@@ -2,12 +2,15 @@ package com.example.ketchappn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -38,13 +41,25 @@ public class StartAktivitetActivity extends AppCompatActivity {
 
         //Lager objekt for valgt aktivitet, denne går gjennom arraylisten fra firebase.
         Aktivitet valgtAktivitet = new Aktivitet();
+
         for (Aktivitet a : aktiviteter){
             if (a.getName().equals(aktivitet)) {
                valgtAktivitet = a;
             }
         }
 
-        System.out.println(LoginAct.CurUser);
+        ArrayList<String> venner = new ArrayList<>();
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.checkboxlist);
+
+        for (int i = 0; i < 4; i++){
+            CheckBox cn = new CheckBox(this);
+            cn.setText(String.valueOf(i));
+            cn.setId(i);
+            linearLayout.addView(cn);
+        }
+
+        @SuppressLint("ResourceType") CheckBox checkBox = (CheckBox) findViewById(2);
+
 
         TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
         timePicker.setIs24HourView(true);
@@ -53,6 +68,8 @@ public class StartAktivitetActivity extends AppCompatActivity {
         textView.setText(valgtAktivitet.getName());
 
         EditText editText = (EditText) findViewById(R.id.editPlace);
+
+
 
         Button button =(Button)findViewById(R.id.button);
         Aktivitet finalValgtAktivitet = valgtAktivitet;
@@ -67,7 +84,10 @@ public class StartAktivitetActivity extends AppCompatActivity {
                 Editable editable = editText.getText();
                 place = editable.toString();
 
-                textView.setText(hour +":"+ minute + " " + place);
+                if (checkBox.isChecked()) {
+
+                    textView.setText(hour + ":" + minute + " " + place + " wut");
+                }
 
                 Arrangement arrangement = new Arrangement(finalValgtAktivitet,place);
                 Log.d("!!!!!", arrangement.toString());
