@@ -15,10 +15,16 @@ import com.example.ketchappn.R;
 import com.example.ketchappn.Start_Page;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterAct extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,17 +32,22 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
     private FirebaseAuth mAuth;
     private EditText email;
     private EditText password;
+    private EditText username;
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+
 
         Button loginbtn = (Button)findViewById(R.id.GoLogin);
         Button RegisterBtn = (Button)findViewById(R.id.RegisterNow);
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
+        username = (EditText)findViewById(R.id.username);
 
         loginbtn.setOnClickListener(this);
         RegisterBtn.setOnClickListener(this);
@@ -50,6 +61,31 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    public void setDocument(User user) {
+
+        Map<String, Object> userHashMap = new HashMap<>();
+        userHashMap.put("Email", user.getEmail());
+        userHashMap.put("Username", user.getUsername());
+        userHashMap.put("UserFriendList", user.getFriends());
+
+
+        firestore.collection("FriendList").document(user.getEmail())
+                .set(userHashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error writing document", e);
+                    }
+                });
+    }
+
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -61,9 +97,11 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d("RegisterSuccess", "createUserWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
                                     Intent sendToLogin = new Intent(getApplicationContext(), LoginAct.class);
-                                    User loggedInUser = new User();
+
+                                    User user = new User(username.getText().toString(), email.getText().toString() );
+                                    setDocument(user);
                                     startActivity(sendToLogin);
                                 } else {
                                     // If sign in fails, display a message to the user.

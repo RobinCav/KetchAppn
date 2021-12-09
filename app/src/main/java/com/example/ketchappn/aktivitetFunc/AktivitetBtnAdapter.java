@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AktivitetBtnAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
-    private List<Aktivitet> akt = new ArrayList<>();
+    static List<Aktivitet> akt = new ArrayList<>();
     int counter = 0;
 
 
@@ -53,7 +53,12 @@ public class AktivitetBtnAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     @Override
     public int getItemCount() {
-        return akt.size();
+        Log.d("Akt size", String.valueOf(akt.size()));
+        return akt.size() - 6;
+    }
+
+    public static List<Aktivitet> sendArray(){
+        return akt;
     }
 
 

@@ -26,7 +26,7 @@ public class FirestoreFunctions {
         docReference.set(object);
     }
 
-    public void setDocument(String name, String url, int id) {
+    public void startArrangement(String name, String url, int id) {
 
         firestore = FirebaseFirestore.getInstance();
 

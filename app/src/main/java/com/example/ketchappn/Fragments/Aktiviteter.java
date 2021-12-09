@@ -1,5 +1,6 @@
 package com.example.ketchappn.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,12 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ketchappn.StartAktivitetActivity;
 import com.example.ketchappn.R;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 
-import com.example.ketchappn.aktivitetFunc.RecyclerViewHolder;
 import com.example.ketchappn.models.Aktivitet;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,58 +35,61 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class Aktiviteter extends Fragment {
 
-    List<Aktivitet> akt = new ArrayList<>();
-    private FirebaseFirestore firestore;
+    List<Aktivitet> aktivitetArray = new ArrayList<>();
     private RecyclerView recyclerView;
+    @SuppressLint("StaticFieldLeak")
     private static TextView chosenAkt;
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_aktiviteter, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        firestore = FirebaseFirestore.getInstance();
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
         chosenAkt = (TextView) view.findViewById(R.id.textViewAkt);
 
-        changeText("Heyzz");
-
-
-
-
-
-
-        firestore.collection("Aktiviteter")
-                .whereGreaterThanOrEqualTo("id", 0)
-                .get()
+        firestore.collection("Aktiviteter").whereGreaterThanOrEqualTo("id", 0).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("Goteeem", document.getId() + " => " + document.getData());
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 Aktivitet aktivitet = document.toObject(Aktivitet.class) ;
-                                Log.d("HHH", aktivitet.getName());
-                                akt.add(aktivitet);
-                                Log.d("Kolleksjon", String.valueOf(akt));
-                                recyclerView.setAdapter(new AktivitetBtnAdapter(akt));
+                                aktivitetArray.add(aktivitet);
+                                recyclerView.setAdapter(new AktivitetBtnAdapter(aktivitetArray));
                             }
                         }
-
                         else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }
-
-
                     }
                 });
 
+        // Denne funksjonen lagrer aktivitetene fra firebase, dette må skje etter koblingen med firebase
+        aktivitetArray = AktivitetBtnAdapter.sendArray();
+
+
+        Button btnVidere = (Button) view.findViewById(R.id.videreBtn);
+        btnVidere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (chosenAkt.getText().toString().equals("")){
+                    chosenAkt.setText("Velg aktivitet");
+                }
+
+                else {
+
+                    Intent i = new Intent(getActivity(), StartAktivitetActivity.class);
+                    i.putExtra("Aktivitet", chosenAkt.getText().toString());
+                    startActivity(i);
+                }
+            }
+        });
 
         return view;
     }
@@ -106,123 +111,3 @@ public class Aktiviteter extends Fragment {
     }
 
 }
-
-/*public class AktivitetFrag extends Fragment {
-
-    ArrayList<Aktivitet> list = new ArrayList<>();
-    RecyclerView recyclerView;
-
-    private FirebaseFirestore firestore;
-    private DocumentReference docReference;
-    private CollectionReference collectionReference;
-    private FirestoreFunctions firestoreFunctions;
-
-    private TextView text;
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        getMultipleDocs();
-
-
-    }
-
-
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_aktivitet, container, false);
-
-        //recyclerAdapter adapter = new recyclerAdapter(akt);
-
-        firestore = FirebaseFirestore.getInstance();
-
-
-        ListView lstItems = (ListView)v.findViewById(R.id.acts);
-
-
-
-        CollectionReference colRef = firestore.collection("Aktiviteter");
-
-        ArrayList<Button> btns = new ArrayList<>();
-
-        colRef.whereGreaterThanOrEqualTo("id", 0).get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("Goteeem", document.getId() + " => " + document.getData());
-                                Aktivitet aktivitet = document.toObject(Aktivitet.class);
-                                list.add(aktivitet);
-
-                                Button btn = new Button(v.getContext());
-
-
-
-                                btns.add(btn);
-
-                            }
-
-                        }
-
-                        else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
-                    }
-
-
-                });
-
-
-
-        return v;
-
-    }
-
-    public void getMultipleDocs() {
-
-        firestore = FirebaseFirestore.getInstance();
-
-        firestore.collection("Aktiviteter")
-                .whereGreaterThanOrEqualTo("id", 0)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<Aktivitet> list = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("Goteeem", document.getId() + " => " + document.getData());
-                                Aktivitet aktivitet = document.toObject(Aktivitet.class);
-                                Log.d("HHH", aktivitet.getName());
-                                list.add(aktivitet);
-                                Log.d("Kolleksjon", String.valueOf(list));
-                            }
-
-                            processData(list);
-                        }
-
-                        else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
-
-
-                    }
-                });
-
-    }
-
-    void processData(List<Aktivitet> data){
-        list.addAll(data);
-    }
-
-
-
-}
-*/
