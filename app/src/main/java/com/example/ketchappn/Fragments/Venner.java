@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.ketchappn.R;
 import com.example.ketchappn.Start_Page;
+import com.example.ketchappn.database.AccesUser;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -81,9 +82,6 @@ public class Venner extends Fragment {
         return fragment;
     }
 
-    private FirebaseFirestore firestore;
-    private ArrayList<User> friends;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,49 +92,15 @@ public class Venner extends Fragment {
         }
 
 
-        firestore = FirebaseFirestore.getInstance();
 
 
     }
-    /*
-        friends = new ArrayList<>();
-        friends.add(new User(1,"yaqub","yaqubsaid@gmail.com","rrr",null));
-        friends.add(new User(2,"robin","robincalv@gmail.com","rrr",null));
-        friends.add(new User(3,"aleks","aleks@gmail.com","rrr",null));
-
-        user = new User(0, "karrar", "karrara@gmail.com", "okthendude",friends);
-
-        auth = FirebaseAuth.getInstance();
-
-        setDocument(user);
-
-     */
 
 
 
 
-    public void setDocument(User user) {
-
-        Map<String, Object> userHashMap = new HashMap<>();
-        userHashMap.put("User", user.getUsername());
-        userHashMap.put("UserFriendList", user.getFriends());
 
 
-        firestore.collection("FriendList").document(user.getUsername())
-                .set(userHashMap)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "Error writing document", e);
-                    }
-                });
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -146,6 +110,7 @@ public class Venner extends Fragment {
 
             ListView lstItems = (ListView)v.findViewById(R.id.friendList);
             Button myButton = (Button) v.findViewById(R.id.dialogButton);
+            /*
             myButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -238,35 +203,10 @@ public class Venner extends Fragment {
                 }
             });
 
+            */
 
-
-
-        firestore.collection("FriendList")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.get("Username").equals(LoginAct.CurUser.getUsername())){
-                                    //We have our list view
-                                    ArrayList<String> friends = (ArrayList<String>) document.get("UserFriendList");
-
-
-
-
-                                    ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,friends);
-                                    lstItems.setAdapter(allItemsAdapter);
-                                }
-
-
-                                }
-                            }
-                         else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+            AccesUser accesUser = new AccesUser() ;
+            accesUser.getFriendsTask(lstItems,getActivity());
 
 
         // Inflate the layout for this fragment
