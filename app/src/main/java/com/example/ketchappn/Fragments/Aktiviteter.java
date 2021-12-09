@@ -105,8 +105,6 @@ public class Aktiviteter extends Fragment {
                     }
                 });
 
-
-
         super.onCreate(savedInstanceState);
 
 
