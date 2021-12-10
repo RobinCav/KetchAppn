@@ -1,6 +1,7 @@
 package com.example.ketchappn;
 
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -8,6 +9,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -34,9 +36,11 @@ import com.google.type.DateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 public class StartAktivitetActivity extends Activity {
@@ -44,7 +48,7 @@ public class StartAktivitetActivity extends Activity {
     private List<Aktivitet> aktiviteter = new ArrayList<>();
     private AccesUser accesUser = new AccesUser();
     private FirestoreFunctions firestoreFunctions = new FirestoreFunctions();
-    private ArrayList venner = new ArrayList();
+    private ArrayList<String> venner = new ArrayList();
     private int count;
     private String dato;
     private LocalTime localTime;
@@ -131,6 +135,7 @@ public class StartAktivitetActivity extends Activity {
         Aktivitet finalValgtAktivitet = valgtAktivitet;
 
         button.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
@@ -153,10 +158,12 @@ public class StartAktivitetActivity extends Activity {
                         }
                     }
 
+                    ArrayList unique = (ArrayList) venner.stream().distinct().collect(Collectors.toList());
+
                     dato = day + "/" + month + "/" + year + "/" + hour + ":" + minute;
 
                     @SuppressLint("DefaultLocale")
-                    Arrangement arrangement = new Arrangement(finalValgtAktivitet,place,dato,LoginAct.CurUser, venner );
+                    Arrangement arrangement = new Arrangement(finalValgtAktivitet,place,dato,LoginAct.CurUser, unique );
                     firestoreFunctions.addObjectToFirebase("Arrangement",arrangement.getCollectionname(), arrangement );
                     Log.d("Informasjon om arrangement", arrangement.toString());
 
