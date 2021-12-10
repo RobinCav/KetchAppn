@@ -20,9 +20,9 @@ public class FirestoreFunctions {
     private DocumentReference docReference;
     private CollectionReference collectionReference;
 
-    public void addActivityWithObject(String collectionName, Object object) {
+    public void addObjectToFirebase(String collectionpath,String collectionName, Object object) {
         firestore = FirebaseFirestore.getInstance();
-        docReference = firestore.collection("Aktiviteter").document(collectionName);
+        docReference = firestore.collection(collectionpath).document(collectionName);
         docReference.set(object);
     }
 

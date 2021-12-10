@@ -1,9 +1,12 @@
 package com.example.ketchappn;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -21,9 +24,14 @@ import com.example.ketchappn.Fragments.Aktiviteter;
 import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 import com.example.ketchappn.database.AccesUser;
+import com.example.ketchappn.database.FireBaseCallBack;
+import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
+import com.google.type.DateTime;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +40,10 @@ public class StartAktivitetActivity extends AppCompatActivity {
 
     private List<Aktivitet> aktiviteter = new ArrayList<>();
     private AccesUser accesUser = new AccesUser();
+    private FirestoreFunctions firestoreFunctions = new FirestoreFunctions();
+    private ArrayList venner = new ArrayList();
+    private int count;
+    private LocalTime localTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +65,27 @@ public class StartAktivitetActivity extends AppCompatActivity {
             }
         }
 
-        ArrayList<String> venner = new ArrayList<>();
+        Context context = this;
 
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.checkboxlist);
 
-        for (int i = 0; i < 9; i++){
-            CheckBox cn = new CheckBox(this);
-            cn.setText(String.valueOf(i));
-            cn.setId(i);
-            linearLayout.addView(cn);
-        }
+
+        accesUser.getFriendsTask(new FireBaseCallBack() {
+            @Override
+            public void onCallback(ArrayList<String> friends) {
+
+                for (int i = 0; i < friends.size(); i++){
+                    CheckBox cn = new CheckBox(context);
+                    cn.setText(friends.get(i));
+                    cn.setId(i);
+                    count++;
+                    linearLayout.addView(cn);
+                }
+
+
+            }
+        });
+
 
 
         TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
@@ -71,17 +94,12 @@ public class StartAktivitetActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.textView2);
         textView.setText(valgtAktivitet.getName());
 
-        /*ImageButton imageButton = new ImageButton(this);
-        imageButton.setImageResource(R.drawable.ball);
-        linearLayout.addView(imageButton);*/
-
         EditText editText = (EditText) findViewById(R.id.editPlace);
-
-
 
         Button button =(Button)findViewById(R.id.button);
         Aktivitet finalValgtAktivitet = valgtAktivitet;
         button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 int hour, minute;
@@ -100,19 +118,22 @@ public class StartAktivitetActivity extends AppCompatActivity {
 
                 else {
 
-                    for (int i = 0; i < 9; i++){
+                    for (int i = 0; i < count; i++){
                         CheckBox checkbox = (CheckBox) findViewById(i);
                         if (checkbox.isChecked()){
                             venner.add(checkbox.getText().toString());
                         }
                     }
 
-                    textView.setText(hour + ":" + minute + " " + place + ". Med disse vennene " + venner);
+                    @SuppressLint("DefaultLocale")
+                    Arrangement arrangement = new Arrangement(finalValgtAktivitet,place,String.format("%02d:%02d", hour, minute ),LoginAct.CurUser, venner );
+                    firestoreFunctions.addObjectToFirebase("Arrangement",arrangement.getCollectionname(), arrangement );
+                    Log.d("Informasjon om arrangement", arrangement.toString());
 
+                    textView.setText("");
                 }
 
-                Arrangement arrangement = new Arrangement(finalValgtAktivitet,place);
-                Log.d("!!!!!", arrangement.toString());
+
             }
         });
 
