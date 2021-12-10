@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KetchAppn">
         <activity
+            android:name=".Activities.UserSettingsActivity"
+            android:exported="true" />
+        <activity
             android:name=".Fragments.RegisterAct"
             android:exported="true" />
         <activity
@@ -18,10 +21,10 @@
         <activity
             android:name=".Fragments.RegisterLoginAct"
             android:exported="true" />
-
-        <activity android:name=".StartAktivitetActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true"/>
+        <activity
+            android:name=".StartAktivitetActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Start_Page"
             android:exported="true"
