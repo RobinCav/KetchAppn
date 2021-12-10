@@ -102,102 +102,31 @@ public class Venner extends Fragment {
 
 
 
-    ArrayList<String> friends = new ArrayList<>();
+    private AccesUser accesUser = new AccesUser() ;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-            View v = inflater.inflate(R.layout.fragment_venner, container, false);
+        View v = inflater.inflate(R.layout.fragment_venner, container, false);
 
-            ListView lstItems = (ListView)v.findViewById(R.id.friendList);
-            Button myButton = (Button) v.findViewById(R.id.dialogButton);
-            /*
-            myButton.setOnClickListener(new View.OnClickListener() {
+        ListView lstItems = (ListView)v.findViewById(R.id.friendList);
+        Button myButton = (Button) v.findViewById(R.id.dialogButton);
+        Fragment fragment = this;
+
+        myButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
-                   View blue = getLayoutInflater().inflate(R.layout.dialog_venner, null);
+                    View blue = getLayoutInflater().inflate(R.layout.dialog_venner, null);
                     EditText nUsername = (EditText) blue.findViewById(R.id.addUsername);
                     Button nButton = (Button) blue.findViewById(R.id.addID);
+
                     nButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (!nUsername.getText().toString().isEmpty()){
-
-                                firestore.collection("FriendList")
-                                        .get()
-                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                                if (task.isSuccessful()) {
-                                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                                        Log.d("TAG", document.getId() + " => " + document.getData());
-                                                        User friend = new User(document.get("Username").toString(), document.get("Email").toString());
-                                                        System.out.println("user from colleciton : " + friend.getUsername());
-                                                        System.out.println("ENTERTED TEXT: " + nUsername.getText().toString());
-                                                        if(nUsername.getText().toString().equals(friend.getUsername())){
-                                                            System.out.println("THIS SHIT EXIST......");
-                                                            friend.addFriend(LoginAct.CurUser);
-                                                            LoginAct.CurUser.addFriend(friend);
-                                                            DocumentReference curUserRef = firestore.collection("FriendList").document(LoginAct.CurUser.getEmail());
-
-                                                            curUserRef
-                                                                    .update("UserFriendList",  FieldValue.arrayUnion(friend.getUsername()))
-                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                        @Override
-                                                                        public void onSuccess(Void aVoid) {
-                                                                            Log.d("friendloaded", "DocumentSnapshot successfully updated!");
-                                                                        }
-                                                                    })
-                                                                    .addOnFailureListener(new OnFailureListener() {
-                                                                        @Override
-                                                                        public void onFailure(@NonNull Exception e) {
-                                                                            Log.w("frienddidntload", "Error updating document", e);
-                                                                        }
-                                                                    });
-
-                                                            DocumentReference friendRef = firestore.collection("FriendList").document(friend.getEmail());
-
-                                                            friendRef
-                                                                    .update("UserFriendList",  FieldValue.arrayUnion(LoginAct.CurUser.getUsername()))
-                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                        @Override
-                                                                        public void onSuccess(Void aVoid) {
-                                                                            Log.d("friendloaded", "DocumentSnapshot successfully updated!");
-                                                                        }
-                                                                    })
-                                                                    .addOnFailureListener(new OnFailureListener() {
-                                                                        @Override
-                                                                        public void onFailure(@NonNull Exception e) {
-                                                                            Log.w("frienddidntload", "Error updating document", e);
-                                                                        }
-                                                                    });
-                                                            FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-                                                            ft.detach(Venner.this).attach(Venner.this).commit();
-
-                                                            Toast.makeText(v.getContext(),
-                                                                    "User added!",
-                                                                    Toast.LENGTH_SHORT).show();
-
-
-                                                        }
-                                                    }
-                                                } else {
-                                                    Log.d("TAG", "Error getting documents: ", task.getException());
-                                                }
-                                            }
-                                        });
-
-
-                            }
-                            else {
-                                Toast.makeText(v.getContext(),
-                                        "error user not found",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                            accesUser.addFriendsTask(nUsername.getText().toString(), fragment);
                         }
                     });
                     mBuilder.setView(blue);
@@ -206,9 +135,8 @@ public class Venner extends Fragment {
                 }
             });
 
-            */
 
-            AccesUser accesUser = new AccesUser() ;
+
 
             accesUser.getFriendsTask(new FireBaseCallBack() {
                 @Override
