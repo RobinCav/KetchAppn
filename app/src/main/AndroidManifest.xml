@@ -25,7 +25,6 @@
         <activity
             android:name=".Start_Page"
             android:exported="true"
-            android:label="@string/title_activity_2"
             android:theme="@style/Theme.KetchAppn.NoActionBar" />
     </application>
 
