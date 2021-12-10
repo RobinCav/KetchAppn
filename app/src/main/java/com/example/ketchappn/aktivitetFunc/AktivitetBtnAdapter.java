@@ -1,5 +1,6 @@
 package com.example.ketchappn.aktivitetFunc;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,8 @@ public class AktivitetBtnAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
-        holder.getView().setText(akt.get(position).getName());
+        holder.getView().setText(akt.get(position).getSymbol());
+        holder.getView().setTag(akt.get(position).getId());
         counter++;
     }
 

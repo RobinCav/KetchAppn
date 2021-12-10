@@ -25,7 +25,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="122dp"
         android:baselineAligned="false"
-        android:textSize="32sp"
+        android:textSize="42sp"
         android:gravity="center"
         android:textColor="@color/common_google_signin_btn_text_dark_pressed"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
@@ -51,6 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginTop="50dp"
+        android:backgroundTint="@color/black"
         android:text="Videre" />
 
 </LinearLayout>

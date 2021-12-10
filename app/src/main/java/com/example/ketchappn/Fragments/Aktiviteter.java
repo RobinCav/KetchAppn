@@ -44,6 +44,7 @@ public class Aktiviteter extends Fragment {
     private RecyclerView recyclerView;
     @SuppressLint("StaticFieldLeak")
     private static TextView chosenAkt;
+    private String nameOfAkt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class Aktiviteter extends Fragment {
         aktivitetArray = AktivitetBtnAdapter.sendArray();
 
 
+
         Button btnVidere = (Button) view.findViewById(R.id.videreBtn);
         btnVidere.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +75,16 @@ public class Aktiviteter extends Fragment {
 
                 else {
 
+
+
+                    for (int i = 0; i < aktivitetArray.size(); i++){
+                        if (chosenAkt.getText() == aktivitetArray.get(i).getSymbol()){
+                            nameOfAkt = aktivitetArray.get(i).getName();
+                        }
+                    }
+
                     Intent i = new Intent(getActivity(), StartAktivitetActivity.class);
-                    i.putExtra("Aktivitet", chosenAkt.getText().toString());
+                    i.putExtra("Aktivitet", nameOfAkt);
                     startActivity(i);
                 }
             }

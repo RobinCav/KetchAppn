@@ -1,12 +1,11 @@
 package com.example.ketchappn;
 
-import androidx.annotation.RequiresApi;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.media.Image;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -14,9 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
+
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -34,6 +32,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class StartAktivitetActivity extends AppCompatActivity {
@@ -47,6 +46,7 @@ public class StartAktivitetActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Objects.requireNonNull(getSupportActionBar()).hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_aktivitet);
 
