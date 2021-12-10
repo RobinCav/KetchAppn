@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.ketchappn.Activities.UserSettingsActivity;
 import com.example.ketchappn.Fragments.Aktiviteter;
 import com.example.ketchappn.Fragments.Grupper;
 import com.example.ketchappn.Fragments.LoginAct;
@@ -35,7 +38,6 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
 
 
-        TextView tview = (TextView)findViewById(R.id.curUser);
 //        tview.setText("Welcome back, " + LoginAct.CurUser.getUsername());
 
     }
@@ -46,7 +48,15 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
 
+        Button settings = findViewById(R.id.usersetting);
 
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent log = new Intent(getApplicationContext(), UserSettingsActivity.class);
+                startActivity(log);
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
