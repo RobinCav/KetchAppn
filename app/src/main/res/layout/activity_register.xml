@@ -4,7 +4,10 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:id="@+id/RegisterFrag">
+
+    android:id="@+id/RegisterFrag"
+    android:background="@color/primaryVarient"
+    >
 
     <TextView
         android:layout_width="300px"
