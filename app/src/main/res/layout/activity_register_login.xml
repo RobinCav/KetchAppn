@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
@@ -7,6 +8,14 @@
     android:background="@color/primaryVarient">
 
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_to_ketchapp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,15 +30,16 @@
         android:textAlignment="center"
 
 
-        />
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_centerInParent="true"
+        android:textColor="@color/white"
         android:layout_gravity="center"
-        android:text="Register"
+        android:backgroundTint="@color/black"
+        android:text="@string/register"
 
         />
 
@@ -37,9 +47,10 @@
         android:id="@+id/login"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:text="Login"
+        android:text="@string/login"
+        android:textColor="@color/white"
         android:layout_gravity="center"
-        android:layout_centerInParent="true"
+        android:backgroundTint="@color/black"
         />
 
 

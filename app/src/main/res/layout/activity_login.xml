@@ -10,14 +10,13 @@
     android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
     >
 
-
-
-
     <TextView
-        android:layout_width="300px"
-        android:layout_height="100px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Login 😁"
-        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textColor="@color/black"
         />
 
     <EditText

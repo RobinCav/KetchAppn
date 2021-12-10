@@ -3,6 +3,7 @@ package com.example.ketchappn.Fragments;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -11,7 +12,7 @@ import android.widget.Button;
 
 import com.example.ketchappn.R;
 
-public class RegisterLoginAct extends AppCompatActivity {
+public class RegisterLoginAct extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
