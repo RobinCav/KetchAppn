@@ -1,6 +1,7 @@
 package com.example.ketchappn.database;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -72,9 +73,12 @@ public class AccesUser  {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String status = (String) document.get("Status");
+                                if(document.get("Username").equals(LoginAct.CurUser.getUsername())){
+                                    String status = (String) document.get("Status");
 
-                                callback.onCallBackGetStatus( status);
+                                    callback.onCallBackGetStatus( status);
+                                }
+
 
 
                             }
@@ -138,6 +142,23 @@ public class AccesUser  {
 
     }
 
+    public void changeStatusTask(String status, Activity activity){
+
+        DocumentReference curUserRef = firestore.collection("User").document(LoginAct.CurUser.getEmail());
+
+        curUserRef.update("Status", status).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                activity.startActivity(new Intent(activity.getApplicationContext(), Start_Page.class));
+
+            }
+        });
+
+
+
+
+
+    }
     public void addFriendsTask(String username, Fragment fragment){
         if (!username.isEmpty()){
 
@@ -204,7 +225,6 @@ public class AccesUser  {
                                                 "User added!",
                                                 Toast.LENGTH_SHORT).show();
 
-                                        fragment.startActivity(new Intent(fragment.getContext(), Start_Page.class));
 
 
 
