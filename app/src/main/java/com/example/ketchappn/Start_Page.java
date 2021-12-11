@@ -23,6 +23,8 @@ import com.example.ketchappn.Fragments.Minner;
 import com.example.ketchappn.Fragments.RegisterAct;
 import com.example.ketchappn.Fragments.RegisterLoginAct;
 import com.example.ketchappn.Fragments.Venner;
+import com.example.ketchappn.database.AccesUser;
+import com.example.ketchappn.database.FireBaseUserCallBack;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +37,9 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Start_Page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, MaterialToolbar.OnMenuItemClickListener {
@@ -66,8 +71,21 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
         toolbar = findViewById(R.id.Top_toolbar);
-        toolbar.setOnMenuItemClickListener(this);
 
+        toolbar.setOnMenuItemClickListener(this);
+        AccesUser accesUser = new AccesUser();
+        accesUser.getStatusTask(LoginAct.CurUser, new FireBaseUserCallBack() {
+            @Override
+            public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
+
+            }
+
+            @Override
+            public void onCallBackGetStatus(String status) {
+                toolbar.getMenu().getItem(0).setTitle(status);
+
+            }
+        });
 
     }
 

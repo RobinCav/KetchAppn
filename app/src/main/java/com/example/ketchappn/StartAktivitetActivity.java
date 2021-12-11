@@ -76,7 +76,7 @@ public class StartAktivitetActivity extends Activity {
 
 
                                      @Override
-                                     public void onCallBack(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
+                                     public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
                                          if (friends.size() == 0){
 
                                              question = (TextView) findViewById(R.id.friendListUnderline);
@@ -103,7 +103,12 @@ public class StartAktivitetActivity extends Activity {
                                          }
 
                                      }
-                                 });
+
+            @Override
+            public void onCallBackGetStatus(String status) {
+
+            }
+        });
 
 
                 TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);

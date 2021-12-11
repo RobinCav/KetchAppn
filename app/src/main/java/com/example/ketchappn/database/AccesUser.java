@@ -61,11 +61,11 @@ public class AccesUser  {
     public void setFriends(ArrayList<User> friends) {
         this.friends = friends;
     }
-/*
+
     public void getStatusTask (User user,FireBaseUserCallBack callback){
 
 
-        firestore.collection("FriendList")
+        firestore.collection("User")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -74,7 +74,7 @@ public class AccesUser  {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String status = (String) document.get("Status");
 
-                                callback.onCallBack((   ArrayList<HashMap<String, Object>> ) document.get("UserFriendList"), status);
+                                callback.onCallBackGetStatus( status);
 
 
                             }
@@ -88,7 +88,7 @@ public class AccesUser  {
 
     }
 
- */
+
 
     public void getFriendsTask (FireBaseUserCallBack callback){
 
@@ -119,7 +119,7 @@ public class AccesUser  {
 
                             }
 
-                            callback.onCallBack(friendsList, friendsStatus);
+                            callback.onCallBackGetFriends(friendsList, friendsStatus);
 
                         }
                         else {

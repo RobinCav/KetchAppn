@@ -119,7 +119,11 @@ public class Venner extends Fragment {
 
             accesUser.getFriendsTask(new FireBaseUserCallBack() {
 
-                public void onCallBack(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
+                     @Override
+                     public void onCallBackGetStatus(String status) {
+
+                     }
+                     public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
                     /*
                     ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
                     lstItems.setAdapter(adapter);
