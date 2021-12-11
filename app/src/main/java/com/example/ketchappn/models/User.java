@@ -11,12 +11,32 @@ public class User implements Serializable {
     private ArrayList<User> friends = new ArrayList<>();
     private ArrayList<Aktivitet> activities = new ArrayList<>();
 
+    private String Status;
+
     public User(){
+        Status = "\uD83E\uDD75";
+    }
+
+    public User(String username){
+        this.username = username;
+        Status = "\uD83E\uDD75";
 
     }
+
+
     public User( String username, String email) {
         this.username = username;
         this.email = email;
+        Status = "\uD83E\uDD75";
+
+    }
+
+    public User( String username, String email, ArrayList<User> friends) {
+        this.username = username;
+        this.friends = friends;
+        this.email = email;
+        Status = "\uD83E\uDD75";
+
     }
 
     public void removeFriend(User friend){
@@ -71,6 +91,10 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getStatus() {
+        return Status;
     }
 
     @Override

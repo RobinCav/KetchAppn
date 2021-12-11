@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
     <item
-        android:id="@+id/change_password"
+        android:id="@+id/status"
+
+        android:title=""
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/changepass"
         android:contentDescription="@string/content_change_password"
         android:icon="@drawable/venner_navigation"
         android:title="@string/change_password" />
-
 
     <item
         android:id="@+id/Loggout"
