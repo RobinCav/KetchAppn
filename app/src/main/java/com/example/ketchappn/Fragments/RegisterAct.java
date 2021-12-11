@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,7 +68,8 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
         userHashMap.put("Email", user.getEmail());
         userHashMap.put("Username", user.getUsername());
         userHashMap.put("UserFriendList", user.getFriends());
-
+        userHashMap.put("Status", user.getStatus());
+        userHashMap.put("JoinedActivity", user.getActivities());
 
         firestore.collection("User").document(user.getEmail())
                 .set(userHashMap)
@@ -100,13 +102,13 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
                                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                                     Intent sendToLogin = new Intent(getApplicationContext(), LoginAct.class);
 
-                                    User user = new User(username.getText().toString(), email.getText().toString() );
+                                    User user = new User(username.getText().toString(), email.getText().toString(),new ArrayList<>());
                                     setDocument(user);
                                     startActivity(sendToLogin);
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("RegisterFail", "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(RegisterAct.this, "Authentication failed. \n Passwords need to be atleast 6 characters long.",
+                                    Toast.makeText(RegisterAct.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
                                 }
 

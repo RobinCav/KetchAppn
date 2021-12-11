@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.Venner"
-    android:background="@android:color/holo_orange_light"
     android:orientation="vertical"
     android:gravity="top|center_horizontal"
     android:padding="16dp"
@@ -18,10 +17,15 @@
         android:text="venner"
         android:textSize="32dp"/>
 
-    <ListView
+
+    <LinearLayout
         android:id="@+id/friendList"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/dialogButton"
         android:layout_width="wrap_content"

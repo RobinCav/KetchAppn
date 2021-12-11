@@ -2,10 +2,13 @@ package com.example.ketchappn.Fragments;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -32,6 +35,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class LoginAct extends AppCompatActivity implements View.OnClickListener {
 
@@ -64,53 +68,59 @@ public class LoginAct extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.loginNow:
-                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d("SignSuccess", "signInWithEmail:success");
+                if(email.getText().toString().length() != 0 || password.getText().toString().length() != 0 ) {
+                    mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d("SignSuccess", "signInWithEmail:success");
 
 
-                                    DocumentReference docRef = firestore.collection("User").document(email.getText().toString());
+                                        DocumentReference docRef = firestore.collection("User").document(email.getText().toString());
 
-                                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                        private static final String TAG = "TAG";
+                                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            private static final String TAG = "TAG";
 
-                                        @Override
-                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                            if (task.isSuccessful()) {
-                                                DocumentSnapshot document = task.getResult();
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot document = task.getResult();
 
-                                                 CurUser  = new User( document.get("Username").toString(), email.getText().toString());
-
-
-                                                Intent sendToStart = new Intent(getApplicationContext(), Start_Page.class);
+                                                    CurUser  = new User( Objects.requireNonNull(document.get("Username")).toString(), email.getText().toString());
 
 
-                                                FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                                                startActivity(sendToStart);
+                                                    Intent sendToStart = new Intent(getApplicationContext(), Start_Page.class);
 
-                                                if (document.exists()) {
-                                                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+
+                                                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                                                    startActivity(sendToStart);
+
+                                                    if (document.exists()) {
+                                                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                                    } else {
+                                                        Log.d(TAG, "No such document");
+                                                    }
                                                 } else {
-                                                    Log.d(TAG, "No such document");
+                                                    Log.d(TAG, "get failed with ", task.getException());
                                                 }
-                                            } else {
-                                                Log.d(TAG, "get failed with ", task.getException());
                                             }
-                                        }
-                                    });
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w("SignFailed", "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginAct.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                }
+                                        });
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w("SignFailed", "signInWithEmail:failure", task.getException());
+                                        SpannableStringBuilder biggerText = new SpannableStringBuilder("Authentication failed.");
+                                        biggerText.setSpan(new RelativeSizeSpan(1.6f), 0, "Authentication failed.".length(), 0);
+                                        Toast.makeText(LoginAct.this, biggerText ,
+                                                Toast.LENGTH_LONG).show();
 
-                            }
-                        });
+                                    }
+
+                                }
+                            });
+                }
+
                 break;
             case R.id.GoRegister:
                 Intent reg = new Intent(getApplicationContext(), RegisterAct.class);
@@ -121,4 +131,18 @@ public class LoginAct extends AppCompatActivity implements View.OnClickListener 
 
         }
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }

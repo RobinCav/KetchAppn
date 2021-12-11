@@ -1,33 +1,25 @@
 package com.example.ketchappn.models;
 
 public class Aktivitet {
-    private String name, url;
+    private String name;
     private int id;
+    private String symbol;
 
-
-    public Aktivitet(int id, String name, String url) {
-        this.id = id;
+    public Aktivitet(String name, int id, String symbol) {
         this.name = name;
-        this.url = url;
+        this.id = id;
+        this.symbol = symbol;
+    }
+
+    public Aktivitet(String name) {
+        this.name = name;
     }
 
     public Aktivitet() {
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public int getId() {
@@ -38,12 +30,21 @@ public class Aktivitet {
         this.id = id;
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "aktivitet{" +
-                "namewassup='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", id=" + id +
-                '}';
+                "namewassup='" + name;
     }
 }

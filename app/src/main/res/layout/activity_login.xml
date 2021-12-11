@@ -4,13 +4,19 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:id="@+id/LoginFrag">
+    android:background="@color/primaryVarient"
+    android:screenOrientation="landscape"
+    android:id="@+id/LoginFrag"
+    android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+    >
 
     <TextView
-        android:layout_width="300px"
-        android:layout_height="100px"
-        android:text="Login"
-        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login 😁"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textColor="@color/black"
         />
 
     <EditText

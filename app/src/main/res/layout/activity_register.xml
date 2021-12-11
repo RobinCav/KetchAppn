@@ -4,49 +4,59 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:id="@+id/RegisterFrag">
+
+    android:id="@+id/RegisterFrag"
+    android:background="@color/primaryVarient"
+    >
 
     <TextView
-        android:layout_width="300px"
-        android:layout_height="100px"
-        android:text="REGISTER"
-        android:textSize="20dp"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/REGISTER"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="600px"
-        android:layout_height="wrap_content"
-        android:hint="Enter username"
-        android:inputType="textPersonName" />
+        android:layout_width="257dp"
+        android:layout_height="59dp"
+        android:hint="@string/enter_username"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
     <EditText
         android:id="@+id/email"
-        android:layout_width="600px"
-        android:layout_height="wrap_content"
-        android:hint="Enter email"
-        android:inputType="textEmailAddress" />
+        android:layout_width="254dp"
+        android:layout_height="57dp"
+        android:hint="@string/enter_email"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center" />
+
     <EditText
         android:id="@+id/password"
-        android:layout_width="600px"
-        android:layout_height="wrap_content"
-        android:hint="Enter password"
-        android:inputType="textPassword" />
+        android:layout_width="254dp"
+        android:layout_height="58dp"
+        android:hint="@string/enter_password"
+        android:inputType="textPassword"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/RegisterNow"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/register"
         android:layout_gravity="center"
-        android:layout_centerInParent="true"
-        />
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"/>
     <Button
         android:id="@+id/GoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login?"
+        android:text="@string/Login"
         android:layout_gravity="center"
-        android:layout_centerInParent="true"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
         />
 
 

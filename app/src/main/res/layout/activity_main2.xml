@@ -4,37 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2">
+    android:background="@color/primaryVarient"
+    tools:context=".StartAktivitetActivity">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textSize="32sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.085" />
 
     <EditText
         android:id="@+id/editPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/sted"
+        android:hint="@string/place"
+        android:textColor="@color/black"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:importantForAutofill="no" />
+
+
+    <Button
+        android:id="@+id/pickDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:ems="10"
+        android:hint="@string/pick_date"
+        android:textColorHint="@color/white"
+        android:importantForAutofill="no"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <requestFocus />
+    </Button>
 
     <TimePicker
         android:id="@+id/datePicker1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="255dp"
+        android:layout_height="173dp"
+        android:layout_marginTop="72dp"
+        android:numbersInnerTextColor="@color/black"
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,19 +77,65 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Inviter"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:text="@string/inviter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="11dp"
-        android:text="Tilbake"
+        android:layout_width="85dp"
+        android:layout_height="49dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/back"
+        android:textColor="@color/white"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="wrap_content"
+        android:layout_height="142dp"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker1"
+        app:layout_constraintVertical_bias="0.427"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:id="@+id/checkboxlist"
+            android:layout_width="314dp"
+            android:layout_height="142dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.835"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datePicker1"
+            app:layout_constraintVertical_bias="0.705" />
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/friendListUnderline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/underline"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker1"
+
+        app:layout_constraintVertical_bias="0.542" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
