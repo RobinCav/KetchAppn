@@ -59,17 +59,19 @@ public class Grupper extends Fragment  {
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         for(QueryDocumentSnapshot document : task.getResult()) {
-                            HashMap<String, Object> d = (HashMap<String, Object>) document.get("aktivitet");
-                            String t =  document.get("tid").toString();
+                            //HashMap<String, Object> d = (HashMap<String, Object>) document.get("aktivitet");
+                            //String t =  document.get("tid").toString();
                             Log.d(ARRAGEMENTER, " => " + document.get("aktivitet"));
                             list.add(document);
-                            recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
+
                         }
+
                     }
                     else{
                         Log.d("Nigga","Fisk",task.getException());
                     }
                 });
+        recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
         return view;
     }
 
