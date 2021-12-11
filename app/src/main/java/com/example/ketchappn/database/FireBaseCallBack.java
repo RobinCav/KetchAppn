@@ -7,5 +7,4 @@ public interface FireBaseCallBack {
 
     void onCallback( ArrayList<String> friends);
 
-
 }

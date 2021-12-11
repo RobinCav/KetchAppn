@@ -26,6 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class AccesUser  {
 
@@ -70,7 +71,7 @@ public class AccesUser  {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.get("Username").equals(LoginAct.CurUser.getUsername())){
+                                 if(Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())){
                                     //We have our list view
                                     friends = (ArrayList<String>) document.get("UserFriendList");
                                     callback.onCallback(friends);
@@ -89,10 +90,7 @@ public class AccesUser  {
          return  null;
 
     }
-    public void processData(ArrayList<String> f){
-        friends = f;
 
-    }
 
     public ArrayList<String> getFriends(){
 

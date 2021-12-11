@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -25,6 +26,7 @@ public class FirestoreFunctions {
         docReference = firestore.collection(collectionpath).document(collectionName);
         docReference.set(object);
     }
+
 
     public void startArrangement(String name, String url, int id) {
 

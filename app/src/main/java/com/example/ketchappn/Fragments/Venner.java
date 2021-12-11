@@ -1,49 +1,26 @@
 package com.example.ketchappn.Fragments;
 
-import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.MenuItem;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.ketchappn.R;
-import com.example.ketchappn.Start_Page;
 import com.example.ketchappn.database.AccesUser;
 import com.example.ketchappn.database.FireBaseCallBack;
-import com.example.ketchappn.models.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 
-
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -92,7 +69,7 @@ public class Venner extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        
 
 
 
@@ -111,7 +88,8 @@ public class Venner extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_venner, container, false);
 
-        ListView lstItems = (ListView)v.findViewById(R.id.friendList);
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.friendList);
+
         Button myButton = (Button) v.findViewById(R.id.dialogButton);
         Fragment fragment = this;
 
@@ -141,8 +119,25 @@ public class Venner extends Fragment {
             accesUser.getFriendsTask(new FireBaseCallBack() {
                 @Override
                 public void onCallback(ArrayList<String> f) {
+                    /*
                     ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
-                    lstItems.setAdapter(allItemsAdapter);
+                    lstItems.setAdapter(adapter);
+                     */
+
+                    for(int i=0; i <f.size();i++){
+                        Button btn = new Button(getContext());
+                        btn.setText(f.get(i));
+                        btn.setGravity(Gravity.CENTER);
+                        btn.setTextSize(15);
+                        layout.addView(btn);
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                System.out.println("Friend name " + btn.getText());
+                            }
+                        });
+                    }
+
                 }
             }
             );
