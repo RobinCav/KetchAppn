@@ -5,8 +5,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 import com.example.ketchappn.models.Aktivitet;
+import com.example.ketchappn.models.Arrangement;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -40,16 +42,16 @@ public class FirestoreFunctions {
 
 
 
-    public void startArrangement(String name, String url, int id) {
+    public void startArrangement(Arrangement arr) {
 
         firestore = FirebaseFirestore.getInstance();
 
         Map<String, Object> aktivitet = new HashMap<>();
-        aktivitet.put("name", name);
-        aktivitet.put("url", url);
-        aktivitet.put("id", id);
+        aktivitet.put("Name", arr.getCollectionname());
+        aktivitet.put("Symbol", arr.getAktivitet().getSymbol());
+        aktivitet.put("Sted", arr.getSted());
 
-        firestore.collection("Aktiviteter").document("Football")
+        firestore.collection("User").document(LoginAct.CurUser.getEmail())
                 .set(aktivitet)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
