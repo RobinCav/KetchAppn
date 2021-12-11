@@ -110,7 +110,7 @@ public class AccesUser  {
                                 for (int i = 0; i < friendsList.size(); i++) {
                                     String friendsName = (String) friendsList.get(i).get("username");
                                     if (Objects.equals(document.get("Username"), friendsName)) {
-                                        friendsStatus.add(document.get("Status").toString());
+                                        friendsStatus.add(document.get("Status").toString() + " " + friendsList.get(i).get("username"));
 
                                     }
 
