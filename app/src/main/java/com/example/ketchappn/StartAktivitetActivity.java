@@ -168,7 +168,7 @@ public class StartAktivitetActivity extends Activity {
                     dato = day + "/" + month + "/" + year + "/" + hour + ":" + minute;
 
                     @SuppressLint("DefaultLocale")
-                    Arrangement arrangement = new Arrangement(finalValgtAktivitet, place, dato, LoginAct.CurUser, unique);
+                    Arrangement arrangement = new Arrangement(finalValgtAktivitet, place, dato, LoginAct.CurUser.getEmail(), unique);
                     firestoreFunctions.addObjectToFirebase("Arrangement", arrangement.getCollectionname(), arrangement);
                     Log.d("Informasjon om arrangement", arrangement.toString());
 

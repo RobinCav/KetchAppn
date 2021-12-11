@@ -37,7 +37,6 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         mAuth = FirebaseAuth.getInstance();
 
 
-
 //        tview.setText("Welcome back, " + LoginAct.CurUser.getUsername());
 
     }
@@ -70,8 +69,6 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     Venner fragment_venner = new Venner();
     Grupper fragment_grupper = new Grupper();
     Aktiviteter fragment_aktiviteter = new Aktiviteter();
-
-
 
 
 
