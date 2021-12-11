@@ -113,8 +113,7 @@ public class AccesUser  {
                                         friendsStatus.add(document.get("Status").toString() + " " + friendsList.get(i).get("username"));
 
                                     }
-
-
+                                    
                                 }
 
                             }
