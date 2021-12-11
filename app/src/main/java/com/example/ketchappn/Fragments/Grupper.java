@@ -2,28 +2,14 @@
 
 package com.example.ketchappn.Fragments;
 import com.example.ketchappn.R;
-import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
-import com.example.ketchappn.models.Aktivitet;
-import com.example.ketchappn.recyclerViewHolder.recyclerAdapter;
-import com.example.ketchappn.database.groupDB;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-//import com.google.firebase.database.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import android.app.ProgressDialog;
+import com.example.ketchappn.recyclerViewHolder.recyclerAdapter;
+
+import com.google.firebase.firestore.CollectionReference;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,19 +29,17 @@ import android.widget.TextView;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Grupper extends Fragment  {
-    private static final String AKTIVITETER = "Aktiviteter";
+    private static final String ARRAGEMENTER = "Arrangement";
 
-
-    private TextView id, name, url;
-    ArrayList<groupDB> list = new ArrayList<>();
+    ArrayList<QueryDocumentSnapshot> list = new ArrayList<>();
 
     RecyclerView recyclerView;
-    recyclerAdapter adapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference database = db.collection(AKTIVITETER);
+    CollectionReference database = db.collection(ARRAGEMENTER);
 
     View view;
 
@@ -68,38 +52,30 @@ public class Grupper extends Fragment  {
 
         // Add the following lines to create RecyclerView
         recyclerView = view.findViewById(R.id.recyclerviewGRUPPE);
-        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new recyclerAdapter(getContext(),list));
-        Log.d(AKTIVITETER, " Hva skjer?");
-        database.whereGreaterThanOrEqualTo("id", 0)
-                .get()
+        recyclerView.setHasFixedSize(true);
+
+        database.get()
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
-                        for(QueryDocumentSnapshot document : task.getResult()){
-                            Log.d("Nigga", document.getId() + " => " + document.getData());
-                            groupDB gdb = document.toObject(groupDB.class);
-                            list.add(gdb);
-                            recyclerView.setAdapter(new recyclerAdapter(getContext(),list));
+                        for(QueryDocumentSnapshot document : task.getResult()) {
+                            HashMap<String, Object> d = (HashMap<String, Object>) document.get("aktivitet");
+                            String t =  document.get("tid").toString();
+                            Log.d(ARRAGEMENTER, " => " + document.get("aktivitet"));
+                            list.add(document);
+                            recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
                         }
                     }
                     else{
                         Log.d("Nigga","Fisk",task.getException());
                     }
                 });
-
         return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupRecyclerView();
-
-    }
-
-    private void setupRecyclerView(){
-
     }
 
     @Override

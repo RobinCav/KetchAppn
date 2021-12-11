@@ -13,7 +13,7 @@
     <string name="signin">signIn</string>
     <string name="loginusername">loginUsername</string>
     <string name="hello_blank_fragment_minner">hello_blank_fragment_minner</string>
-    <string name="tid">tid</string>
+    <string name="tid_gruppe">tid</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -27,4 +27,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_register_login">RegisterLoginAct</string>
     <string name="url_gruppe">url</string>
+    <string name="symbol">symbol</string>
+    <string name="name">name</string>
+    <string name="tid">tid</string>
 </resources>

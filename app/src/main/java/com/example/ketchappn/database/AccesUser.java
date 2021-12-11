@@ -57,7 +57,7 @@ public class AccesUser  {
     public ArrayList<String> getFriendsTask (FireBaseCallBack callback){
 
 
-         firestore.collection("FriendList")
+         firestore.collection("User")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

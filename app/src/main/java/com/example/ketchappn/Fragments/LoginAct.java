@@ -73,7 +73,7 @@ public class LoginAct extends AppCompatActivity implements View.OnClickListener 
                                     Log.d("SignSuccess", "signInWithEmail:success");
 
 
-                                    DocumentReference docRef = firestore.collection("FriendList").document(email.getText().toString());
+                                    DocumentReference docRef = firestore.collection("User").document(email.getText().toString());
 
                                     docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         private static final String TAG = "TAG";

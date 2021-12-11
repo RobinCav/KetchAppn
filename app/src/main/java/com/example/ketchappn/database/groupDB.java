@@ -1,18 +1,16 @@
 package com.example.ketchappn.database;
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-
+import java.util.HashMap;
+/*
 public class groupDB {
-     int id;
      String name;
-     String url;
+     String symbol;
 
-    public groupDB(int id, String name, String url){
+    public groupDB(String name, String symbol){
         this.name = name;
-        this.id=id;
-        this.url = url;
+        this.symbol = symbol;
     }
+
     public groupDB(){}
     public String getName() {
         return name;
@@ -21,15 +19,12 @@ public class groupDB {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getSymbol() {
+        return symbol;
     }
-    public void setUrl(String url) {
-        this.url = url;
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) { this.id = id; }
 }
+*/

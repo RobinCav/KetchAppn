@@ -25,37 +25,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="62dp"
-            android:layout_marginStart="20dp"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_action_groupemoji" />
-
 
         <TextView
-            android:id="@+id/idText"
-            android:layout_width="62dp"
-            android:layout_marginStart="20dp"
+            android:id="@+id/symbolText"
+            android:layout_width="88dp"
             android:layout_height="match_parent"
-            android:text="@string/tid"
-            android:textSize="12sp" />
+            android:layout_marginStart="20dp"
+            android:text="@string/symbol"
+            android:textSize="12sp"
+            tools:text="@string/symbol" />
 
         <TextView
             android:id="@+id/nameText"
-            android:layout_width="50dp"
-            android:layout_marginStart="20dp"
+            android:layout_width="88dp"
             android:layout_height="match_parent"
-            android:text="@string/sted"
+            android:layout_marginStart="20dp"
+            android:text="@string/name"
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/url_textView"
-            android:layout_width="30dp"
-            android:layout_marginStart="20dp"
+            android:id="@+id/tid_text"
+            android:layout_width="88dp"
             android:layout_height="match_parent"
-            android:text="@string/url_gruppe"
-            android:textSize="12sp"/>
+            android:layout_marginStart="20dp"
+            android:text="@string/tid_gruppe"
+            android:textSize="12sp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

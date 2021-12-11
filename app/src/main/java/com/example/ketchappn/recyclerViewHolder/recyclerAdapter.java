@@ -2,7 +2,7 @@ package com.example.ketchappn.recyclerViewHolder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.ketchappn.R;
-import com.example.ketchappn.chatActivity;
-import com.example.ketchappn.database.groupDB;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recyclerviewholder> {
-    Context context;
-    ArrayList<groupDB> arrayList;
+    private Context context;
+    private final ArrayList<QueryDocumentSnapshot> list;
 
-    public recyclerAdapter(Context ctx,ArrayList<groupDB> arrayList){
-        this.context=ctx;
-        this.arrayList = arrayList;
+    public recyclerAdapter(Context ctx, ArrayList<QueryDocumentSnapshot> list){
+        this.context = ctx;
+        this.list = list;
     }
 
     @NonNull
@@ -38,22 +38,16 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull recyclerviewholder viewholder, int position) {
-        groupDB db = arrayList.get(position);
-        viewholder.Id.setText(Integer.toString(db.getId()));
-        viewholder.name.setText((db.getName()));
-        viewholder.url.setText((db.getUrl()));
-
-       /* viewholder.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), chatActivity.class);
-            }
-        });*/
+        HashMap<String, Object> d = (HashMap<String, Object>) list.get(position).get("aktivitet");
+        QueryDocumentSnapshot bd  = list.get(position);
+        viewholder.name.setText(d.get("name").toString());
+        viewholder.symbol.setText(d.get("name").toString());
+        viewholder.tid.setText(bd.get("tid").toString());
     }
 
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        return list.size();
     }
     @Override
     public void onAttachedToRecyclerView(
@@ -62,14 +56,29 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     public class recyclerviewholder extends RecyclerView.ViewHolder {
-        private TextView Id, name, url;
+        private TextView name, symbol, tid;
 
         public recyclerviewholder(@NonNull View itemView) {
             super(itemView);
-            Id = itemView.findViewById(R.id.nameText);
-            name = itemView.findViewById(R.id.idText);
-            url = itemView.findViewById(R.id.url_textView);
+            name = itemView.findViewById(R.id.nameText);
+            symbol = itemView.findViewById(R.id.symbolText);
+            tid = itemView.findViewById(R.id.tid_text);
         }
+
+        public TextView getName() { return name; }
+        public void setName(TextView name) { this.name = name; }
+        public TextView getSymbol() { return symbol; }
+        public void setSymbol(TextView symbol) { this.symbol = symbol; }
+        public TextView getTid() { return tid; }
+        public void setTid(TextView tid) { this.tid = tid; }
     }
 }
