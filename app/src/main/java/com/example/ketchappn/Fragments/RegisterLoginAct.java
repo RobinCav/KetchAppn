@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import com.example.ketchappn.R;
 
-public class RegisterLoginAct extends Activity {
+public class RegisterLoginAct extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,7 +11,6 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textview"
         android:textSize="32sp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +27,7 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/place"
+        android:textColor="@color/black"
         android:inputType="text"
         android:minHeight="48dp"
         android:textAlignment="center"
@@ -45,10 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:ems="10"
-        android:hint="Pick date"
+        android:hint="@string/pick_date"
         android:textColorHint="@color/white"
         android:importantForAutofill="no"
-        android:inputType="date"
         android:backgroundTint="@color/black"
         android:textColor="@color/white"
         android:minHeight="48dp"
@@ -100,15 +99,16 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="314dp"
+        android:layout_width="wrap_content"
         android:layout_height="142dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.845"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datePicker1"
-        app:layout_constraintVertical_bias="0.432"
+        app:layout_constraintVertical_bias="0.26"
         tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
@@ -126,16 +126,18 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/friendListUnderline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Who will you invite?"
+        android:text="@string/underline"
+        android:textColor="@color/black"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datePicker1"
-        app:layout_constraintVertical_bias="0.897" />
+
+        app:layout_constraintVertical_bias="0.542" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
