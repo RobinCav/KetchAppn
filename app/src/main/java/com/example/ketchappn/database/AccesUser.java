@@ -59,7 +59,7 @@ public class AccesUser  {
     public void setFriends(ArrayList<User> friends) {
         this.friends = friends;
     }
-
+/*
     public void getStatusTask (User user,FireBaseUserCallBack callback){
 
 
@@ -86,6 +86,8 @@ public class AccesUser  {
 
     }
 
+ */
+
     public void getFriendsTask (FireBaseUserCallBack callback){
 
 
@@ -95,16 +97,30 @@ public class AccesUser  {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            ArrayList<String> friendsStatus = new ArrayList<>();
+                            ArrayList<HashMap<String, Object>> friendsList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                 if(Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())){
+
+                                if (Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())) {
                                     //We have our list view
-                                    ArrayList<HashMap<String, Object>>  friendsList= (ArrayList<HashMap<String, Object>>) document.get("UserFriendList");
-                                    callback.onCallBack(friendsList, (String)document.get("Status"));
+                                    friendsList = (ArrayList<HashMap<String, Object>>) document.get("UserFriendList");
+
+                                }
+                                System.out.println("rrrrrrrrr : " + friendsList.size());
+                                for (int i = 0; i < friendsList.size(); i++) {
+                                    String friendsName = (String) friendsList.get(i).get("username");
+                                    if (Objects.equals(document.get("Username"), friendsName)) {
+                                        friendsStatus.add(document.get("Status").toString());
+
+                                    }
+
 
                                 }
 
-
                             }
+
+                            callback.onCallBack(friendsList, friendsStatus);
+
                         }
                         else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
@@ -163,10 +179,10 @@ public class AccesUser  {
 
                                         DocumentReference friendRef = firestore.collection("FriendList").document(friend.getEmail());
                                         Map<String, Object> data2 = new HashMap<>();
-                                        data.put("username", LoginAct.CurUser.getUsername());
-                                        data.put("email", LoginAct.CurUser.getEmail());
+                                        data2.put("username", LoginAct.CurUser.getUsername());
+                                        data2.put("email", LoginAct.CurUser.getEmail());
                                         friendRef
-                                                .update("UserFriendList",  FieldValue.arrayUnion(LoginAct.CurUser.getUsername() + LoginAct.CurUser.getStatus()))
+                                                .update("UserFriendList",  FieldValue.arrayUnion(data2))
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {

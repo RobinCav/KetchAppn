@@ -23,12 +23,10 @@ import android.widget.Toast;
 import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 import com.example.ketchappn.database.AccesUser;
-import com.example.ketchappn.database.FireBaseCallBack;
 import com.example.ketchappn.database.FireBaseUserCallBack;
 import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
-import com.example.ketchappn.models.User;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -78,7 +76,7 @@ public class StartAktivitetActivity extends Activity {
 
 
                                      @Override
-                                     public void onCallBack(ArrayList<HashMap<String, Object>> friends, String status) {
+                                     public void onCallBack(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
                                          if (friends.size() == 0){
 
                                              question = (TextView) findViewById(R.id.friendListUnderline);

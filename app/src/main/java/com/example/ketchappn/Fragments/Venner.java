@@ -1,5 +1,6 @@
 package com.example.ketchappn.Fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -9,17 +10,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.example.ketchappn.R;
 import com.example.ketchappn.database.AccesUser;
-import com.example.ketchappn.database.FireBaseCallBack;
 import com.example.ketchappn.database.FireBaseUserCallBack;
-import com.example.ketchappn.models.User;
 
 
 import java.util.ArrayList;
@@ -121,26 +118,28 @@ public class Venner extends Fragment {
 
             accesUser.getFriendsTask(new FireBaseUserCallBack() {
 
-                public void onCallBack(   ArrayList<HashMap<String, Object>> f, String status) {
+                public void onCallBack(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
                     /*
                     ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
                     lstItems.setAdapter(adapter);
                      */
+                    System.out.println("friendList from venner : " + f);
+                        for (int i = f.size() - 1; i >= 0; i--) {
+                            Button btn = new Button(getContext());
 
-                    for(int i=0; i <f.size();i++){
-                        Button btn = new Button(getContext());
-
-                        btn.setText(f.get(i).get("username").toString() + "    " + status);
-                        btn.setGravity(Gravity.CENTER);
-                        btn.setTextSize(15);
-                        layout.addView(btn);
-                        btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                System.out.println("Friend name " + btn.getText());
-                            }
-                        });
-                    }
+                            btn.setText(f.get(i).get("username") + "                Status --> " + status.get(i));
+                            btn.setGravity(Gravity.CENTER);
+                            btn.setTextSize(18);
+                            btn.setHeight(80);
+                            btn.setTextColor(Color.BLACK);
+                            layout.addView(btn);
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    System.out.println("Friend name " + btn.getText());
+                                }
+                            });
+                        }
 
                 }
             }
