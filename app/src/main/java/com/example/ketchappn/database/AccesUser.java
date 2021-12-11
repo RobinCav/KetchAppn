@@ -1,6 +1,7 @@
 package com.example.ketchappn.database;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -12,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.Fragments.Venner;
+import com.example.ketchappn.Start_Page;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -175,6 +177,7 @@ public class AccesUser  {
                                                     }
                                                 });
 
+
                                         DocumentReference friendRef = firestore.collection("User").document(friend.getEmail());
                                         Map<String, Object> data2 = new HashMap<>();
                                         data2.put("username", LoginAct.CurUser.getUsername());
@@ -200,6 +203,9 @@ public class AccesUser  {
                                         Toast.makeText(fragment.getContext(),
                                                 "User added!",
                                                 Toast.LENGTH_SHORT).show();
+
+                                        fragment.startActivity(new Intent(fragment.getContext(), Start_Page.class));
+
 
 
                                     }
