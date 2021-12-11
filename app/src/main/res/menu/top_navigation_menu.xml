@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/more"
+        android:contentDescription="@string/content_change_password"
+        android:icon="@drawable/venner_navigation"
+        android:title="@string/change_password" />
+
+
+
+    <item
+        android:id="@+id/Loggout"
+        android:contentDescription="@string/content_loggout"
+        android:title="@string/logg_out" />
+</menu>

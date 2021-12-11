@@ -29,16 +29,19 @@
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/menu/groupmenu.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/drawable/border.xml" value="0.221875" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_login.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_register.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_start_aktivitet.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_start_page.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_start_page.xml" value="0.1" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_user_settings.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/boorder.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/button_list_aktiviteter.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/dialog_venner.xml" value="0.2826086956521739" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/fragment_grupper.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/fragment_venner.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/list_group.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/venner_listviewadapter.xml" value="0.1" />
         <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/menu/top_navigation_menu.xml" value="0.20572916666666666" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/activity_login.xml" value="0.35260416666666666" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/activity_register.xml" value="0.35260416666666666" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/activity_register_login.xml" value="0.33" />

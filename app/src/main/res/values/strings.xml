@@ -45,4 +45,8 @@
     <string name="who_will_you_invite">Who will you invite?</string>
     <string name="underline"><u>Who will you invite?</u>.</string>
     <string name="aktiviteter">Aktiviteter</string>
+    <string name="content_change_password">endre passord</string>
+    <string name="change_password">Endre passord</string>
+    <string name="content_loggout">Logg av</string>
+    <string name="logg_out">Logg ut?</string>
 </resources>

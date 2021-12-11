@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 
+import java.time.Duration;
+
 public class Start_Page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     BottomNavigationView bottomNavigationView;
 
@@ -37,7 +39,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         mAuth = FirebaseAuth.getInstance();
 
 
-
+         Toast.makeText(getBaseContext(),"Velkommen tilbake " + LoginAct.CurUser.getUsername(), Toast.LENGTH_LONG);
 //        tview.setText("Welcome back, " + LoginAct.CurUser.getUsername());
 
     }
@@ -48,15 +50,6 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
 
-        Button settings = findViewById(R.id.usersetting);
-
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent log = new Intent(getApplicationContext(), UserSettingsActivity.class);
-                startActivity(log);
-            }
-        });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
