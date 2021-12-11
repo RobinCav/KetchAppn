@@ -1,14 +1,12 @@
 package com.example.ketchappn;
 
-
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
-
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,12 +16,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-import com.example.ketchappn.Fragments.Aktiviteter;
+import android.widget.Toast;
 import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 import com.example.ketchappn.database.AccesUser;
@@ -31,27 +27,20 @@ import com.example.ketchappn.database.FireBaseCallBack;
 import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
-import com.google.type.DateTime;
-
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 
 public class StartAktivitetActivity extends Activity {
 
-    private List<Aktivitet> aktiviteter = new ArrayList<>();
-    private AccesUser accesUser = new AccesUser();
-    private FirestoreFunctions firestoreFunctions = new FirestoreFunctions();
+    private final AccesUser accesUser = new AccesUser();
+    private final FirestoreFunctions firestoreFunctions = new FirestoreFunctions();
     private ArrayList<String> venner = new ArrayList();
     private int count;
     private String dato;
-    private LocalTime localTime;
+    private TextView question;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -66,7 +55,7 @@ public class StartAktivitetActivity extends Activity {
         String aktivitet = getIntent().getStringExtra("Aktivitet");
 
         //Henter array fra firebase
-        aktiviteter = AktivitetBtnAdapter.sendArray();
+        List<Aktivitet> aktiviteter = AktivitetBtnAdapter.sendArray();
 
         //Lager objekt for valgt aktivitet, denne går gjennom arraylisten fra firebase.
         Aktivitet valgtAktivitet = new Aktivitet();
@@ -84,12 +73,29 @@ public class StartAktivitetActivity extends Activity {
             @Override
             public void onCallback(ArrayList<String> friends) {
 
-                for (int i = 0; i < friends.size(); i++){
-                    CheckBox cn = new CheckBox(context);
-                    cn.setText(friends.get(i));
-                    cn.setId(i);
-                    count++;
-                    linearLayout.addView(cn);
+                if (friends.size() == 0){
+
+                    question = (TextView) findViewById(R.id.friendListUnderline);
+                    question.setText("");
+
+                    TextView noFriends = new TextView(context);
+                    noFriends.setText("Ooops, your friendlist is empty...\uD83E\uDD74");
+                    noFriends.setTextColor(Color.BLACK);
+                    noFriends.setTypeface(null, Typeface.ITALIC);
+                    noFriends.setTextSize(30);
+                    linearLayout.addView(noFriends);
+                }
+
+                else {
+
+                    for (int i = 0; i < friends.size(); i++) {
+                        CheckBox cn = new CheckBox(context);
+                        cn.setText(friends.get(i));
+                        cn.setTextSize(20);
+                        cn.setId(i);
+                        count++;
+                        linearLayout.addView(cn);
+                    }
                 }
 
 
@@ -147,27 +153,30 @@ public class StartAktivitetActivity extends Activity {
                 Editable editable = editText.getText();
                 place = editable.toString();
 
-                if (place.equals("")) {
-                    textView.setText("Bestem sted");
-                }
-                else {
-                    for (int i = 0; i < count; i++){
-                        CheckBox checkbox = (CheckBox) findViewById(i);
-                        if (checkbox.isChecked()){
-                            venner.add(checkbox.getText().toString());
-                        }
+
+                for (int i = 0; i < count; i++){
+                    CheckBox checkbox = (CheckBox) findViewById(i);
+                    if (checkbox.isChecked()){
+                        venner.add(checkbox.getText().toString());
                     }
+                }
+
+                if (count > 0) {
 
                     ArrayList unique = (ArrayList) venner.stream().distinct().collect(Collectors.toList());
 
                     dato = day + "/" + month + "/" + year + "/" + hour + ":" + minute;
 
                     @SuppressLint("DefaultLocale")
-                    Arrangement arrangement = new Arrangement(finalValgtAktivitet,place,dato,LoginAct.CurUser, unique );
-                    firestoreFunctions.addObjectToFirebase("Arrangement",arrangement.getCollectionname(), arrangement );
+                    Arrangement arrangement = new Arrangement(finalValgtAktivitet, place, dato, LoginAct.CurUser, unique);
+                    firestoreFunctions.addObjectToFirebase("Arrangement", arrangement.getCollectionname(), arrangement);
                     Log.d("Informasjon om arrangement", arrangement.toString());
 
                     textView.setText("");
+                }
+
+                else {
+                    Toast.makeText(StartAktivitetActivity.this, "You need friends to invite" , Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -176,7 +185,6 @@ public class StartAktivitetActivity extends Activity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Aktiviteter.changeText("");
                 finish();
             }
         });

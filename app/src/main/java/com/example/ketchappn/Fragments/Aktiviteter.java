@@ -9,12 +9,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ketchappn.StartAktivitetActivity;
 import com.example.ketchappn.R;
@@ -70,7 +73,11 @@ public class Aktiviteter extends Fragment {
             public void onClick(View v) {
 
                 if (chosenAkt.getText().toString().equals("")){
-                    chosenAkt.setText("Velg aktivitet");
+
+                    SpannableStringBuilder biggerText = new SpannableStringBuilder("Choose a symbol to continue.");
+                    biggerText.setSpan(new RelativeSizeSpan(1.4f), 0, "Choose a symbol to continue.".length(), 0);
+                    Toast.makeText(getContext(), biggerText , Toast.LENGTH_LONG).show();
+
                 }
 
                 else {
