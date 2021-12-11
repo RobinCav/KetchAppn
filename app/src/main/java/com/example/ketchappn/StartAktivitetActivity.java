@@ -27,6 +27,8 @@ import com.example.ketchappn.database.FireBaseCallBack;
 import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
+import com.example.ketchappn.models.User;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -71,7 +73,7 @@ public class StartAktivitetActivity extends Activity {
 
         accesUser.getFriendsTask(new FireBaseCallBack() {
             @Override
-            public void onCallback(ArrayList<String> friends) {
+            public void onCallback(ArrayList<User> friends) {
 
                 if (friends.size() == 0){
 
@@ -90,7 +92,7 @@ public class StartAktivitetActivity extends Activity {
 
                     for (int i = 0; i < friends.size(); i++) {
                         CheckBox cn = new CheckBox(context);
-                        cn.setText(friends.get(i));
+                        cn.setText(friends.get(i).getUsername());
                         cn.setTextSize(20);
                         cn.setId(i);
                         count++;

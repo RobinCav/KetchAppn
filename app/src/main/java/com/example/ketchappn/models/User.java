@@ -31,6 +31,14 @@ public class User implements Serializable {
 
     }
 
+    public User( String username, String email, ArrayList<User> friends) {
+        this.username = username;
+        this.friends = friends;
+        this.email = email;
+        Status = "\uD83E\uDD75";
+
+    }
+
     public void removeFriend(User friend){
         this.friends.remove(friend);
     }

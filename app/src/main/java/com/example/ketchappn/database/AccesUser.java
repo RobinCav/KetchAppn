@@ -33,7 +33,7 @@ public class AccesUser  {
 
 
     private FirebaseFirestore firestore;
-    public ArrayList<String> friends = new ArrayList<>();
+    public ArrayList<User> friends = new ArrayList<>();
 
 
 
@@ -55,7 +55,7 @@ public class AccesUser  {
      */
     }
 
-    public void setFriends(ArrayList<String> friends) {
+    public void setFriends(ArrayList<User> friends) {
         this.friends = friends;
     }
 
@@ -73,7 +73,8 @@ public class AccesUser  {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                  if(Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())){
                                     //We have our list view
-                                    friends = (ArrayList<String>) document.get("UserFriendList");
+
+                                    friends = (ArrayList<User>) document.get("UserFriendList");
                                     callback.onCallback(friends);
 
                                 }
@@ -92,7 +93,7 @@ public class AccesUser  {
     }
 
 
-    public ArrayList<String> getFriends(){
+    public ArrayList<User> getFriends(){
 
         return  friends;
 
@@ -119,7 +120,7 @@ public class AccesUser  {
                                         DocumentReference curUserRef = firestore.collection("FriendList").document(LoginAct.CurUser.getEmail());
 
                                         curUserRef
-                                                .update("UserFriendList",  FieldValue.arrayUnion(friend.getUsername()))
+                                                .update("UserFriendList",  FieldValue.arrayUnion(friend.getUsername(), friend.getStatus()))
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
@@ -136,7 +137,7 @@ public class AccesUser  {
                                         DocumentReference friendRef = firestore.collection("FriendList").document(friend.getEmail());
 
                                         friendRef
-                                                .update("UserFriendList",  FieldValue.arrayUnion(LoginAct.CurUser.getUsername()))
+                                                .update("UserFriendList",  FieldValue.arrayUnion(LoginAct.CurUser.getUsername() + LoginAct.CurUser.getStatus()))
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
