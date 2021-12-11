@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,6 +68,7 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
         userHashMap.put("Email", user.getEmail());
         userHashMap.put("Username", user.getUsername());
         userHashMap.put("UserFriendList", user.getFriends());
+        userHashMap.put("Status", user.getStatus());
 
 
         firestore.collection("FriendList").document(user.getEmail())
@@ -100,7 +102,7 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
                                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                                     Intent sendToLogin = new Intent(getApplicationContext(), LoginAct.class);
 
-                                    User user = new User(username.getText().toString(), email.getText().toString() );
+                                    User user = new User(username.getText().toString(), email.getText().toString(),new ArrayList<>());
                                     setDocument(user);
                                     startActivity(sendToLogin);
                                 } else {

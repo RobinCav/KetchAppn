@@ -1,5 +1,6 @@
 package com.example.ketchappn.Fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -9,18 +10,18 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.example.ketchappn.R;
 import com.example.ketchappn.database.AccesUser;
-import com.example.ketchappn.database.FireBaseCallBack;
+import com.example.ketchappn.database.FireBaseUserCallBack;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 
 /**
@@ -116,27 +117,36 @@ public class Venner extends Fragment {
 
 
 
-            accesUser.getFriendsTask(new FireBaseCallBack() {
-                @Override
-                public void onCallback(ArrayList<String> f) {
+            accesUser.getFriendsTask(new FireBaseUserCallBack() {
+
+                public void onCallBack(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
                     /*
                     ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
                     lstItems.setAdapter(adapter);
                      */
-
-                    for(int i=0; i <f.size();i++){
-                        Button btn = new Button(getContext());
-                        btn.setText(f.get(i));
-                        btn.setGravity(Gravity.CENTER);
-                        btn.setTextSize(15);
-                        layout.addView(btn);
-                        btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                System.out.println("Friend name " + btn.getText());
+                    System.out.println("friendList from venner : " + f);
+                        for (int i = 0; i < f.size(); i++) {
+                            for(int j=0; j < status.size();j++){
+                                String[] s = status.get(j).split(" ");
+                                if(Objects.equals(f.get(i).get("username"), s[1])){
+                                    Button btn = new Button(getContext());
+                                    btn.setText(f.get(i).get("username") + " " +s[0]);
+                                    btn.setGravity(Gravity.CENTER);
+                                    btn.setTextSize(20);
+                                    btn.setPadding(50,25,50,25);
+                                    btn.setTextColor(Color.BLACK);
+                                    layout.addView(btn);
+                                    btn.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            System.out.println("Friend name " + btn.getText());
+                                        }
+                                    });
+                                }
                             }
-                        });
-                    }
+
+
+                        }
 
                 }
             }

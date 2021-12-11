@@ -1,10 +1,12 @@
 package com.example.ketchappn.database;
 
-import com.example.ketchappn.models.User;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface FireBaseUserCallBack {
 
 
-    void onCallbackGetUser( User user);
+    void onCallBack(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status);
+
 
 }
