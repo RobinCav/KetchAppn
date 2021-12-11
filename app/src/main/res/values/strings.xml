@@ -49,4 +49,5 @@
     <string name="change_password">Endre passord</string>
     <string name="content_loggout">Logg av</string>
     <string name="logg_out">Logg ut?</string>
+    <string name="back">BACK</string>
 </resources>
