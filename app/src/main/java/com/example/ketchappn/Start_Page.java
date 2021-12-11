@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 
 import com.example.ketchappn.Activities.UserSettingsActivity;
@@ -28,6 +30,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     BottomNavigationView bottomNavigationView;
 
     private FirebaseAuth mAuth;
+    private Toolbar topAppBar;
 
 
 
@@ -42,34 +45,24 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-
-        Button settings = findViewById(R.id.usersetting);
-
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent log = new Intent(getApplicationContext(), UserSettingsActivity.class);
-                startActivity(log);
-            }
-        });
-
+        topAppBar = findViewById(R.id.Top_toolbar);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
-
-
     }
+
 
 
     Minner fragment_minner = new Minner();
     Venner fragment_venner = new Venner();
     Grupper fragment_grupper = new Grupper();
     Aktiviteter fragment_aktiviteter = new Aktiviteter();
+
+
 
 
 
