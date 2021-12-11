@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
     <item
-        android:id="@+id/more"
+        android:id="@+id/change_password"
         android:contentDescription="@string/content_change_password"
         android:icon="@drawable/venner_navigation"
         android:title="@string/change_password" />
