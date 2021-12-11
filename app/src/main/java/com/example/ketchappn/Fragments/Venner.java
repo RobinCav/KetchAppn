@@ -18,10 +18,12 @@ import android.widget.ListView;
 import com.example.ketchappn.R;
 import com.example.ketchappn.database.AccesUser;
 import com.example.ketchappn.database.FireBaseCallBack;
+import com.example.ketchappn.database.FireBaseUserCallBack;
 import com.example.ketchappn.models.User;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -117,9 +119,9 @@ public class Venner extends Fragment {
 
 
 
-            accesUser.getFriendsTask(new FireBaseCallBack() {
-                @Override
-                public void onCallback(ArrayList<User> f) {
+            accesUser.getFriendsTask(new FireBaseUserCallBack() {
+
+                public void onCallBack(   ArrayList<HashMap<String, Object>> f, String status) {
                     /*
                     ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
                     lstItems.setAdapter(adapter);
@@ -127,7 +129,8 @@ public class Venner extends Fragment {
 
                     for(int i=0; i <f.size();i++){
                         Button btn = new Button(getContext());
-                        btn.setText(f.get(i) + "    " + f.get(i));
+
+                        btn.setText(f.get(i).get("username").toString() + "    " + status);
                         btn.setGravity(Gravity.CENTER);
                         btn.setTextSize(15);
                         layout.addView(btn);

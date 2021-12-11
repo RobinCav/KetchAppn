@@ -24,6 +24,7 @@ import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 import com.example.ketchappn.database.AccesUser;
 import com.example.ketchappn.database.FireBaseCallBack;
+import com.example.ketchappn.database.FireBaseUserCallBack;
 import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
@@ -31,6 +32,7 @@ import com.example.ketchappn.models.User;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,41 +73,42 @@ public class StartAktivitetActivity extends Activity {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.checkboxlist);
 
 
-        accesUser.getFriendsTask(new FireBaseCallBack() {
-            @Override
-            public void onCallback(ArrayList<User> friends) {
-
-                if (friends.size() == 0){
-
-                    question = (TextView) findViewById(R.id.friendListUnderline);
-                    question.setText("");
-
-                    TextView noFriends = new TextView(context);
-                    noFriends.setText("Ooops, your friendlist is empty...\uD83E\uDD74");
-                    noFriends.setTextColor(Color.BLACK);
-                    noFriends.setTypeface(null, Typeface.ITALIC);
-                    noFriends.setTextSize(30);
-                    linearLayout.addView(noFriends);
-                }
-
-                else {
-
-                    for (int i = 0; i < friends.size(); i++) {
-                        CheckBox cn = new CheckBox(context);
-                        cn.setText(friends.get(i).getUsername());
-                        cn.setTextSize(20);
-                        cn.setId(i);
-                        count++;
-                        linearLayout.addView(cn);
-                    }
-                }
+        accesUser.getFriendsTask(new FireBaseUserCallBack() {
 
 
-            }
-        });
+
+                                     @Override
+                                     public void onCallBack(ArrayList<HashMap<String, Object>> friends, String status) {
+                                         if (friends.size() == 0){
+
+                                             question = (TextView) findViewById(R.id.friendListUnderline);
+                                             question.setText("");
+
+                                             TextView noFriends = new TextView(context);
+                                             noFriends.setText("Ooops, your friendlist is empty...\uD83E\uDD74");
+                                             noFriends.setTextColor(Color.BLACK);
+                                             noFriends.setTypeface(null, Typeface.ITALIC);
+                                             noFriends.setTextSize(30);
+                                             linearLayout.addView(noFriends);
+                                         }
+
+                                         else {
+
+                                             for (int i = 0; i < friends.size(); i++) {
+                                                 CheckBox cn = new CheckBox(context);
+                                                 cn.setText(friends.get(i).get("username").toString());
+                                                 cn.setTextSize(20);
+                                                 cn.setId(i);
+                                                 count++;
+                                                 linearLayout.addView(cn);
+                                             }
+                                         }
+
+                                     }
+                                 });
 
 
-        TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
+                TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
         timePicker.setIs24HourView(true);
 
         TextView textView = (TextView) findViewById(R.id.textView2);

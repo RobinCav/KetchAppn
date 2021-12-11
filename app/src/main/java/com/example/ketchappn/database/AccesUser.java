@@ -37,6 +37,7 @@ public class AccesUser  {
 
 
 
+
     public AccesUser(){
         firestore = FirebaseFirestore.getInstance();
 
@@ -59,9 +60,33 @@ public class AccesUser  {
         this.friends = friends;
     }
 
+    public void getStatusTask (User user,FireBaseUserCallBack callback){
 
 
-    public ArrayList<String> getFriendsTask (FireBaseCallBack callback){
+        firestore.collection("FriendList")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String status = (String) document.get("Status");
+
+                                callback.onCallBack((   ArrayList<HashMap<String, Object>> ) document.get("UserFriendList"), status);
+
+
+                            }
+                        }
+                        else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+    }
+
+    public void getFriendsTask (FireBaseUserCallBack callback){
 
 
          firestore.collection("FriendList")
@@ -73,9 +98,8 @@ public class AccesUser  {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                  if(Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())){
                                     //We have our list view
-
-                                    friends = (ArrayList<User>) document.get("UserFriendList");
-                                    callback.onCallback(friends);
+                                    ArrayList<HashMap<String, Object>>  friendsList= (ArrayList<HashMap<String, Object>>) document.get("UserFriendList");
+                                    callback.onCallBack(friendsList, (String)document.get("Status"));
 
                                 }
 
@@ -88,7 +112,6 @@ public class AccesUser  {
                     }
                 });
 
-         return  null;
 
     }
 
@@ -119,8 +142,12 @@ public class AccesUser  {
                                         LoginAct.CurUser.addFriend(friend);
                                         DocumentReference curUserRef = firestore.collection("FriendList").document(LoginAct.CurUser.getEmail());
 
+                                        Map<String, Object> data = new HashMap<>();
+                                        data.put("username", friend.getUsername());
+                                        data.put("email", friend.getEmail());
+
                                         curUserRef
-                                                .update("UserFriendList",  FieldValue.arrayUnion(friend.getUsername(), friend.getStatus()))
+                                                .update("UserFriendList",  FieldValue.arrayUnion(data))
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
@@ -135,7 +162,9 @@ public class AccesUser  {
                                                 });
 
                                         DocumentReference friendRef = firestore.collection("FriendList").document(friend.getEmail());
-
+                                        Map<String, Object> data2 = new HashMap<>();
+                                        data.put("username", LoginAct.CurUser.getUsername());
+                                        data.put("email", LoginAct.CurUser.getEmail());
                                         friendRef
                                                 .update("UserFriendList",  FieldValue.arrayUnion(LoginAct.CurUser.getUsername() + LoginAct.CurUser.getStatus()))
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {

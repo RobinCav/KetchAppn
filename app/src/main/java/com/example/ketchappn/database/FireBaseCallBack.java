@@ -7,6 +7,5 @@ import java.util.ArrayList;
 public interface FireBaseCallBack {
 
 
-    void onCallback( ArrayList<User> friends);
 
 }
