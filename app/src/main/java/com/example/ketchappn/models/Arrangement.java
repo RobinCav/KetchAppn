@@ -11,10 +11,10 @@ public class Arrangement {
     private Aktivitet aktivitet;
     private String sted;
     private String tid;
-    private User host;
+    private String host;
     private ArrayList<User> venner;
 
-    public Arrangement(Aktivitet aktivitet, String sted, String tid, User host, ArrayList<User> venner) {
+    public Arrangement(Aktivitet aktivitet, String sted, String tid, String host, ArrayList<User> venner) {
         this.aktivitet = aktivitet;
         this.sted = sted;
         this.tid = tid;
@@ -52,11 +52,11 @@ public class Arrangement {
         this.tid = tid;
     }
 
-    public User getHost() {
+    public String getHost() {
         return host;
     }
 
-    public void setHost(User host) {
+    public void setHost(String host) {
         this.host = host;
     }
 
@@ -75,7 +75,7 @@ public class Arrangement {
     @Override
     public String toString() {
         return "Dagens aktivitet er " + aktivitet.getName() + " -- " + sted + " " +
-                "-- Dere skal møtes på denne tida " + tid + ". " + host.getUsername() +
+                "-- Dere skal møtes på denne tida " + tid + ". " + host +
                 " har bestemt å inviterere disse " + venner  ;
     }
 }
