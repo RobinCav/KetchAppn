@@ -33,6 +33,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class LoginAct extends AppCompatActivity implements View.OnClickListener {
 
@@ -84,7 +85,7 @@ public class LoginAct extends AppCompatActivity implements View.OnClickListener 
                                             if (task.isSuccessful()) {
                                                 DocumentSnapshot document = task.getResult();
 
-                                                 CurUser  = new User( document.get("Username").toString(), email.getText().toString());
+                                                 CurUser  = new User( Objects.requireNonNull(document.get("Username")).toString(), email.getText().toString());
 
 
                                                 Intent sendToStart = new Intent(getApplicationContext(), Start_Page.class);

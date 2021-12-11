@@ -30,7 +30,6 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     BottomNavigationView bottomNavigationView;
 
     private FirebaseAuth mAuth;
-    private Toolbar topAppBar;
 
 
 
@@ -49,7 +48,8 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-        topAppBar = findViewById(R.id.Top_toolbar);
+
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
