@@ -220,8 +220,8 @@ public class StartAktivitetActivity extends Activity {
                     firestoreFunctions.sendInvite(LoginAct.CurUser.getEmail(), data);
 
                     // Legger til arrangemententet til de inviterte
-                    for (String venn : venner){
-                        firestoreFunctions.sendInvite(venn, data);
+                    for (String friend : venner){
+                        firestoreFunctions.sendInvite(friend, data);
                     }
 
                     // Her skal bruker bli sendt tilbake til startpage
