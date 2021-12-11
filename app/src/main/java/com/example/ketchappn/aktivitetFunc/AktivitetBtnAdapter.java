@@ -1,7 +1,6 @@
 package com.example.ketchappn.aktivitetFunc;
 
-import android.content.Intent;
-import android.util.Log;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ketchappn.R;
 import com.example.ketchappn.models.Aktivitet;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +19,8 @@ public class AktivitetBtnAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     int counter = 0;
 
 
-
     public AktivitetBtnAdapter(List<Aktivitet> akt) {
         this.akt = akt;
-
     }
 
     @Override
@@ -47,7 +39,8 @@ public class AktivitetBtnAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
-        holder.getView().setText(akt.get(position).getName());
+        holder.getView().setText(akt.get(position).getSymbol());
+        holder.getView().setTag(akt.get(position).getId());
         counter++;
     }
 

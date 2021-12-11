@@ -1,37 +1,27 @@
 package com.example.ketchappn.Fragments;
 
-import android.os.Build;
+import android.graphics.Color;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.MenuItem;
-import androidx.annotation.NonNull;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.ketchappn.R;
-import com.example.ketchappn.models.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.example.ketchappn.database.AccesUser;
+import com.example.ketchappn.database.FireBaseUserCallBack;
 
-
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -72,10 +62,6 @@ public class Venner extends Fragment {
         return fragment;
     }
 
-    private FirebaseFirestore firestore;
-    private User user;
-    private ArrayList<User> friends;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,110 +70,92 @@ public class Venner extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        
 
-
-        firestore = FirebaseFirestore.getInstance();
 
 
     }
-    /*
-        friends = new ArrayList<>();
-        friends.add(new User(1,"yaqub","yaqubsaid@gmail.com","rrr",null));
-        friends.add(new User(2,"robin","robincalv@gmail.com","rrr",null));
-        friends.add(new User(3,"aleks","aleks@gmail.com","rrr",null));
-
-        user = new User(0, "karrar", "karrara@gmail.com", "okthendude",friends);
-
-        auth = FirebaseAuth.getInstance();
-
-        setDocument(user);
-
-     */
-        //auth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword());
 
 
 
 
-    public void setDocument(User user) {
 
-        Map<String, Object> userHashMap = new HashMap<>();
-        userHashMap.put("id", user.getId());
-        userHashMap.put("username", user.getUsername());
-        userHashMap.put("email", user.getEmail());
-        userHashMap.put("password", user.getPassword());
-        userHashMap.put("friends", user.getFriends());
+    private AccesUser accesUser = new AccesUser() ;
 
-        firestore.collection("Users").document(user.getUsername())
-                .set(userHashMap)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "Error writing document", e);
-                    }
-                });
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-            View v = inflater.inflate(R.layout.fragment_venner, container, false);
+        View v = inflater.inflate(R.layout.fragment_venner, container, false);
 
-            ListView lstItems = (ListView)v.findViewById(R.id.venner);
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.friendList);
 
+        Button myButton = (Button) v.findViewById(R.id.dialogButton);
+        Fragment fragment = this;
 
-        // Get a reference to our posts
-        DocumentReference docRef = firestore.collection("Users").document("karrar");
+        myButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
+                    View blue = getLayoutInflater().inflate(R.layout.dialog_venner, null);
+                    EditText nUsername = (EditText) blue.findViewById(R.id.addUsername);
+                    Button nButton = (Button) blue.findViewById(R.id.addID);
 
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            private static final String TAG = "TAG";
-
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-
-                    //We have our list view
-                    ListView dynamic = (ListView) getView().findViewById(R.id.bottom_navigation);
-
-                    User user = document.toObject(User.class);
-
-                    ArrayList<User> friends = user.getFriends();
-                    ArrayList<String> friendsUserName = new ArrayList<String>();
-
-                    for(User fr : friends){
-                        friendsUserName.add(fr.getUsername());
-
-                    }
+                    nButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            accesUser.addFriendsTask(nUsername.getText().toString(), fragment);
+                        }
+                    });
+                    mBuilder.setView(blue);
+                    AlertDialog dialog = mBuilder.create();
+                    dialog.show();
+                }
+            });
 
 
 
-                    ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,friendsUserName);
 
-                    lstItems.setAdapter(allItemsAdapter);
+            accesUser.getFriendsTask(new FireBaseUserCallBack() {
+
+                     @Override
+                     public void onCallBackGetStatus(String status) {
+
+                     }
+                     public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
+                    /*
+                    ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
+                    lstItems.setAdapter(adapter);
+                     */
+                    System.out.println("friendList from venner : " + f);
+                        for (int i = 0; i < f.size(); i++) {
+                            for(int j=0; j < status.size();j++){
+                                String[] s = status.get(j).split(" ");
+                                if(Objects.equals(f.get(i).get("username"), s[1])){
+                                    Button btn = new Button(getContext());
+                                    btn.setText(f.get(i).get("username") + " " +s[0]);
+                                    btn.setGravity(Gravity.CENTER);
+                                    btn.setTextSize(20);
+                                    btn.setPadding(50,25,50,25);
+                                    btn.setTextColor(Color.BLACK);
+                                    layout.addView(btn);
+                                    btn.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            System.out.println("Friend name " + btn.getText());
+                                        }
+                                    });
+                                }
+                            }
 
 
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                        }
+
                 }
             }
-        });
+            );
 
-
-
-
-        // Inflate the layout for this fragment
         return v;
 
 

@@ -22,13 +22,9 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         view = itemView.findViewById(R.id.randomText);
 
-
-
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Hey", view.getText().toString());
-
                 String z = view.getText().toString();
                 Aktiviteter.changeText(z);
 

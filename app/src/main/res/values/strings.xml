@@ -14,4 +14,40 @@
     <string name="loginusername">loginUsername</string>
     <string name="hello_blank_fragment_minner">hello_blank_fragment_minner</string>
     <string name="tid">tid</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_register_login">RegisterLoginAct</string>
+    <string name="select_date">Select date</string>
+    <string name="place">Place</string>
+    <string name="textview1">TextView</string>
+    <string name="inviter">Inviter</string>
+    <string name="tilbake">Tilbake</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="textview">TextView</string>
+    <string name="welcome_to_ketchapp">Welcome to KetchApp</string>
+    <string name="REGISTER">REGISTER</string>
+    <string name="enter_username">Enter username</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="register1">Register</string>
+    <string name="Login">Login?</string>
+    <string name="pick_date">Pick date</string>
+    <string name="who_will_you_invite">Who will you invite?</string>
+    <string name="underline"><u>Who will you invite?</u>.</string>
+    <string name="aktiviteter">Aktiviteter</string>
+    <string name="content_change_password">endre passord</string>
+    <string name="change_password">Endre passord</string>
+    <string name="content_loggout">Logg av</string>
+    <string name="logg_out">Logg ut?</string>
+    <string name="back">BACK</string>
 </resources>
