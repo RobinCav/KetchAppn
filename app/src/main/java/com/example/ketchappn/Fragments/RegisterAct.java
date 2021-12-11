@@ -69,9 +69,9 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
         userHashMap.put("Username", user.getUsername());
         userHashMap.put("UserFriendList", user.getFriends());
         userHashMap.put("Status", user.getStatus());
+        userHashMap.put("JoinedActivity", user.getActivities());
 
-
-        firestore.collection("FriendList").document(user.getEmail())
+        firestore.collection("User").document(user.getEmail())
                 .set(userHashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

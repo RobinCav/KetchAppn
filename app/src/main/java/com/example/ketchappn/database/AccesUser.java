@@ -91,7 +91,7 @@ public class AccesUser  {
     public void getFriendsTask (FireBaseUserCallBack callback){
 
 
-         firestore.collection("FriendList")
+         firestore.collection("User")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -113,8 +113,6 @@ public class AccesUser  {
                                         friendsStatus.add(document.get("Status").toString() + " " + friendsList.get(i).get("username"));
 
                                     }
-
-
                                 }
 
                             }
@@ -141,7 +139,7 @@ public class AccesUser  {
     public void addFriendsTask(String username, Fragment fragment){
         if (!username.isEmpty()){
 
-            firestore.collection("FriendList")
+            firestore.collection("User")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -156,7 +154,7 @@ public class AccesUser  {
                                         System.out.println("THIS SHIT EXIST......");
                                         friend.addFriend(LoginAct.CurUser);
                                         LoginAct.CurUser.addFriend(friend);
-                                        DocumentReference curUserRef = firestore.collection("FriendList").document(LoginAct.CurUser.getEmail());
+                                        DocumentReference curUserRef = firestore.collection("User").document(LoginAct.CurUser.getEmail());
 
                                         Map<String, Object> data = new HashMap<>();
                                         data.put("username", friend.getUsername());
@@ -177,7 +175,7 @@ public class AccesUser  {
                                                     }
                                                 });
 
-                                        DocumentReference friendRef = firestore.collection("FriendList").document(friend.getEmail());
+                                        DocumentReference friendRef = firestore.collection("User").document(friend.getEmail());
                                         Map<String, Object> data2 = new HashMap<>();
                                         data2.put("username", LoginAct.CurUser.getUsername());
                                         data2.put("email", LoginAct.CurUser.getEmail());
@@ -230,7 +228,7 @@ public class AccesUser  {
         userHashMap.put("UserFriendList", user.getFriends());
 
 
-        firestore.collection("FriendList").document(user.getUsername())
+        firestore.collection("User").document(user.getUsername())
                 .set(userHashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
