@@ -44,8 +44,6 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
         }
     }
 
-
-
     public recyclerAdapter(ArrayList<groupDB> arrayList){
         this.arrayList=arrayList;
     }
