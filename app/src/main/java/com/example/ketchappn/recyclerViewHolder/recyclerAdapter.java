@@ -41,7 +41,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
         HashMap<String, Object> d = (HashMap<String, Object>) list.get(position).get("aktivitet");
         QueryDocumentSnapshot bd  = list.get(position);
         Log.d("bindholder ", " => " + d.get("name").toString());
-        viewholder.name.setText(d.get("name").toString());
+        viewholder.sted.setText(bd.get("sted").toString());
         viewholder.symbol.setText(d.get("symbol").toString());
         viewholder.tid.setText(bd.get("tid").toString());
     }
@@ -66,17 +66,17 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
     }
 
     public class recyclerviewholder extends RecyclerView.ViewHolder {
-        private TextView name, symbol, tid;
+        private TextView sted, symbol, tid;
 
         public recyclerviewholder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.nameText);
+            sted = itemView.findViewById(R.id.nameText);
             symbol = itemView.findViewById(R.id.symbolText);
             tid = itemView.findViewById(R.id.tid_text);
         }
 
-        public TextView getName() { return name; }
-        public void setName(TextView name) { this.name = name; }
+        public TextView getSted() { return sted; }
+        public void setSted(TextView sted) { this.sted = sted; }
         public TextView getSymbol() { return symbol; }
         public void setSymbol(TextView symbol) { this.symbol = symbol; }
         public TextView getTid() { return tid; }
