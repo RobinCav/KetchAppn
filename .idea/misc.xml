@@ -52,6 +52,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/activity_start_aktivitet.xml" value="0.23369565217391305" />
         <entry key="app/src/main/res/layout/button_list_aktiviteter.xml" value="0.23369565217391305" />
+        <entry key="app/src/main/res/layout/fragment_aktiviteter.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_grupper.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/list_group.xml" value="0.25" />
       </map>
     </option>
   </component>

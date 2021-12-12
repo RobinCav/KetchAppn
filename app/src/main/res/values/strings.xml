@@ -55,4 +55,5 @@
     <string name="symbol">symbol</string>
     <string name="tid_gruppe">tid</string>
     <string name="grupper">Grupper</string>
+    <string name="eventer">Eventer</string>
 </resources>
