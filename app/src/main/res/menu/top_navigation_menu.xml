@@ -6,6 +6,12 @@
         android:id="@+id/status"
         android:title=""
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/changestatus"
+        android:contentDescription="@string/changestatus"
+        android:title="@string/changestatus" />
+
     <item
         android:id="@+id/changepass"
         android:contentDescription="@string/content_change_password"
@@ -16,4 +22,6 @@
         android:id="@+id/Loggout"
         android:contentDescription="@string/content_loggout"
         android:title="@string/logg_out" />
+
+
 </menu>

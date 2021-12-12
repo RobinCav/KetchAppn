@@ -18,7 +18,6 @@
         <activity
             android:name=".Fragments.LoginAct"
             android:exported="true" />
-
         <activity
             android:name=".Fragments.RegisterLoginAct"
             android:exported="true" />

@@ -34,35 +34,25 @@ public class AccesUser  {
 
 
 
+
     private FirebaseFirestore firestore;
     public ArrayList<User> friends = new ArrayList<>();
-
-
-
-
     public AccesUser(){
         firestore = FirebaseFirestore.getInstance();
-
          /*
         friends = new ArrayList<>();
         friends.add(new User(1,"yaqub","yaqubsaid@gmail.com","rrr",null));
         friends.add(new User(2,"robin","robincalv@gmail.com","rrr",null));
         friends.add(new User(3,"aleks","aleks@gmail.com","rrr",null));
-
         user = new User(0, "karrar", "karrara@gmail.com", "okthendude",friends);
-
         auth = FirebaseAuth.getInstance();
-
         setDocument(user);
-
      */
     }
-
     public void setFriends(ArrayList<User> friends) {
         this.friends = friends;
     }
-
-    public void getStatusTask (User user,FireBaseUserCallBack callback){
+    public void getStatusTask (User user,GetStatusCallback callback){
 
 
         firestore.collection("User")
@@ -72,9 +62,12 @@ public class AccesUser  {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String status = (String) document.get("Status");
+                                if(document.get("Username").equals(LoginAct.CurUser.getUsername())){
+                                    String status = (String) document.get("Status");
 
-                                callback.onCallBackGetStatus( status);
+                                    callback.getStatus( status);
+                                }
+
 
 
                             }
@@ -88,12 +81,8 @@ public class AccesUser  {
 
     }
 
-
-
     public void getFriendsTask (FireBaseUserCallBack callback){
-
-
-         firestore.collection("User")
+        firestore.collection("User")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -102,45 +91,44 @@ public class AccesUser  {
                             ArrayList<String> friendsStatus = new ArrayList<>();
                             ArrayList<HashMap<String, Object>> friendsList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-
+                                User curuser = new User(document.get("Username").toString());
                                 if (Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())) {
                                     //We have our list view
                                     friendsList = (ArrayList<HashMap<String, Object>>) document.get("UserFriendList");
-
-                                }
-                                System.out.println("rrrrrrrrr : " + friendsList.size());
-                                for (int i = 0; i < friendsList.size(); i++) {
-                                    String friendsName = (String) friendsList.get(i).get("username");
-                                    if (Objects.equals(document.get("Username"), friendsName)) {
-                                        friendsStatus.add(document.get("Status").toString() + " " + friendsList.get(i).get("username"));
-
-                                    }
                                 }
 
                             }
-
-                            callback.onCallBackGetFriends(friendsList, friendsStatus);
-
+                            callback.onCallBack(friendsList, friendsStatus);
                         }
                         else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }
                     }
                 });
-
-
     }
-
-
     public ArrayList<User> getFriends(){
-
         return  friends;
-
     }
 
+    public void changeStatusTask(String status, Activity activity){
+
+        DocumentReference curUserRef = firestore.collection("User").document(LoginAct.CurUser.getEmail());
+
+        curUserRef.update("Status", status).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                activity.startActivity(new Intent(activity.getApplicationContext(), Start_Page.class));
+
+            }
+        });
+
+
+
+
+
+    }
     public void addFriendsTask(String username, Fragment fragment){
         if (!username.isEmpty()){
-
             firestore.collection("User")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -157,11 +145,9 @@ public class AccesUser  {
                                         friend.addFriend(LoginAct.CurUser);
                                         LoginAct.CurUser.addFriend(friend);
                                         DocumentReference curUserRef = firestore.collection("User").document(LoginAct.CurUser.getEmail());
-
                                         Map<String, Object> data = new HashMap<>();
                                         data.put("username", friend.getUsername());
                                         data.put("email", friend.getEmail());
-
                                         curUserRef
                                                 .update("UserFriendList",  FieldValue.arrayUnion(data))
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -197,9 +183,7 @@ public class AccesUser  {
                                                     }
                                                 });
                                         FragmentTransaction ft = fragment.getFragmentManager().beginTransaction();
-
                                         ft.detach(fragment).attach(fragment).commit();
-
                                         Toast.makeText(fragment.getContext(),
                                                 "User added!",
                                                 Toast.LENGTH_SHORT).show();
@@ -215,8 +199,6 @@ public class AccesUser  {
                             }
                         }
                     });
-
-
         }
         else {
             Toast.makeText(fragment.getContext(),
@@ -224,16 +206,10 @@ public class AccesUser  {
                     Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
     public void setDocument(com.example.ketchappn.models.User user) {
-
         Map<String, Object> userHashMap = new HashMap<>();
         userHashMap.put("User", user.getUsername());
         userHashMap.put("UserFriendList", user.getFriends());
-
-
         firestore.collection("User").document(user.getUsername())
                 .set(userHashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -249,7 +225,7 @@ public class AccesUser  {
                     }
                 });
     }
-
-
-
 }
+
+
+

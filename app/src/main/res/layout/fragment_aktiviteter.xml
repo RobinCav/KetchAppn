@@ -10,6 +10,12 @@
     tools:context=".Fragments.Aktiviteter">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/aktiviteter"
+        android:textColor="@color/black"
+        android:textSize="32sp" />
 
     <TextView
         android:id="@+id/textViewAkt"

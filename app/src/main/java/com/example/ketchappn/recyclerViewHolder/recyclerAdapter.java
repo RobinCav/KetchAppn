@@ -1,53 +1,30 @@
 package com.example.ketchappn.recyclerViewHolder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.example.ketchappn.R;
-import com.example.ketchappn.Start_Page;
-import com.example.ketchappn.chatActivity;
-import com.example.ketchappn.database.groupDB;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recyclerviewholder> {
-    Context context;
-    ArrayList<groupDB> arrayList;
+    private Context context;
+    private final ArrayList<QueryDocumentSnapshot> list;
 
-    public class recyclerviewholder extends RecyclerView.ViewHolder {
-        private TextView sted;
-        private TextView tid;
-        private View layout;
-
-        public recyclerviewholder(@NonNull View itemView) {
-            super(itemView);
-            sted = itemView.findViewById(R.id.stedText);
-            tid = itemView.findViewById(R.id.tidText);
-            layout = itemView.findViewById(R.id.linearLayout);
-
-        }
-        public TextView getTid() {
-            return tid;
-        }
-        public TextView getSted() {
-            return sted;
-        }
-    }
-
-
-
-    public recyclerAdapter(ArrayList<groupDB> arrayList){
-        this.arrayList=arrayList;
+    public recyclerAdapter(Context ctx, ArrayList<QueryDocumentSnapshot> list){
+        this.context = ctx;
+        this.list = list;
     }
 
     @NonNull
@@ -58,29 +35,51 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
         return new recyclerviewholder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull recyclerviewholder viewholder, int position) {
-        groupDB db = arrayList.get(position);
-        viewholder.getSted().setText(db.getSted());
-        viewholder.getTid().setText(Integer.toString(db.getTid()));
-
-        viewholder.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), chatActivity.class);
-                System.out.println("Faen");
-            }
-        });
+        HashMap<String, Object> d = (HashMap<String, Object>) list.get(position).get("aktivitet");
+        QueryDocumentSnapshot bd  = list.get(position);
+        Log.d("bindholder ", " => " + d.get("name").toString());
+        viewholder.name.setText(d.get("name").toString());
+        viewholder.symbol.setText(d.get("symbol").toString());
+        viewholder.tid.setText(bd.get("tid").toString());
     }
 
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        return list.size();
     }
     @Override
     public void onAttachedToRecyclerView(
-            RecyclerView recyclerView)
+            @NonNull RecyclerView recyclerView)
     {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public class recyclerviewholder extends RecyclerView.ViewHolder {
+        private TextView name, symbol, tid;
+
+        public recyclerviewholder(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.nameText);
+            symbol = itemView.findViewById(R.id.symbolText);
+            tid = itemView.findViewById(R.id.tid_text);
+        }
+
+        public TextView getName() { return name; }
+        public void setName(TextView name) { this.name = name; }
+        public TextView getSymbol() { return symbol; }
+        public void setSymbol(TextView symbol) { this.symbol = symbol; }
+        public TextView getTid() { return tid; }
+        public void setTid(TextView tid) { this.tid = tid; }
     }
 }

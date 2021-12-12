@@ -4,8 +4,9 @@ import com.example.ketchappn.models.User;
 
 import java.util.ArrayList;
 
-public interface FireBaseCallBack {
+public interface GetStatusCallback {
 
 
+    void getStatus(String status);
 
 }
