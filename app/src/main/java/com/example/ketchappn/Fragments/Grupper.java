@@ -66,13 +66,14 @@ public class Grupper extends Fragment  {
                     if(task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             List<String> venner = (List<String>) document.get("venner");
-                            System.out.println("Du har email: " + LoginAct.CurUser.getEmail());
+                            Log.d("GRUPPER_SOM_SKAL_VISES","Du har email: " + LoginAct.CurUser.getEmail());
                             if (venner != null) {
                                 for (int i = 0; i < venner.size(); i++) {
                                     Log.d(ARRAGEMENTER, " => " + venner.get(i));
                                     if (LoginAct.CurUser.getEmail().equals(venner.get(i)) || LoginAct.CurUser.getEmail().equals(document.get("host").toString())) {
                                         list.add(document);
                                         recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
+                                        break;
                                     }
                                 }
                             }
