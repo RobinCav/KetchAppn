@@ -123,34 +123,30 @@ public class Venner extends Fragment {
                      public void onCallBackGetStatus(String status) {
 
                      }
-                     public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
+                     public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> f) {
                     /*
                     ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
                     lstItems.setAdapter(adapter);
                      */
                     System.out.println("friendList from venner : " + f);
-                        for (int i = 0; i < f.size(); i++) {
-                            for(int j=0; j < status.size();j++){
-                                String[] s = status.get(j).split(" ");
-                                if(Objects.equals(f.get(i).get("username"), s[1])){
-                                    Button btn = new Button(getContext());
-                                    btn.setText(f.get(i).get("username") + " " +s[0]);
-                                    btn.setGravity(Gravity.CENTER);
-                                    btn.setTextSize(20);
-                                    btn.setPadding(50,25,50,25);
-                                    btn.setTextColor(Color.BLACK);
-                                    layout.addView(btn);
-                                    btn.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            System.out.println("Friend name " + btn.getText());
-                                        }
-                                    });
+
+                         for (int i = 0; i < f.size(); i++) {
+
+                            Button btn = new Button(getContext());
+                            btn.setText(f.get(i).get("username") + " " + f.get(i).get("status"));
+                            btn.setGravity(Gravity.CENTER);
+                            btn.setTextSize(20);
+                            btn.setPadding(50,25,50,25);
+                            btn.setTextColor(Color.BLACK);
+                            layout.addView(btn);
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    System.out.println("Friend name " + btn.getText());
                                 }
-                            }
-
-
+                            });
                         }
+
 
                 }
             }

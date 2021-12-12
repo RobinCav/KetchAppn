@@ -76,7 +76,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         AccesUser accesUser = new AccesUser();
         accesUser.getStatusTask(LoginAct.CurUser, new FireBaseUserCallBack() {
             @Override
-            public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
+            public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> friends) {
 
             }
 

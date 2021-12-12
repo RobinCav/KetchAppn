@@ -99,8 +99,9 @@ public class AccesUser  {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            ArrayList<String> friendsStatus = new ArrayList<>();
                             ArrayList<HashMap<String, Object>> friendsList = new ArrayList<>();
+                            ArrayList<HashMap<String, Object>> friendsList2 = new ArrayList<>();
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 if (Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())) {
@@ -110,16 +111,20 @@ public class AccesUser  {
                                 }
                                 System.out.println("rrrrrrrrr : " + friendsList.size());
                                 for (int i = 0; i < friendsList.size(); i++) {
-                                    String friendsName = (String) friendsList.get(i).get("username");
-                                    if (Objects.equals(document.get("Username"), friendsName)) {
-                                        friendsStatus.add(document.get("Status").toString() + " " + friendsList.get(i).get("username"));
+                                    if (document.get("Username").toString().equals(friendsList.get(i).get("username"))) {
+                                        HashMap<String, Object> obj = new HashMap<>();
+                                        obj.put("username", friendsList.get(i).get("username"));
+                                        obj.put("email", friendsList.get(i).get("email"));
+                                        obj.put("status", document.get("Status").toString());
+
+                                        friendsList2.add(obj);
 
                                     }
                                 }
 
                             }
 
-                            callback.onCallBackGetFriends(friendsList, friendsStatus);
+                            callback.onCallBackGetFriends(friendsList2);
 
                         }
                         else {
