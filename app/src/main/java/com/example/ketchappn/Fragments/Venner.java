@@ -70,16 +70,8 @@ public class Venner extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        
-
-
 
     }
-
-
-
-
-
     private AccesUser accesUser = new AccesUser() ;
 
 
@@ -113,9 +105,6 @@ public class Venner extends Fragment {
                     dialog.show();
                 }
             });
-
-
-
 
             accesUser.getFriendsTask(new FireBaseUserCallBack() {
 

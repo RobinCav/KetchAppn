@@ -46,7 +46,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     BottomNavigationView bottomNavigationView;
     private MaterialToolbar toolbar;
     private FirebaseAuth mAuth;
-
+    private TextView mTitle;
 
 
     @Override
@@ -71,7 +71,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
         toolbar = findViewById(R.id.Top_toolbar);
-
+        mTitle = (TextView) findViewById(R.id.toolbar_title);
         toolbar.setOnMenuItemClickListener(this);
         AccesUser accesUser = new AccesUser();
         accesUser.getStatusTask(LoginAct.CurUser, new FireBaseUserCallBack() {
@@ -106,15 +106,14 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
             case R.id.Minner_Navigation:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_minner).commit();
                 return true;
-
             case R.id.Venner_Navigation:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_venner).commit();
-                return true;
 
+                return true;
             case R.id.Grupper_Navigation:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_grupper).commit();
-                return true;
 
+                return true;
             case R.id.Aktivitet_Navigation:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_aktiviteter).commit();
                 return true;

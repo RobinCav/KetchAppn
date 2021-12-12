@@ -3,37 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Venner"
-    android:orientation="vertical"
     android:gravity="top|center_horizontal"
+    android:orientation="vertical"
     android:padding="16dp"
     android:tag="Venner"
-    >
-
+    tools:context=".Fragments.Venner">
     <!-- TODO: Update blank fragment layout -->
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="venner"
-        android:textSize="32dp"/>
 
 
     <LinearLayout
         android:id="@+id/friendList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:baselineAligned="false"
+        android:gravity="center|center_horizontal"
+        android:orientation="vertical"
+        android:padding="50dp">
 
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/dialogButton"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="legg til venner"
         android:layout_gravity="top|right"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        />
+        android:text="legg til venner" />
 
 
 </LinearLayout>
