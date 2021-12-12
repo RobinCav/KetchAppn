@@ -83,7 +83,7 @@ public class StartAktivitetActivity extends Activity {
         // Callback for å hente venner til bruker
         accesUser.getFriendsTask(new FireBaseUserCallBack() {
             @Override
-            public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
+            public void onCallBack(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
 
                 // Hvis bruker ikke har noen venner, vil bruker bli infromert når denne siden bli åpnet
                 if (friends.size() == 0){
@@ -115,10 +115,7 @@ public class StartAktivitetActivity extends Activity {
 
             }
 
-            @Override
-            public void onCallBackGetStatus(String status) {
-                
-            }
+
         });
 
         TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
