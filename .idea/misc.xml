@@ -70,6 +70,7 @@
         <entry key="app/src/main/res/layout/fragment_grupper.xml" value="0.15" />
         <entry key="app/src/main/res/layout/fragment_venner.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_group.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/venner_listviewadapter.xml" value="0.1" />
       </map>
     </option>
   </component>
