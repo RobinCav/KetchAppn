@@ -3,14 +3,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +40,9 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -83,7 +90,8 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
             @Override
             public void onCallBackGetStatus(String status) {
-                toolbar.getMenu().getItem(0).setTitle(status);
+               MenuItem item = toolbar.getMenu().getItem(0);
+               item.setTitle(status);
 
             }
         });
@@ -129,7 +137,53 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        Activity ac = this;
         switch (item.getItemId()){
+            case R.id.changestatus:
+                AccesUser accesUser = new AccesUser();
+                AlertDialog.Builder d = new AlertDialog.Builder(this);
+
+                View v = getLayoutInflater().inflate(R.layout.dialogstatus, null);
+                ListView listView =(ListView) v.findViewById(R.id.emojies);
+
+                listView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+
+                FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+                firestore.collection("Statuser").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            ArrayList<String> emojies = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                    emojies.add(document.getId());
+                            }
+
+                            ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,emojies);
+                            listView.setAdapter(allItemsAdapter);
+
+
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    String s = ( (TextView) view ).getText().toString();
+
+                                    accesUser.changeStatusTask( s ,ac);
+
+                                }
+                            });
+
+
+
+                        }
+                    }
+                });
+                d.setView(v);
+                AlertDialog dialog = d.create();
+                dialog.show();
+
+                break;
             case R.id.changepass:
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
                 View blue = getLayoutInflater().inflate(R.layout.dialog_changepass, null);
@@ -192,8 +246,8 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
                     }
                 });
                 mBuilder.setView(blue);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
+                AlertDialog dd = mBuilder.create();
+                dd.show();
 
                 return true;
             case R.id.Loggout:
