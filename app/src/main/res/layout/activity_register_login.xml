@@ -35,23 +35,23 @@
     <Button
         android:id="@+id/register"
         android:layout_width="150dp"
+        android:background="@drawable/custom_button"
         android:layout_height="60dp"
         android:textColor="@color/white"
         android:layout_gravity="center"
-        android:backgroundTint="@color/black"
         android:text="@string/register"
 
         />
 
     <Button
         android:id="@+id/login"
+        android:layout_marginTop="10dp"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:text="@string/login"
-        android:textColor="@color/white"
         android:layout_gravity="center"
-        android:backgroundTint="@color/black"
-        />
+        android:background="@drawable/custom_button"
+        android:text="@string/login"
+        android:textColor="@color/white" />
 
 
 </LinearLayout>
