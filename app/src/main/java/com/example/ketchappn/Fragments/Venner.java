@@ -10,20 +10,20 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.ketchappn.R;
 import com.example.ketchappn.database.AccesUser;
 import com.example.ketchappn.database.FireBaseUserCallBack;
+import com.example.ketchappn.database.GetStatusCallback;
+import com.example.ketchappn.models.User;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -73,7 +73,7 @@ public class Venner extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        
+
 
 
 
@@ -92,11 +92,10 @@ public class Venner extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_venner, container, false);
 
-        ListView lstIteams = (ListView) v.findViewById(R.id.friendList);
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.friendList);
+
         Button myButton = (Button) v.findViewById(R.id.dialogButton);
         Fragment fragment = this;
-
-        getFriends(lstIteams);
 
         myButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -104,16 +103,12 @@ public class Venner extends Fragment {
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
                     View blue = getLayoutInflater().inflate(R.layout.dialog_venner, null);
                     EditText nUsername = (EditText) blue.findViewById(R.id.addUsername);
-
                     Button nButton = (Button) blue.findViewById(R.id.addID);
-
 
                     nButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             accesUser.addFriendsTask(nUsername.getText().toString(), fragment);
-                            getFriends(lstIteams);
-
                         }
                     });
                     mBuilder.setView(blue);
@@ -125,35 +120,72 @@ public class Venner extends Fragment {
 
 
 
+            accesUser.getFriendsTask(new FireBaseUserCallBack() {
 
+                     @Override
+                     public void onCallBack(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
+                    /*
+                    ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
+                    lstItems.setAdapter(adapter);
+                     */
+                    System.out.println("friendList from venner : " + f);
+                        for (int i = 0; i < f.size(); i++) {
+
+                                    Button btn = new Button(getContext());
+                                    btn.setText(f.get(i).get("username").toString());
+                                    btn.setGravity(Gravity.CENTER);
+                                    btn.setTextSize(20);
+                                    btn.setPadding(200,25,200,25);
+                                    btn.setTextColor(Color.BLACK);
+                                    layout.addView(btn);
+                                    btn.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            System.out.println("Friend name " + btn.getText());
+                                            AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
+                                            View blue = getLayoutInflater().inflate(R.layout.dialog_showuserdialog, null);
+                                            TextView nUsername = (TextView) blue.findViewById(R.id.displayname);
+                                            nUsername.setTextColor(Color.BLACK);
+                                            nUsername.setText(btn.getText().toString());
+                                            TextView status = (TextView) blue.findViewById(R.id.userstatus);
+                                            status.setTextColor(Color.BLACK);
+
+                                            Button removeFriend = (Button) blue.findViewById(R.id.delete);
+                                            User user = new User(btn.getText().toString());
+                                            accesUser.getStatusTask(user, new GetStatusCallback() {
+                                                @Override
+                                                public void getStatus(String s) {
+                                                    status.setText(s);
+                                                }
+                                            });
+
+                                            removeFriend.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    accesUser.removeFriendTask(fragment, btn.getText().toString());
+                                                }
+                                            });
+
+                                            mBuilder.setView(blue);
+
+                                            AlertDialog dialog = mBuilder.create();
+                                            dialog.setTitle("User Profile");
+                                            dialog.show();
+
+
+                                        }
+                                    });
+                                }
+                            }
+
+
+
+
+            }
+            );
 
         return v;
 
-
-    }
-
-    public void getFriends(ListView layout){
-        accesUser.getFriendsTask(new FireBaseUserCallBack() {
-
-                                    @Override
-                                     public void onCallBack(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
-
-
-
-                                         System.out.println("friendList from venner : " + f);
-                                         System.out.println("friendList from venner : " + status);
-
-                                         ArrayList<String> test = new ArrayList<>();
-                                         for (int i = 0; i < f.size(); i++) {
-                                            test.add(f.get(i).get("username").toString()  + "                                 " );
-                                         }
-                                         ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,test);
-                                         layout.setAdapter(allItemsAdapter);
-
-
-                                     }
-                                 }
-        );
 
     }
 }
