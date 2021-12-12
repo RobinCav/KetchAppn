@@ -49,11 +49,26 @@
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/fragment_register_login.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/button_style.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/custom_button.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_register_login.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_start_aktivitet.xml" value="0.23369565217391305" />
+        <entry key="app/src/main/res/layout/activity_start_page.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_user_settings.xml" value="0.1" />
         <entry key="app/src/main/res/layout/button_list_aktiviteter.xml" value="0.23369565217391305" />
+        <entry key="app/src/main/res/layout/content_2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_changepass.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_venner.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialogstatus.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/drawer_header.xml" value="0.11" />
         <entry key="app/src/main/res/layout/fragment_aktiviteter.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_grupper.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/fragment_venner.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_group.xml" value="0.25" />
       </map>
     </option>

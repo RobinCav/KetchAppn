@@ -14,7 +14,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="venner"
+        android:text="Venner"
         android:textSize="32dp"/>
 
 
@@ -28,12 +28,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/dialogButton"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="legg til venner"
-        android:layout_gravity="top|right"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        />
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        android:text="@string/legg_til_venner" />
 
 
 </LinearLayout>

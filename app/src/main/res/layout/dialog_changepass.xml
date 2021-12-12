@@ -21,6 +21,7 @@
         android:ems="10"
         android:inputType="textPassword"
         android:hint="Gammel passord" />
+
     <EditText
         android:id="@+id/newpass"
         android:layout_width="match_parent"
@@ -32,6 +33,7 @@
         android:id="@+id/changepassbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
         android:text="Endre passord"
         />
 </LinearLayout>

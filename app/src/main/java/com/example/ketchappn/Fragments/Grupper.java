@@ -58,11 +58,6 @@ public class Grupper extends Fragment  {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
         CollectionReference users = firestore.collection("User");
         list = new ArrayList<>();
 
@@ -90,6 +85,13 @@ public class Grupper extends Fragment  {
                         Log.d("Nigga","Fisk",task.getException());
                     }
                 });
+
+        return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 

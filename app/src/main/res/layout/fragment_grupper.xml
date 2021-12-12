@@ -21,7 +21,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_GRUPPE"
         android:layout_width="341dp"
-        android:layout_height="486dp"
+        android:layout_height="400dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
