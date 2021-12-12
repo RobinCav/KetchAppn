@@ -123,11 +123,13 @@ public class Venner extends Fragment {
                      public void onCallBackGetStatus(String status) {
 
                      }
+                     @Override
                      public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
                     /*
                     ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
                     lstItems.setAdapter(adapter);
                      */
+                         System.out.println("ZWARDOOO  " + f.size());
                     System.out.println("friendList from venner : " + f);
                         for (int i = 0; i < f.size(); i++) {
                             for(int j=0; j < status.size();j++){
