@@ -48,7 +48,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list.size()/2;
     }
     @Override
     public void onAttachedToRecyclerView(

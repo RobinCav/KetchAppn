@@ -51,4 +51,8 @@
     <string name="logg_out">Logg ut?</string>
     <string name="back">BACK</string>
     <string name="changestatus">Endre status</string>
+    <string name="name">name</string>
+    <string name="symbol">symbol</string>
+    <string name="tid_gruppe">tid</string>
+    <string name="grupper">Grupper</string>
 </resources>

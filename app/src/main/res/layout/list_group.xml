@@ -9,7 +9,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout_gruppe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -17,10 +17,10 @@
         <TextView
             android:id="@+id/symbolText"
             android:layout_width="351dp"
-            android:layout_height="41dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/symbol"
-            android:textAlignment="center"
+            android:textAlignment="gravity"
             android:textSize="20sp"
             tools:text="@string/symbol" />
 
@@ -30,17 +30,17 @@
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             android:text="@string/name"
-            android:textAlignment="center"
+            android:textAlignment="gravity"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tid_text"
             android:layout_width="351dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/tid_gruppe"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textAlignment="gravity"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
