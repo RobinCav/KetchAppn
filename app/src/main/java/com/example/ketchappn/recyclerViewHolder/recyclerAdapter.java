@@ -40,7 +40,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
     public void onBindViewHolder(@NonNull recyclerviewholder viewholder, int position) {
         HashMap<String, Object> d = (HashMap<String, Object>) list.get(position).get("aktivitet");
         QueryDocumentSnapshot bd  = list.get(position);
-        Log.d("bindholder ", " => " + d.get("name").toString());
+        //Log.d("bindholder ", " => " + d.get("name").toString());
         viewholder.sted.setText(bd.get("sted").toString());
         viewholder.symbol.setText(d.get("symbol").toString());
         viewholder.tid.setText(bd.get("tid").toString());
