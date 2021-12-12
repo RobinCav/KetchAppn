@@ -1,27 +1,30 @@
 package com.example.ketchappn.database;
 
+import java.util.HashMap;
+/*
 public class groupDB {
-     int tid;
-     String sted;
+     String name;
+     String symbol;
 
-    public groupDB(int tid, String sted){
-        this.tid=tid;
-        this.sted=sted;
+    public groupDB(String name, String symbol){
+        this.name = name;
+        this.symbol = symbol;
     }
 
-    public String getSted() {
-        return sted;
+    public groupDB(){}
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setSted(String sted) {
-        this.sted = sted;
+    public String getSymbol() {
+        return symbol;
+    }
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
-    public int getTid() {
-        return tid;
-    }
-
-    public void setTid(int tid) {
-        this.tid = tid;
-    }
 }
+*/

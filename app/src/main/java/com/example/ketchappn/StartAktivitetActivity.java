@@ -161,11 +161,27 @@ public class StartAktivitetActivity extends Activity {
             @Override
             public void onClick(View v) {
                 int hour, minute;
-                String place;
+                String place, minuteString, hourString;
 
                 // henter ut brukerdefinerte verdier
                 hour = timePicker.getHour();
+                if (hour < 10){
+                    hourString = Integer.toString(hour);
+                    hourString = "0" + hourString;
+                }
+                else {
+                    hourString = Integer.toString(hour);
+                }
+
                 minute = timePicker.getMinute();
+                if (minute == 0){
+                    minuteString = Integer.toString(minute);
+                    minuteString = minuteString + minuteString;
+                }
+                else {
+                    minuteString = Integer.toString(minute);
+                }
+
                 Editable editable = choosePlace.getText();
                 place = editable.toString();
 
@@ -199,7 +215,7 @@ public class StartAktivitetActivity extends Activity {
                     ArrayList unique = (ArrayList) epostVenner.stream().distinct().collect(Collectors.toList());
 
                     // Lager en dato verdi med dato og tid
-                    dato = day + "/" + month + "/" + year + "/" + hour + ":" + minute;
+                    dato = day + "/" + month + "/" + year + " -- " + hourString + ":" + minuteString;
 
                     // Danner et arrangement objekt og legger det til i Arrangement collection i firebase
                     @SuppressLint("DefaultLocale")
