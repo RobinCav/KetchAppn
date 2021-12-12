@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.Source;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -52,7 +53,7 @@ public class Grupper extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        view = inflater.inflate(R.layout.fragment_grupper, container, false);
-        // Add the following lines to create RecyclerView
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
         recyclerView = view.findViewById(R.id.recyclerview_GRUPPE);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

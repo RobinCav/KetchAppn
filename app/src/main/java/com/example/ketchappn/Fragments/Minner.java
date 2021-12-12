@@ -17,6 +17,7 @@ public class Minner extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_minner, container, false);
+
     }
 
 

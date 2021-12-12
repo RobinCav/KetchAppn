@@ -27,7 +27,7 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/Top_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="69dp"
                 app:layout_constraintBottom_toTopOf="@+id/fragment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -36,14 +36,6 @@
                 app:layout_constraintVertical_bias="0.0"
                 app:menu="@menu/top_navigation_menu" />
 
-
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|center"
-                android:text="Toolbar Title"
-                android:textSize="30dp" />
 
 
         </com.google.android.material.appbar.AppBarLayout>

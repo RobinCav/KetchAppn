@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.ketchappn.Activities.UserSettingsActivity;
 import com.example.ketchappn.Fragments.Aktiviteter;
+import com.example.ketchappn.Fragments.BaseFragment;
 import com.example.ketchappn.Fragments.Grupper;
 import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.Fragments.Minner;
@@ -79,7 +80,6 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
         toolbar = findViewById(R.id.Top_toolbar);
-        mTitle = (TextView) findViewById(R.id.toolbar_title);
         toolbar.setOnMenuItemClickListener(this);
         AccesUser accesUser = new AccesUser();
         accesUser.getStatusTask(LoginAct.CurUser, new GetStatusCallback() {

@@ -10,6 +10,13 @@
     tools:context=".Fragments.Venner">
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/venner"
+        android:gravity="top|center"
+        android:textColor="@color/black"
+        android:textSize="32sp" />
 
     <ListView
         android:id="@+id/friendList"
@@ -18,6 +25,7 @@
         android:baselineAligned="false"
         android:gravity="center|center_horizontal"
         android:orientation="vertical"
+        android:paddingTop="20dp"
         android:padding="50dp">
 
     </ListView>
