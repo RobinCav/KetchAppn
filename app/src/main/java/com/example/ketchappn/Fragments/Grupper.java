@@ -58,12 +58,18 @@ public class Grupper extends Fragment  {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
+        return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         CollectionReference users = firestore.collection("User");
         list = new ArrayList<>();
 
         database.get()
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()) {
+                        list.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             List<String> venner = (List<String>) document.get("venner");
                             System.out.println("Du har email: " + LoginAct.CurUser.getEmail());
@@ -73,6 +79,7 @@ public class Grupper extends Fragment  {
                                     if (LoginAct.CurUser.getEmail().equals(venner.get(i)) || LoginAct.CurUser.getEmail().equals(document.get("host").toString())) {
                                         list.add(document);
                                         recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
+                                        break;
                                     }
                                 }
                             }
@@ -83,11 +90,6 @@ public class Grupper extends Fragment  {
                         Log.d("Nigga","Fisk",task.getException());
                     }
                 });
-        return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
