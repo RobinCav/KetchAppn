@@ -74,6 +74,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
         toolbar.setOnMenuItemClickListener(this);
         AccesUser accesUser = new AccesUser();
+        /*
         accesUser.getStatusTask(LoginAct.CurUser, new FireBaseUserCallBack() {
             @Override
             public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> friends) {
@@ -86,6 +87,8 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
             }
         });
+
+         */
 
     }
 

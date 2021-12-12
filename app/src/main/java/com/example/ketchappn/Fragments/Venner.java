@@ -10,9 +10,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.example.ketchappn.R;
 import com.example.ketchappn.database.AccesUser;
@@ -21,6 +23,7 @@ import com.example.ketchappn.database.FireBaseUserCallBack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -89,10 +92,11 @@ public class Venner extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_venner, container, false);
 
-        LinearLayout layout = (LinearLayout) v.findViewById(R.id.friendList);
-
+        ListView lstIteams = (ListView) v.findViewById(R.id.friendList);
         Button myButton = (Button) v.findViewById(R.id.dialogButton);
         Fragment fragment = this;
+
+        getFriends(lstIteams);
 
         myButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -100,12 +104,16 @@ public class Venner extends Fragment {
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
                     View blue = getLayoutInflater().inflate(R.layout.dialog_venner, null);
                     EditText nUsername = (EditText) blue.findViewById(R.id.addUsername);
+
                     Button nButton = (Button) blue.findViewById(R.id.addID);
+
 
                     nButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             accesUser.addFriendsTask(nUsername.getText().toString(), fragment);
+                            getFriends(lstIteams);
+
                         }
                     });
                     mBuilder.setView(blue);
@@ -117,43 +125,33 @@ public class Venner extends Fragment {
 
 
 
-            accesUser.getFriendsTask(new FireBaseUserCallBack() {
 
-                     @Override
-                     public void onCallBackGetStatus(String status) {
-
-                     }
-                     public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> f) {
-                    /*
-                    ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
-                    lstItems.setAdapter(adapter);
-                     */
-                    System.out.println("friendList from venner : " + f);
-
-                         for (int i = 0; i < f.size(); i++) {
-
-                            Button btn = new Button(getContext());
-                            btn.setText(f.get(i).get("username") + " " + f.get(i).get("status"));
-                            btn.setGravity(Gravity.CENTER);
-                            btn.setTextSize(20);
-                            btn.setPadding(50,25,50,25);
-                            btn.setTextColor(Color.BLACK);
-                            layout.addView(btn);
-                            btn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    System.out.println("Friend name " + btn.getText());
-                                }
-                            });
-                        }
-
-
-                }
-            }
-            );
 
         return v;
 
+
+    }
+
+    public void getFriends(ListView layout){
+        accesUser.getFriendsTask(new FireBaseUserCallBack() {
+
+                                    @Override
+                                     public void onCallBack(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
+
+
+
+                                         System.out.println("friendList from venner : " + f);
+                                            ArrayList<String> test = new ArrayList<>();
+                                         for (int i = 0; i < f.size(); i++) {
+                                            test.add(f.get(i).get("username").toString());
+                                         }
+                                         ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,test);
+                                         layout.setAdapter(allItemsAdapter);
+
+
+                                     }
+                                 }
+        );
 
     }
 }
