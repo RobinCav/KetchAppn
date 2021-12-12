@@ -141,9 +141,11 @@ public class Venner extends Fragment {
 
 
                                          System.out.println("friendList from venner : " + f);
-                                            ArrayList<String> test = new ArrayList<>();
+                                         System.out.println("friendList from venner : " + status);
+
+                                         ArrayList<String> test = new ArrayList<>();
                                          for (int i = 0; i < f.size(); i++) {
-                                            test.add(f.get(i).get("username").toString());
+                                            test.add(f.get(i).get("username").toString()  + "                                 " );
                                          }
                                          ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,test);
                                          layout.setAdapter(allItemsAdapter);

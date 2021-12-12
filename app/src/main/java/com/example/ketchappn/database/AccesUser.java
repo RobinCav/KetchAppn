@@ -52,26 +52,35 @@ public class AccesUser  {
     public void setFriends(ArrayList<User> friends) {
         this.friends = friends;
     }
-    /*
-        public void getStatusTask (User user,FireBaseUserCallBack callback){
-            firestore.collection("FriendList")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
+    public void getStatusTask (User user,GetStatusCallback callback){
+
+
+        firestore.collection("User")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if(document.get("Username").equals(LoginAct.CurUser.getUsername())){
                                     String status = (String) document.get("Status");
-                                    callback.onCallBack((   ArrayList<HashMap<String, Object>> ) document.get("UserFriendList"), status);
+
+                                    callback.getStatus( status);
                                 }
-                            }
-                            else {
-                                Log.d("TAG", "Error getting documents: ", task.getException());
+
+
+
                             }
                         }
-                    });
-        }
-     */
+                        else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+    }
+
     public void getFriendsTask (FireBaseUserCallBack callback){
         firestore.collection("User")
                 .get()
@@ -82,17 +91,12 @@ public class AccesUser  {
                             ArrayList<String> friendsStatus = new ArrayList<>();
                             ArrayList<HashMap<String, Object>> friendsList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                User curuser = new User(document.get("Username").toString());
                                 if (Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())) {
                                     //We have our list view
                                     friendsList = (ArrayList<HashMap<String, Object>>) document.get("UserFriendList");
                                 }
-                                System.out.println("rrrrrrrrr : " + friendsList.size());
-                                for (int i = 0; i < friendsList.size(); i++) {
-                                    String friendsName = (String) friendsList.get(i).get("username");
-                                    if (Objects.equals(document.get("Username"), friendsName)) {
-                                        friendsStatus.add(document.get("Status").toString() + " " + friendsList.get(i).get("username"));
-                                    }
-                                }
+
                             }
                             callback.onCallBack(friendsList, friendsStatus);
                         }
@@ -104,6 +108,24 @@ public class AccesUser  {
     }
     public ArrayList<User> getFriends(){
         return  friends;
+    }
+
+    public void changeStatusTask(String status, Activity activity){
+
+        DocumentReference curUserRef = firestore.collection("User").document(LoginAct.CurUser.getEmail());
+
+        curUserRef.update("Status", status).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                activity.startActivity(new Intent(activity.getApplicationContext(), Start_Page.class));
+
+            }
+        });
+
+
+
+
+
     }
     public void addFriendsTask(String username, Fragment fragment){
         if (!username.isEmpty()){

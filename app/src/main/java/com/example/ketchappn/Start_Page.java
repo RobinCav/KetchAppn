@@ -29,6 +29,7 @@ import com.example.ketchappn.Fragments.RegisterLoginAct;
 import com.example.ketchappn.Fragments.Venner;
 import com.example.ketchappn.database.AccesUser;
 import com.example.ketchappn.database.FireBaseUserCallBack;
+import com.example.ketchappn.database.GetStatusCallback;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,7 +63,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         mAuth = FirebaseAuth.getInstance();
 
 
-         Toast.makeText(getBaseContext(),"Velkommen tilbake " + LoginAct.CurUser.getUsername(), Toast.LENGTH_LONG);
+        Toast.makeText(getBaseContext(),"Velkommen tilbake " + LoginAct.CurUser.getUsername(), Toast.LENGTH_LONG);
 //        tview.setText("Welcome back, " + LoginAct.CurUser.getUsername());
 
     }
@@ -81,22 +82,16 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
         toolbar.setOnMenuItemClickListener(this);
         AccesUser accesUser = new AccesUser();
-        /*
-        accesUser.getStatusTask(LoginAct.CurUser, new FireBaseUserCallBack() {
-            @Override
-            public void onCallBackGetFriends(ArrayList<HashMap<String, Object>> friends) {
+        accesUser.getStatusTask(LoginAct.CurUser, new GetStatusCallback() {
 
-            }
 
             @Override
-            public void onCallBackGetStatus(String status) {
-               MenuItem item = toolbar.getMenu().getItem(0);
-               item.setTitle(status);
+            public void getStatus(String status) {
+                MenuItem item = toolbar.getMenu().getItem(0);
+                item.setTitle(status);
 
             }
         });
-
-         */
 
     }
 
@@ -157,7 +152,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
                         if(task.isSuccessful()){
                             ArrayList<String> emojies = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                    emojies.add(document.getId());
+                                emojies.add(document.getId());
                             }
 
                             ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,emojies);
@@ -259,6 +254,5 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         return false;
     }
 }
-
 
 
