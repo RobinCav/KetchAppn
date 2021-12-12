@@ -47,8 +47,11 @@ public class Grupper extends Fragment  {
     View view;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        JoinedActivity_names = new ArrayList<>();
+        list = new ArrayList<>();
+
         // Inflate the layout for this fragment
        view = inflater.inflate(R.layout.fragment_grupper, container, false);
         // Add the following lines to create RecyclerView
@@ -56,16 +59,20 @@ public class Grupper extends Fragment  {
         recyclerView = view.findViewById(R.id.recyclerview_GRUPPE);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
+
+
         databaseUser.get().addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     ArrayList<HashMap<String, Object>> joinedActivity = (ArrayList<HashMap<String, Object>>) document.get("JoinedActivity");
-                    //Log.d("GRUPPER_SOM_SKAL_VISES","Du har email: " + LoginAct.CurUser.getEmail());
+
                     if (joinedActivity != null && LoginAct.CurUser.getEmail().equals(document.getId())) {
                         for (int i = 0; i < joinedActivity.size(); i++) {
                             Log.d(USER, " Email: " + document.getId() + " => " + joinedActivity.get(i).get("Name").toString());
                             if(joinedActivity.get(i).get("Name") != null) {
-                                JoinedActivity_names.add(String.valueOf(joinedActivity.get(i).get("Name")));
+                                JoinedActivity_names.add((joinedActivity.get(i).get("Name").toString()));
+                                Log.d("Joined Activity names for active user: ", " => " + JoinedActivity_names);
+
                             }
                         }
                     }
@@ -75,9 +82,31 @@ public class Grupper extends Fragment  {
             else{
                 Log.d(USER,"Error ",task.getException());
             }
-        });
-        list = new ArrayList<>();
+            database.get()
+                    .addOnCompleteListener(task_Arrangement -> {
+                        if(task_Arrangement.isSuccessful()) {
 
+                            for (QueryDocumentSnapshot document_Arrangement : task_Arrangement.getResult()) {
+                                if(JoinedActivity_names != null) {
+                                    for (int h = 0; h < JoinedActivity_names.size(); h++) {
+                                        if (document_Arrangement.getId().equals(JoinedActivity_names.get(h))) {
+                                            //Log.d("GRUPPER_SOM_SKAL_VISES", "Arrangement: " + JoinedActivity_names.size() + " " + document_Arrangement.getId() + " = " + JoinedActivity_names.get(h));
+                                            list.add(document_Arrangement);
+                                            recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
+                                            break;
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            Log.d(ARRAGEMENTER,"Error ",task_Arrangement.getException());
+                        }
+                    });
+        });
+/*
+        Log.d("Joined Activity names for active user: ", " => " + JoinedActivity_names);
         database.get()
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()) {
@@ -101,6 +130,7 @@ public class Grupper extends Fragment  {
                         Log.d(ARRAGEMENTER,"Error ",task.getException());
                     }
                 });
+        */
         return view;
     }
 
