@@ -59,12 +59,14 @@ public class Grupper extends Fragment  {
         databaseUser.get().addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    ArrayList<HashMap<String, Object>> activity = (ArrayList<HashMap<String, Object>>) document.get("JoinedActivity");
+                    ArrayList<HashMap<String, Object>> joinedActivity = (ArrayList<HashMap<String, Object>>) document.get("JoinedActivity");
                     //Log.d("GRUPPER_SOM_SKAL_VISES","Du har email: " + LoginAct.CurUser.getEmail());
-                    if (activity != null && LoginAct.CurUser.getEmail().equals(document.getId())) {
-                        for (int i = 0; i < activity.size(); i++) {
-                            Log.d(USER, " Email: " + document.getId() + " => " + activity.get(i).get("Name"));
-                            // JoinedActivity_names.add((String) activity.get(i).get("Name"));
+                    if (joinedActivity != null && LoginAct.CurUser.getEmail().equals(document.getId())) {
+                        for (int i = 0; i < joinedActivity.size(); i++) {
+                            Log.d(USER, " Email: " + document.getId() + " => " + joinedActivity.get(i).get("Name").toString());
+                            if(joinedActivity.get(i).get("Name") != null) {
+                                JoinedActivity_names.add(String.valueOf(joinedActivity.get(i).get("Name")));
+                            }
                         }
                     }
 
