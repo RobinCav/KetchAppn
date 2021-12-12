@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 
 import com.example.ketchappn.Activities.UserSettingsActivity;
@@ -79,7 +80,9 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
-        toolbar = findViewById(R.id.Top_toolbar);
+        toolbar = (MaterialToolbar) findViewById(R.id.Top_toolbar);
+
+
         toolbar.setOnMenuItemClickListener(this);
         AccesUser accesUser = new AccesUser();
         accesUser.getStatusTask(LoginAct.CurUser, new GetStatusCallback() {

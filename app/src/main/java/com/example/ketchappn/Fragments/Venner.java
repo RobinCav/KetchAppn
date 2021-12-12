@@ -94,7 +94,7 @@ public class Venner extends Fragment {
         View v = inflater.inflate(R.layout.fragment_venner, container, false);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
-        ListView lstIteams = (ListView) v.findViewById(R.id.friendList);
+        ListView lstIteams =  v.findViewById(R.id.friendList);
         Button myButton = (Button) v.findViewById(R.id.dialogButton);
         Fragment fragment = this;
 
