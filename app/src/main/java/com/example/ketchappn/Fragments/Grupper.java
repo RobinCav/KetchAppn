@@ -3,6 +3,7 @@
 package com.example.ketchappn.Fragments;
 import com.example.ketchappn.R;
 
+import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.recyclerViewHolder.recyclerAdapter;
 
 import com.google.firebase.firestore.CollectionReference;
@@ -43,6 +44,7 @@ public class Grupper extends Fragment  {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference database = db.collection(ARRAGEMENTER);
     CollectionReference databaseUser = db.collection(USER);
+    FirestoreFunctions function;
 
     View view;
 
@@ -60,7 +62,8 @@ public class Grupper extends Fragment  {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-
+        function.getEventsToDisplay(recyclerView,getContext());
+        /*
         databaseUser.get().addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
@@ -105,32 +108,8 @@ public class Grupper extends Fragment  {
                         }
                     });
         });
-/*
-        Log.d("Joined Activity names for active user: ", " => " + JoinedActivity_names);
-        database.get()
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            List<String> venner = (List<String>) document.get("venner");
-                            //Log.d("GRUPPER_SOM_SKAL_VISES","Du har email: " + LoginAct.CurUser.getEmail());
-                            if (venner != null) {
-                                for (int i = 0; i < venner.size(); i++) {
-                                    //Log.d(ARRAGEMENTER, " => " + venner.get(i));
-                                    if (LoginAct.CurUser.getEmail().equals(venner.get(i)) || LoginAct.CurUser.getEmail().equals(document.get("host").toString())) {
-                                        list.add(document);
-                                        recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
-                                        break;
-                                    }
-                                }
-                            }
 
-                        }
-                    }
-                    else{
-                        Log.d(ARRAGEMENTER,"Error ",task.getException());
-                    }
-                });
-        */
+         */
         return view;
     }
 
