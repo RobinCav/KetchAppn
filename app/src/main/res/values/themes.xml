@@ -25,4 +25,11 @@
     <style name="Theme.KetchAppn.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
+
+    <style name="yo" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+
 </resources>
