@@ -59,4 +59,5 @@
     <string name="login">Login</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="legg_til_venner">legg til venner</string>
+    <string name="backBtn">Back</string>
 </resources>
