@@ -29,6 +29,12 @@
             android:name=".Start_Page"
             android:exported="true"
             android:theme="@style/Theme.KetchAppn.NoActionBar" />
+
+        <activity
+            android:name=".GroupChatActivity"
+            android:exported="true"
+            android:theme="@style/Theme.KetchAppn.NoActionBar" />
+
     </application>
 
 </manifest>

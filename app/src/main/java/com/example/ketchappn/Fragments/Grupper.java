@@ -1,6 +1,7 @@
 
 
 package com.example.ketchappn.Fragments;
+import com.example.ketchappn.GroupChatActivity;
 import com.example.ketchappn.R;
 
 import com.example.ketchappn.recyclerViewHolder.recyclerAdapter;
@@ -12,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.Source;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -102,6 +104,7 @@ public class Grupper extends Fragment  {
 
         super.onCreate(savedInstanceState);
     }
+
 
     @Override
     public void onStart() {

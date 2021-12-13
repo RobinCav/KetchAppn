@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.ketchappn.Fragments.Grupper;
 import com.example.ketchappn.GroupChatActivity;
 import com.example.ketchappn.R;
 import com.example.ketchappn.Start_Page;
@@ -27,6 +28,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
     private Context context;
     private final ArrayList<QueryDocumentSnapshot> list;
     private Fragment fragment;
+    private Grupper grupper;
 
     public recyclerAdapter(Context ctx, ArrayList<QueryDocumentSnapshot> list, Fragment fragment){
         this.context = ctx;
@@ -92,7 +94,9 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
                 public void onClick(View v) {
                     Intent intent = new Intent(getContext(), GroupChatActivity.class);
                     intent.putExtra("Symbol", symbol.getText().toString());
-                    fragment.startActivity(intent);
+                    intent.putExtra("Place",sted.getText().toString());
+                    intent.putExtra("Time",tid.getText().toString());
+                    itemView.getContext().startActivity(intent);
                 }
             });
         }
