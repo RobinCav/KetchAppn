@@ -35,8 +35,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_width="213dp"
+        android:layout_height="409dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
@@ -51,7 +51,7 @@
         android:id="@+id/videreBtn"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/custom_button"
         android:text="@string/videre" />
 

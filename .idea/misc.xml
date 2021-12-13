@@ -48,7 +48,7 @@
         <entry key="app/src/main/res/layout/activity_user_settings.xml" value="0.20652173913043478" />
         <entry key="app/src/main/res/layout/button_list_aktiviteter.xml" value="0.20652173913043478" />
         <entry key="app/src/main/res/layout/dialog_venner.xml" value="0.39701148276658504" />
-        <entry key="app/src/main/res/layout/fragment_aktiviteter.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/fragment_aktiviteter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2105978260869565" />
         <entry key="app/src/main/res/layout/fragment_grupper.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_minner.xml" value="0.24230072463768115" />
