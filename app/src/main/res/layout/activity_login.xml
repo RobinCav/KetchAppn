@@ -36,7 +36,6 @@
 
             android:textColorHint="@color/black"
             android:inputType="textPersonName"
-            android:background="@drawable/login_btn"
             android:minHeight="48dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -55,7 +54,6 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_btn"
             android:hint="@string/enter_your_password"
             android:inputType="textPassword"
             android:minHeight="48dp" />

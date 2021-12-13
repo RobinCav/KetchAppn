@@ -33,7 +33,6 @@
             android:layout_height="wrap_content"
             android:hint="Enter your username"
             android:inputType="textPersonName"
-            android:background="@color/primaryVarient"
             android:minHeight="48dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -51,7 +50,6 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primaryVarient"
             android:hint="Enter your email"
             android:inputType="textPassword"
             android:minHeight="48dp" />
@@ -71,7 +69,6 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primaryVarient"
             android:hint="@string/enter_your_password"
             android:inputType="textPassword"
             android:minHeight="48dp" />
