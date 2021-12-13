@@ -22,7 +22,6 @@ import android.widget.Toolbar;
 
 import com.example.ketchappn.Activities.UserSettingsActivity;
 import com.example.ketchappn.Fragments.Aktiviteter;
-import com.example.ketchappn.Fragments.BaseFragment;
 import com.example.ketchappn.Fragments.Grupper;
 import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.Fragments.Minner;
@@ -35,6 +34,7 @@ import com.example.ketchappn.database.GetStatusCallback;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
@@ -54,9 +54,8 @@ import java.util.HashMap;
 
 public class Start_Page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, MaterialToolbar.OnMenuItemClickListener {
     BottomNavigationView bottomNavigationView;
-    private MaterialToolbar toolbar;
     private FirebaseAuth mAuth;
-    private TextView mTitle;
+
 
 
     @Override
@@ -75,12 +74,12 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+        MaterialToolbar toolbar = findViewById(R.id.Top_toolbar);
 
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.Venner_Navigation);
-        toolbar = (MaterialToolbar) findViewById(R.id.Top_toolbar);
 
 
         toolbar.setOnMenuItemClickListener(this);
@@ -111,20 +110,30 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        MaterialToolbar toolbar = findViewById(R.id.Top_toolbar);
+
         switch (item.getItemId()) {
             case R.id.Minner_Navigation:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_minner).commit();
+                toolbar.setTitle("Minner");
                 return true;
+
             case R.id.Venner_Navigation:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_venner).commit();
+                toolbar.setTitle("Venner");
 
                 return true;
+
             case R.id.Grupper_Navigation:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_grupper).commit();
+                toolbar.setTitle("Grupper");
 
                 return true;
+
             case R.id.Aktivitet_Navigation:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment_aktiviteter).commit();
+                toolbar.setTitle("Aktiviteter");
+
                 return true;
         }
 
