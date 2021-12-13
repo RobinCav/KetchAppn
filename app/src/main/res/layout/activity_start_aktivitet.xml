@@ -90,6 +90,7 @@
         android:background="@drawable/custom_button"
         android:layout_height="49dp"
         android:text="@string/back"
+        android:layout_marginTop="10dp"
         android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,20 +1,41 @@
 package com.example.ketchappn.Fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.example.ketchappn.Start_Page;
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
+
+import com.example.ketchappn.R;
 
 
-public abstract class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment {
+
+    @LayoutRes
+    private int fragmentId;
+    public  BaseFragment(int fragmentId){
+        this.fragmentId = fragmentId;
+    }
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser) {
-            Activity a = getActivity();
-            if(a != null)
-                a.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        //ADD BELOW LINE
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        View v = inflater.inflate(fragmentId, container, false);
+
+        return v;
+    }
+
+    public int getFragmentId() {
+        return fragmentId;
+    }
+
+    public void setFragmentId(int fragmentId) {
+        this.fragmentId = fragmentId;
     }
 }

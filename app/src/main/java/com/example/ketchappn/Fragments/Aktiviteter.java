@@ -54,8 +54,11 @@ public class Aktiviteter extends Fragment {
     private String nameOfAkt;
     private FirebaseDatabase firebaseDatabase;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
 
         aktivitetArray.clear();
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
