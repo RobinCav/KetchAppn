@@ -121,8 +121,8 @@ public class Venner extends Fragment  {
                                     btn.setText( f.get(i).get("status").toString() + " " + f.get(i).get("username").toString()   );
                                     btn.setGravity(Gravity.CENTER);
                                     btn.setTextSize(20);
-                                    btn.setTextColor(Color.WHITE);
-                                    btn.setPadding(400,10,400,10);
+                                    btn.setTextColor(Color.BLACK);
+                                    btn.setWidth(v.getWidth());
                                     btn.setAllCaps(false);
                                     btn.setBackgroundResource(R.drawable.custom_button);
                                     layout.addView(btn, lp);

@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryVarient"
+    android:background="@color/primary"
     android:configChanges="orientation|screenSize|keyboardHidden"
 
     tools:context=".Start_Page">
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Light"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/primaryVarient"
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -31,7 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toTopOf="@+id/fragment"
-
                 app:menu="@menu/top_navigation_menu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -46,6 +45,7 @@
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/primaryVarient"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
