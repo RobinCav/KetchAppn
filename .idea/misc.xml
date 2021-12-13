@@ -11,46 +11,21 @@
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/drawable/grupper_navigation.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.13697916666666668" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_2.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_chat.xml" value="0.2125" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_login.xml" value="0.2125" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_login2.xml" value="0.2" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_main.xml" value="0.28804347826086957" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_main2.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_register.xml" value="0.2125" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_register_login.xml" value="0.2125" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_start_aktivitet.xml" value="0.2125" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_start_page.xml" value="0.22" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/activity_user_settings.xml" value="0.22760416666666666" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/button_list_aktiviteter.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/content_2.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/dialog_changepass.xml" value="0.22760416666666666" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/dialog_venner.xml" value="0.22760416666666666" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/dialogstatus.xml" value="0.22760416666666666" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/drawer_header.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_aktivitet.xml" value="0.22864583333333333" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_aktiviteter.xml" value="0.2682291666666667" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_first.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_grupper.xml" value="0.33" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_login.xml" value="0.2" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_minner.xml" value="0.22864583333333333" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_second.xml" value="0.22760416666666666" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/fragment_venner.xml" value="0.33" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/list_group.xml" value="0.5" />
+        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/list_group.xml" value="0.25" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/list_item.xml" value="0.33" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/layout/venner_listviewadapter.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/menu/groupmenu.xml" value="0.20729166666666668" />
-        <entry key="..\:/Users/eriks/AndroidStudioProjects/KetchAppn/app/src/main/res/menu/top_navigation_menu.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/drawable/border.xml" value="0.3828125" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/drawable/custom_button.xml" value="0.26145833333333335" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/drawable/custom_button_add.xml" value="0.3828125" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_login.xml" value="0.2453125" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_register_login.xml" value="0.2453125" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_start_aktivitet.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/activity_start_page.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/dialog_showuserdialog.xml" value="0.302536231884058" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/fragment_aktiviteter.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/karra/StudioProjects/KetchAppn/app/src/main/res/layout/fragment_venner.xml" value="0.302536231884058" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/activity_login.xml" value="0.35260416666666666" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/activity_register.xml" value="0.35260416666666666" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/activity_register_login.xml" value="0.33" />
@@ -59,30 +34,29 @@
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="..\:/programming codes/android/KetchAppn/app/src/main/res/layout/fragment_register_login.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/button_style.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/custom_button.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_2.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.125" />
+        <entry key="app/src/main/res/drawable/custom_button.xml" value="0.25277777777777777" />
+        <entry key="app/src/main/res/layout-land/activity_login.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout-land/activity_start_page.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout-land/fragment_aktiviteter.xml" value="0.2375" />
+        <entry key="app/src/main/res/layout-land/fragment_grupper.xml" value="0.2623456790123457" />
+        <entry key="app/src/main/res/layout-land/fragment_venner.xml" value="0.2375" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.45" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16770833333333332" />
-        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_register_login.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/activity_start_aktivitet.xml" value="0.23369565217391305" />
-        <entry key="app/src/main/res/layout/activity_start_page.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_user_settings.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/button_list_aktiviteter.xml" value="0.23369565217391305" />
-        <entry key="app/src/main/res/layout/content_2.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/dialog_changepass.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/dialog_venner.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/dialogstatus.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/drawer_header.xml" value="0.11" />
-        <entry key="app/src/main/res/layout/fragment_aktiviteter.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_grupper.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/fragment_minner.xml" value="0.13333333333333333" />
-        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.13333333333333333" />
-        <entry key="app/src/main/res/layout/fragment_venner.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/list_group.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/venner_listviewadapter.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.254981884057971" />
+        <entry key="app/src/main/res/layout/activity_register_login.xml" value="0.254981884057971" />
+        <entry key="app/src/main/res/layout/activity_start_page.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/activity_user_settings.xml" value="0.20652173913043478" />
+        <entry key="app/src/main/res/layout/button_list_aktiviteter.xml" value="0.20652173913043478" />
+        <entry key="app/src/main/res/layout/dialog_venner.xml" value="0.39701148276658504" />
+        <entry key="app/src/main/res/layout/fragment_aktiviteter.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/fragment_grupper.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/fragment_minner.xml" value="0.24230072463768115" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.20652173913043478" />
+        <entry key="app/src/main/res/layout/fragment_venner.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/list_group.xml" value="0.24230072463768115" />
+        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2546875" />
+        <entry key="app/src/main/res/menu/top_navigation_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

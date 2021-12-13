@@ -21,17 +21,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_GRUPPE"
-        android:layout_width="341dp"
-        android:layout_height="400dp"
+        android:layout_width="185dp"
+        android:layout_height="283dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:padding="10dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/button_second"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:padding="10dp"
         app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>
