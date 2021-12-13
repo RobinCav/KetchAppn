@@ -25,12 +25,14 @@ import android.widget.Toast;
 
 import com.example.ketchappn.Fragments.Grupper;
 import com.example.ketchappn.Fragments.LoginAct;
+import com.example.ketchappn.Fragments.Venner;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 import com.example.ketchappn.database.AccesUser;
 import com.example.ketchappn.database.FireBaseUserCallBack;
 import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
+import com.example.ketchappn.models.Melding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -136,7 +138,7 @@ public class StartAktivitetActivity extends Activity {
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        Button etDate = (Button) findViewById(R.id.pickDate);
+        Button etDate = findViewById(R.id.pickDate);
 
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,9 +221,15 @@ public class StartAktivitetActivity extends Activity {
                     // Lager en dato verdi med dato og tid
                     dato = day + "/" + month + "/" + year + " -- " + hourString + ":" + minuteString;
 
+                    ArrayList<Melding> meldinger = new ArrayList<>();
+
+                    Melding melding = new Melding(LoginAct.CurUser.getUsername(), "Hey", LoginAct.CurUser.getEmail());
+
+                    meldinger.add(melding);
+
                     // Danner et arrangement objekt og legger det til i Arrangement collection i firebase
                     @SuppressLint("DefaultLocale")
-                    Arrangement arrangement = new Arrangement(finalValgtAktivitet, place, dato, LoginAct.CurUser.getEmail(), unique);
+                    Arrangement arrangement = new Arrangement(finalValgtAktivitet, place, dato, LoginAct.CurUser.getEmail(), unique, meldinger);
                     firestoreFunctions.addObjectToFirebase("Arrangement", arrangement.getCollectionname(), arrangement);
 
                     // Data for arrangementet som har blitt laget
@@ -240,7 +248,7 @@ public class StartAktivitetActivity extends Activity {
                     }
 
                     // Her skal bruker bli sendt tilbake til startpage
-                    startActivity(new Intent(getApplicationContext(), Grupper.class));
+                    finish();
                 }
 
                 // Genererer en feilmelding med Toast hvis bruker trykker på invite uten noen venner på listen sin
