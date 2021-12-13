@@ -27,6 +27,7 @@ import android.view.View;
 
 
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -41,6 +42,7 @@ public class Grupper extends Fragment  {
     ArrayList<QueryDocumentSnapshot> list;
 
     RecyclerView recyclerView;
+    LinearLayout linearLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference database = db.collection(ARRAGEMENTER);
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();;
@@ -54,12 +56,15 @@ public class Grupper extends Fragment  {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-       view = inflater.inflate(R.layout.fragment_grupper, container, false);
+        view = inflater.inflate(R.layout.fragment_grupper, container, false);
         // Add the following lines to create RecyclerView
 
         recyclerView = view.findViewById(R.id.recyclerview_GRUPPE);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
+
+        linearLayout = view.findViewById(R.id.linearLayout_gruppe);
+
 
         CollectionReference users = firestore.collection("User");
         list = new ArrayList<>();
@@ -76,7 +81,7 @@ public class Grupper extends Fragment  {
                                     Log.d(ARRAGEMENTER, " => " + venner.get(i));
                                     if (LoginAct.CurUser.getEmail().equals(venner.get(i)) || LoginAct.CurUser.getEmail().equals(document.get("host").toString())) {
                                         list.add(document);
-                                        recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
+                                        recyclerView.setAdapter(new recyclerAdapter(getContext(), list, this));
                                         break;
                                     }
                                 }
