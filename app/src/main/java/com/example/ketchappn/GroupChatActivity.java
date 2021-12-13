@@ -5,11 +5,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.ketchappn.Fragments.LoginAct;
 
 public class GroupChatActivity extends AppCompatActivity {
 
@@ -22,6 +27,7 @@ public class GroupChatActivity extends AppCompatActivity {
         String symbol = getIntent().getStringExtra("Symbol");
         String place = getIntent().getStringExtra("Place");
         String time = getIntent().getStringExtra("Time");
+        String title = getIntent().getStringExtra("Title");
 
         TextView textViewSymbol = (TextView) findViewById(R.id.symbolChat);
         TextView textViewPlace = (TextView) findViewById(R.id.placeChat);
@@ -36,8 +42,25 @@ public class GroupChatActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 TextView tx = new TextView(context);
-                tx.setText(messageInput.getText());
+                TextView tx2 = new TextView(context);
+
+
+                tx.setText(LoginAct.CurUser.getUsername());
+                tx2.setBackgroundResource(R.drawable.border);
+                tx.setTextSize(20);
+                tx2.setTextSize(20);
+                tx2.setGravity(Gravity.TOP);
+                tx.setGravity(Gravity.TOP);
+                LinearLayout.LayoutParams textParam = new LinearLayout.LayoutParams
+                        (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0f);
+
+                tx2.setText(messageInput.getText().toString());
+
+                tx2.setLayoutParams(textParam );
+
+
                 chatRecycler.addView(tx);
+                chatRecycler.addView(tx2);
             }
         });
 

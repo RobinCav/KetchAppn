@@ -69,7 +69,7 @@ public class Arrangement {
     }
 
     public String getCollectionname() {
-        return getAktivitet().getName() + "-" + getSted();
+        return getAktivitet().getSymbol() + "-" + getSted();
     }
 
     @Override

@@ -43,7 +43,7 @@ public class Grupper extends Fragment  {
 
     ArrayList<QueryDocumentSnapshot> list;
 
-    RecyclerView recyclerView;
+    RecyclerView  recyclerView;
     LinearLayout linearLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference database = db.collection(ARRAGEMENTER);

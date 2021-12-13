@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.ketchappn.Fragments.Grupper;
 import com.example.ketchappn.Fragments.LoginAct;
+import com.example.ketchappn.Fragments.Venner;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 import com.example.ketchappn.database.AccesUser;
 import com.example.ketchappn.database.FireBaseUserCallBack;
@@ -240,7 +241,8 @@ public class StartAktivitetActivity extends Activity {
                     }
 
                     // Her skal bruker bli sendt tilbake til startpage
-                    startActivity(new Intent(getApplicationContext(), Grupper.class));
+                    //startActivity(new Intent(getApplicationContext(), Venner.class));
+                    finish();
                 }
 
                 // Genererer en feilmelding med Toast hvis bruker trykker på invite uten noen venner på listen sin
