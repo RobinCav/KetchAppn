@@ -2,6 +2,7 @@ package com.example.ketchappn.Fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -52,8 +53,11 @@ public class Aktiviteter extends Fragment {
     private String nameOfAkt;
     private FirebaseDatabase firebaseDatabase;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
 
         aktivitetArray.clear();
 

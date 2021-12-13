@@ -3,7 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"  android:orientation="vertical" >
 
-        <TextView
+    <TextView
+        android:id="@+id/userstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="100dp"
+        android:text=""
+        android:gravity="center_horizontal"
+        android:textAlignment="center"/>
+
+    <TextView
             android:id="@+id/displayname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -13,15 +23,7 @@
             android:gravity="center_horizontal"
             android:textAlignment="center"/>
 
-    <TextView
-        android:id="@+id/userstatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="25sp"
-        android:text=""
-        android:gravity="center_horizontal"
-        android:textAlignment="center"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
