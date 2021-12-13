@@ -4,18 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="top|center_horizontal"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".Fragments.Aktiviteter">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/aktiviteter"
-        android:textColor="@color/black"
-        android:textSize="32sp" />
+
 
     <TextView
         android:id="@+id/textViewAkt"
@@ -52,6 +47,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/custom_button"
+        android:textColor="@color/black"
         android:text="@string/videre" />
 
 </LinearLayout>

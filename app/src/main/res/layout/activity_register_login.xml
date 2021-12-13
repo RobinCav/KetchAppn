@@ -5,7 +5,9 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/primaryVarient">
+    android:background="@color/primary"
+    android:configChanges="orientation|screenSize|keyboardHidden"
+    >
 
 
     <TextView
@@ -13,20 +15,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/welcome_to_ketchapp"
+        android:textAllCaps="true"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:textSize="150dp"
+        android:textSize="90dp"
+
         android:textColor="@color/black"
         android:text="😳
                      👉👈"
-        android:textFontWeight="700"
         android:textAlignment="center"
 
 
@@ -34,24 +38,27 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="150dp"
-        android:background="@drawable/custom_button"
-        android:layout_height="60dp"
-        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_gravity="center"
         android:text="@string/register"
+        android:width="200dp"
+
+        style="@style/yo"
 
         />
 
     <Button
         android:id="@+id/login"
         android:layout_marginTop="10dp"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/custom_button"
         android:text="@string/login"
-        android:textColor="@color/white" />
+        android:width="200dp"
+        android:textColor="@color/black"
+        style="@style/yo" />
 
 
 </LinearLayout>

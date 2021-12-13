@@ -1,8 +1,12 @@
 package com.example.ketchappn.Fragments;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -27,12 +31,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Venner#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Venner extends Fragment {
+public class Venner extends Fragment  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,27 +42,7 @@ public class Venner extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Venner() {
-        // Required empty public constructor
-    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Venner.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Venner newInstance(String param1, String param2) {
-        Venner fragment = new Venner();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
 
     @Override
@@ -90,14 +69,20 @@ public class Venner extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
+
         View v = inflater.inflate(R.layout.fragment_venner, container, false);
 
+
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.friendList);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(8,8,8,8);
 
         Button myButton = (Button) v.findViewById(R.id.dialogButton);
         Fragment fragment = this;
 
         myButton.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
@@ -128,16 +113,21 @@ public class Venner extends Fragment {
                     ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
                     lstItems.setAdapter(adapter);
                      */
+
                     System.out.println("friendList from venner : " + f);
                         for (int i = 0; i < f.size(); i++) {
 
-                                    Button btn = new Button(getContext());
-                                    btn.setText(f.get(i).get("username").toString());
+                                    Button btn = new Button(v.getContext());
+                                    btn.setText( f.get(i).get("status").toString() + " " + f.get(i).get("username").toString()   );
                                     btn.setGravity(Gravity.CENTER);
                                     btn.setTextSize(20);
-                                    btn.setPadding(200,25,200,25);
                                     btn.setTextColor(Color.BLACK);
-                                    layout.addView(btn);
+                                    btn.setWidth(v.getWidth());
+                                    btn.setAllCaps(false);
+                                    btn.setBackgroundResource(R.drawable.custom_button);
+                                    layout.addView(btn, lp);
+
+
                                     btn.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -146,23 +136,19 @@ public class Venner extends Fragment {
                                             View blue = getLayoutInflater().inflate(R.layout.dialog_showuserdialog, null);
                                             TextView nUsername = (TextView) blue.findViewById(R.id.displayname);
                                             nUsername.setTextColor(Color.BLACK);
-                                            nUsername.setText(btn.getText().toString());
+                                            nUsername.setText(btn.getText().toString().split(" ") [1]);
                                             TextView status = (TextView) blue.findViewById(R.id.userstatus);
                                             status.setTextColor(Color.BLACK);
+                                            status.setText(btn.getText().toString().split(" ")[0]);
 
                                             Button removeFriend = (Button) blue.findViewById(R.id.delete);
-                                            User user = new User(btn.getText().toString());
-                                            accesUser.getStatusTask(user, new GetStatusCallback() {
-                                                @Override
-                                                public void getStatus(String s) {
-                                                    status.setText(s);
-                                                }
-                                            });
+
 
                                             removeFriend.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    accesUser.removeFriendTask(fragment, btn.getText().toString());
+                                                    accesUser.removeFriendTask(fragment, btn.getText().toString().split(" ")[1]);
+
                                                 }
                                             });
 

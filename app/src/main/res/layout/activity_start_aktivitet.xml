@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryVarient"
+    android:background="@color/primary"
     tools:context=".StartAktivitetActivity">
 
     <TextView
@@ -28,6 +28,7 @@
         android:ems="10"
         android:hint="@string/place"
         android:textColor="@color/black"
+        android:background="@drawable/custom_button"
         android:inputType="text"
         android:minHeight="48dp"
         android:textAlignment="center"
@@ -46,10 +47,10 @@
         android:layout_marginTop="76dp"
         android:ems="10"
         android:hint="@string/pick_date"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/black"
         android:importantForAutofill="no"
         android:background="@drawable/custom_button"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:minHeight="48dp"
         android:textAlignment="center"
         android:textSize="25sp"
@@ -69,7 +70,9 @@
         android:numbersInnerTextColor="@color/black"
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/custom_button"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/editPlace" />
 
     <Button
@@ -78,7 +81,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
         android:layout_marginBottom="32dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="@string/inviter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,16 +93,19 @@
         android:background="@drawable/custom_button"
         android:layout_height="49dp"
         android:text="@string/back"
-        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView2"
+        android:background="@drawable/custom_button"
         android:layout_width="wrap_content"
         android:layout_height="142dp"
         android:layout_marginTop="24dp"
+
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +134,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/underline"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"

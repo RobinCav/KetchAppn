@@ -1,41 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="500dp"
     tools:context=".Fragments.Venner"
     android:orientation="vertical"
-    android:gravity="top|center_horizontal"
+    android:layout_gravity="center"
     android:padding="16dp"
     android:tag="Venner"
+
+
     >
 
-    <!-- TODO: Update blank fragment layout -->
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="Venner"
-        android:textSize="32dp"/>
-
-
     <LinearLayout
-        android:id="@+id/friendList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
-    </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/friendList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </LinearLayout>`
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/dialogButton"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/black"
-        android:text="@string/legg_til_venner" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_button_add"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="bottom|right"
+        android:textSize="25dp"
+
+        android:text="+" />
 
 
-</LinearLayout>
+</FrameLayout>
