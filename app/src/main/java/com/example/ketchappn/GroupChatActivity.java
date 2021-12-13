@@ -1,5 +1,6 @@
 package com.example.ketchappn;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +16,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ketchappn.Fragments.LoginAct;
+import com.example.ketchappn.functions.FirestoreFunctions;
+import com.example.ketchappn.models.Arrangement;
+import com.example.ketchappn.models.Melding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import org.w3c.dom.Document;
+
+import java.util.HashMap;
 
 public class GroupChatActivity extends AppCompatActivity {
 
@@ -58,7 +73,19 @@ public class GroupChatActivity extends AppCompatActivity {
 
                 tx2.setLayoutParams(textParam );
 
+                FirestoreFunctions functions = new FirestoreFunctions();
+                DocumentReference reference = functions.getDocRef("Arrangement", symbol + "-" + place);
 
+                reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot d = task.getResult();
+
+                        HashMap<String, Object> meldinger = (HashMap<String, Object>) d.get("meldinger");
+
+
+                    }
+                });
                 chatRecycler.addView(tx);
                 chatRecycler.addView(tx2);
             }
