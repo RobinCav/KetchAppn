@@ -181,6 +181,16 @@ public class AccesUser {
                                     }
 
                                 }
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    User curuser = new User(document.get("Username").toString());
+                                    for(int i=0; i < friendsList.size();i++){
+                                        if(curuser.getUsername().equals(friendsList.get(i).get("username"))){
+                                            friendsList.get(i).put("status", document.get("Status"));
+                                        }
+                                    }
+
+                                }
+                                System.out.println(friendsList);
                                 callback.onCallBack(friendsList, friendsStatus);
                             } else {
                                 Log.d("TAG", "Error getting documents: ", task.getException());
