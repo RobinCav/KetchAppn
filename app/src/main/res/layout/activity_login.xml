@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
+
         android:textAlignment="center"
         android:textSize="60dp"
         android:textColor="@color/white"
@@ -21,7 +22,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_text"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -32,6 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter your email"
+
+            android:textColorHint="@color/black"
             android:inputType="textPersonName"
             android:background="@drawable/login_btn"
             android:minHeight="48dp" />
@@ -41,7 +44,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_text"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
@@ -64,6 +67,7 @@
         android:id="@+id/loginNow"
         android:layout_height="wrap_content"
         android:text="@string/login"
+        android:textColor="@color/black"
         android:layout_gravity="center"
         android:background="@drawable/login_btn"
         android:layout_centerInParent="true"
@@ -72,6 +76,7 @@
     <Button
         android:id="@+id/GoRegister"
         android:layout_width="wrap_content"
+        android:textColor="@color/black"
         android:layout_marginTop="10dp"
         android:background="@drawable/login_btn"
         android:layout_height="wrap_content"
