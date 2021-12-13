@@ -19,9 +19,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -30,14 +33,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class AccesUser  {
-
-
+public class AccesUser {
 
 
     private FirebaseFirestore firestore;
     public ArrayList<User> friends = new ArrayList<>();
-    public AccesUser(){
+
+    public AccesUser() {
         firestore = FirebaseFirestore.getInstance();
          /*
         friends = new ArrayList<>();
@@ -49,10 +51,12 @@ public class AccesUser  {
         setDocument(user);
      */
     }
+
     public void setFriends(ArrayList<User> friends) {
         this.friends = friends;
     }
-    public void getStatusTask (User user,GetStatusCallback callback){
+
+    public void getStatusTask(User user, GetStatusCallback callback) {
 
 
         firestore.collection("User")
@@ -62,17 +66,15 @@ public class AccesUser  {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.get("Username").equals(LoginAct.CurUser.getUsername())){
+                                if (document.get("Username").equals(user.getUsername())) {
                                     String status = (String) document.get("Status");
 
-                                    callback.getStatus( status);
+                                    callback.getStatus(status);
                                 }
 
 
-
                             }
-                        }
-                        else {
+                        } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }
                     }
@@ -81,151 +83,230 @@ public class AccesUser  {
 
     }
 
-    public void getFriendsTask (FireBaseUserCallBack callback){
-        firestore.collection("User")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            ArrayList<String> friendsStatus = new ArrayList<>();
+    public void removeFriendTask(Fragment fragment, String friendName) {
+
+
+            firestore.collection("User")
+                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            DocumentReference ref = firestore.collection("User").document(LoginAct.CurUser.getEmail());
+                            User friend = new User(document.get("Username").toString(), document.get("Email").toString());
+
+                            HashMap<String, Object> data = new HashMap<>();
                             ArrayList<HashMap<String, Object>> friendsList = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                User curuser = new User(document.get("Username").toString());
-                                if (Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())) {
-                                    //We have our list view
-                                    friendsList = (ArrayList<HashMap<String, Object>>) document.get("UserFriendList");
-                                }
+                            ArrayList<HashMap<String, Object>> friendsList2 = new ArrayList<>();
+                            if(document.get("Username").equals(LoginAct.CurUser.getUsername())){
+                                friendsList = (ArrayList<HashMap<String, Object>>) document.get("UserFriendList");
+
+                            }else if(document.get("Username").equals(friendName)){
+                                friendsList2 = (ArrayList<HashMap<String, Object>>) document.get("UserFriendList");
 
                             }
-                            callback.onCallBack(friendsList, friendsStatus);
+                            for (HashMap<String, Object> obj : friendsList) {
+                                if (obj.get("username").equals(friendName)) {
+                                    data = obj;
+                                }
+                            }
+                            ref
+                                    .update("UserFriendList", FieldValue.arrayRemove(data)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d("friendremoved", "DocumentSnapshot successfully updated!");
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("friendwasntremoved", "Error updating document", e);
+                                }
+                            });
+
+
+
+                            HashMap<String, Object> data2 = new HashMap<>();
+                            for (HashMap<String, Object> obj : friendsList2) {
+                                if (obj.get("username").equals(LoginAct.CurUser.getUsername())) {
+                                    data2 = obj;
+                                }
+                            }
+                            DocumentReference friendRef = firestore.collection("User").document(friend.getEmail());
+
+                            friendRef
+                                    .update("UserFriendList",  FieldValue.arrayRemove(data2))
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d("friendloaded", "DocumentSnapshot successfully updated!");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w("frienddidntload", "Error updating document", e);
+                                        }
+                                    });
+
                         }
-                        else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
+
                     }
-                });
-    }
-    public ArrayList<User> getFriends(){
-        return  friends;
-    }
+                    fragment.startActivity(new Intent(fragment.getContext(), Start_Page.class));
 
-    public void changeStatusTask(String status, Activity activity){
+                }
 
-        DocumentReference curUserRef = firestore.collection("User").document(LoginAct.CurUser.getEmail());
 
-        curUserRef.update("Status", status).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                activity.startActivity(new Intent(activity.getApplicationContext(), Start_Page.class));
+            });
 
-            }
-        });
+        }
 
 
 
 
 
-    }
-    public void addFriendsTask(String username, Fragment fragment){
-        if (!username.isEmpty()){
+        public void getFriendsTask (FireBaseUserCallBack callback){
             firestore.collection("User")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
+                                ArrayList<String> friendsStatus = new ArrayList<>();
+                                ArrayList<HashMap<String, Object>> friendsList = new ArrayList<>();
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    Log.d("TAG", document.getId() + " => " + document.getData());
-                                    User friend = new User(document.get("Username").toString(), document.get("Email").toString());
-                                    System.out.println("user from colleciton : " + friend.getUsername());
-                                    System.out.println("ENTERTED TEXT: " + username);
-                                    if(username.equals(friend.getUsername())){
-                                        System.out.println("THIS SHIT EXIST......");
-                                        friend.addFriend(LoginAct.CurUser);
-                                        LoginAct.CurUser.addFriend(friend);
-                                        DocumentReference curUserRef = firestore.collection("User").document(LoginAct.CurUser.getEmail());
-                                        Map<String, Object> data = new HashMap<>();
-                                        data.put("username", friend.getUsername());
-                                        data.put("email", friend.getEmail());
-                                        curUserRef
-                                                .update("UserFriendList",  FieldValue.arrayUnion(data))
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Log.d("friendloaded", "DocumentSnapshot successfully updated!");
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Log.w("frienddidntload", "Error updating document", e);
-                                                    }
-                                                });
-
-
-                                        DocumentReference friendRef = firestore.collection("User").document(friend.getEmail());
-                                        Map<String, Object> data2 = new HashMap<>();
-                                        data2.put("username", LoginAct.CurUser.getUsername());
-                                        data2.put("email", LoginAct.CurUser.getEmail());
-                                        friendRef
-                                                .update("UserFriendList",  FieldValue.arrayUnion(data2))
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Log.d("friendloaded", "DocumentSnapshot successfully updated!");
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Log.w("frienddidntload", "Error updating document", e);
-                                                    }
-                                                });
-                                        FragmentTransaction ft = fragment.getFragmentManager().beginTransaction();
-                                        ft.detach(fragment).attach(fragment).commit();
-                                        Toast.makeText(fragment.getContext(),
-                                                "User added!",
-                                                Toast.LENGTH_SHORT).show();
-
-                                        fragment.startActivity(new Intent(fragment.getContext(), Start_Page.class));
-
-
-
+                                    User curuser = new User(document.get("Username").toString());
+                                    if (Objects.equals(document.get("Username"), LoginAct.CurUser.getUsername())) {
+                                        //We have our list view
+                                        friendsList = (ArrayList<HashMap<String, Object>>) document.get("UserFriendList");
                                     }
+
                                 }
+                                callback.onCallBack(friendsList, friendsStatus);
                             } else {
                                 Log.d("TAG", "Error getting documents: ", task.getException());
                             }
                         }
                     });
         }
-        else {
-            Toast.makeText(fragment.getContext(),
-                    "error user not found",
-                    Toast.LENGTH_SHORT).show();
+
+        public ArrayList<User> getFriends () {
+            return friends;
+        }
+
+        public void changeStatusTask (String status, Activity activity){
+
+            DocumentReference curUserRef = firestore.collection("User").document(LoginAct.CurUser.getEmail());
+
+            curUserRef.update("Status", status).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    activity.startActivity(new Intent(activity.getApplicationContext(), Start_Page.class));
+
+                }
+            });
+
+
+        }
+
+        public void addFriendsTask (String username, Fragment fragment){
+            if (!username.isEmpty()) {
+                firestore.collection("User")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        Log.d("TAG", document.getId() + " => " + document.getData());
+                                        User friend = new User(document.get("Username").toString(), document.get("Email").toString());
+                                        System.out.println("user from colleciton : " + friend.getUsername());
+                                        System.out.println("ENTERTED TEXT: " + username);
+                                        if (username.equals(friend.getUsername())) {
+                                            System.out.println("THIS SHIT EXIST......");
+                                            friend.addFriend(LoginAct.CurUser);
+                                            LoginAct.CurUser.addFriend(friend);
+                                            DocumentReference curUserRef = firestore.collection("User").document(LoginAct.CurUser.getEmail());
+                                            Map<String, Object> data = new HashMap<>();
+                                            data.put("username", friend.getUsername());
+                                            data.put("email", friend.getEmail());
+                                            curUserRef
+                                                    .update("UserFriendList", FieldValue.arrayUnion(data))
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Log.d("friendloaded", "DocumentSnapshot successfully updated!");
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Log.w("frienddidntload", "Error updating document", e);
+                                                        }
+                                                    });
+
+
+                                            DocumentReference friendRef = firestore.collection("User").document(friend.getEmail());
+                                            Map<String, Object> data2 = new HashMap<>();
+                                            data2.put("username", LoginAct.CurUser.getUsername());
+                                            data2.put("email", LoginAct.CurUser.getEmail());
+                                            friendRef
+                                                    .update("UserFriendList", FieldValue.arrayUnion(data2))
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Log.d("friendloaded", "DocumentSnapshot successfully updated!");
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Log.w("frienddidntload", "Error updating document", e);
+                                                        }
+                                                    });
+                                            FragmentTransaction ft = fragment.getFragmentManager().beginTransaction();
+                                            ft.detach(fragment).attach(fragment).commit();
+                                            Toast.makeText(fragment.getContext(),
+                                                    "User added!",
+                                                    Toast.LENGTH_SHORT).show();
+
+                                            fragment.startActivity(new Intent(fragment.getContext(), Start_Page.class));
+
+
+                                        }
+                                    }
+                                } else {
+                                    Log.d("TAG", "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+            } else {
+                Toast.makeText(fragment.getContext(),
+                        "error user not found",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        public void setDocument (com.example.ketchappn.models.User user){
+            Map<String, Object> userHashMap = new HashMap<>();
+            userHashMap.put("User", user.getUsername());
+            userHashMap.put("UserFriendList", user.getFriends());
+            firestore.collection("User").document(user.getUsername())
+                    .set(userHashMap)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("TAG", "DocumentSnapshot successfully written!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("TAG", "Error writing document", e);
+                        }
+                    });
         }
     }
-    public void setDocument(com.example.ketchappn.models.User user) {
-        Map<String, Object> userHashMap = new HashMap<>();
-        userHashMap.put("User", user.getUsername());
-        userHashMap.put("UserFriendList", user.getFriends());
-        firestore.collection("User").document(user.getUsername())
-                .set(userHashMap)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "Error writing document", e);
-                    }
-                });
-    }
-}
+
 
 
 
