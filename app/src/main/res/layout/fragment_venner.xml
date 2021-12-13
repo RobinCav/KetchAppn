@@ -3,40 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="top|center_horizontal"
+    tools:context=".Fragments.Venner"
     android:orientation="vertical"
+    android:gravity="top|center_horizontal"
     android:padding="16dp"
     android:tag="Venner"
-    tools:context=".Fragments.Venner">
-    <!-- TODO: Update blank fragment layout -->
+    >
 
-    <TextView
+    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/venner"
-        android:gravity="top|center"
-        android:textColor="@color/black"
-        android:textSize="32sp" />
+        android:gravity="left"
+        android:text="Venner"
+        android:textSize="32dp"/>
 
-    <ListView
+
+    <LinearLayout
         android:id="@+id/friendList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:gravity="center|center_horizontal"
-        android:orientation="vertical"
-        android:paddingTop="20dp"
-        android:padding="50dp">
+        android:orientation="vertical">
 
-    </ListView>
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/dialogButton"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
-        android:text="legg til venner" />
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        android:text="@string/legg_til_venner" />
 
 
 </LinearLayout>
