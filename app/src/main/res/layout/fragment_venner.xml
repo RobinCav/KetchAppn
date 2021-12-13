@@ -26,13 +26,13 @@
             android:textSize="32dp" />
 
 
-        <LinearLayout
+        <ListView
             android:id="@+id/friendList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        </LinearLayout>
+        </ListView>
 
     </LinearLayout>
 
