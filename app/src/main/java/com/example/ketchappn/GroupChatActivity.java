@@ -81,7 +81,6 @@ public class GroupChatActivity extends AppCompatActivity {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                scrollView.scrollTo(0, scrollView.getBottom());
                 chatRecycler.removeAllViews();
                 ArrayList<HashMap<String, Object>> joinedActivity = (ArrayList<HashMap<String, Object>>) value.get("meldinger");
                 for (int i = 0; i < joinedActivity.size(); i++){
@@ -90,9 +89,6 @@ public class GroupChatActivity extends AppCompatActivity {
                     tx.setPadding(20,5,20,5);
                     tx.setTextSize(20);
 
-                    DisplayMetrics displaymetrics = new DisplayMetrics();
-                    getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-                    int width = displaymetrics.widthPixels;
 
 
                     if (joinedActivity.get(i).get("epost").equals(LoginAct.CurUser.getEmail())){
@@ -109,6 +105,7 @@ public class GroupChatActivity extends AppCompatActivity {
                     }
 
                     chatRecycler.addView(tx);
+                    scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                 }
             }
         });
@@ -131,7 +128,6 @@ public class GroupChatActivity extends AppCompatActivity {
                 });
 
                 messageInput.setText("");
-                scrollView.scrollTo(0, scrollView.getBottom());
 
                /* tx.setText(LoginAct.CurUser.getUsername());
                 tx.setTextSize(20);
