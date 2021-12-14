@@ -66,8 +66,6 @@ public class FirestoreFunctions {
 
 
 
-
-
         databaseUser.get().addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {

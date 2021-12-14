@@ -1,5 +1,3 @@
-
-
 package com.example.ketchappn.Fragments;
 import com.example.ketchappn.R;
 

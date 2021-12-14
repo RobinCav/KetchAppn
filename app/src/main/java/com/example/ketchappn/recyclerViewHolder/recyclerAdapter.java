@@ -27,13 +27,11 @@ import java.util.HashMap;
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recyclerviewholder> {
     private Context context;
     private final ArrayList<QueryDocumentSnapshot> list;
-    private Fragment fragment;
     private Grupper grupper;
 
-    public recyclerAdapter(Context ctx, ArrayList<QueryDocumentSnapshot> list, Fragment fragment){
+    public recyclerAdapter(Context ctx, ArrayList<QueryDocumentSnapshot> list){
         this.context = ctx;
         this.list = list;
-        this.fragment = fragment;
     }
 
 
