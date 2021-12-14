@@ -3,6 +3,7 @@ package com.example.ketchappn.functions;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ketchappn.Fragments.LoginAct;
@@ -53,7 +54,7 @@ public class FirestoreFunctions {
 
     }
 
-    public void getEventsToDisplay(RecyclerView view, Context context){
+    public void getEventsToDisplay(RecyclerView view, Context context, Fragment fragment){
         String ARRAGEMENTER = "Arrangement";
         String USER = "User";
 
@@ -99,7 +100,7 @@ public class FirestoreFunctions {
                                         if (document_Arrangement.getId().equals(JoinedActivity_names.get(h))) {
                                             //Log.d("GRUPPER_SOM_SKAL_VISES", "Arrangement: " + JoinedActivity_names.size() + " " + document_Arrangement.getId() + " = " + JoinedActivity_names.get(h));
                                             list.add(document_Arrangement);
-                                            view.setAdapter(new recyclerAdapter(context, list));
+                                            view.setAdapter(new recyclerAdapter(context, list, fragment));
                                             break;
                                         }
 
