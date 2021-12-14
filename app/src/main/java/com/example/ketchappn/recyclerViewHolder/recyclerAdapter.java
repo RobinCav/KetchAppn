@@ -49,11 +49,11 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull recyclerviewholder viewholder, int position) {
-        HashMap<String, Object> d = (HashMap<String, Object>) list.get(position).get("aktivitet");
-        QueryDocumentSnapshot bd  = list.get(position);
-        viewholder.sted.setText(bd.get("sted").toString());
-        viewholder.symbol.setText(d.get("symbol").toString());
-        viewholder.tid.setText(bd.get("tid").toString());
+        ArrayList<HashMap<String, Object>> d = (ArrayList<HashMap<String, Object>>) list.get(position).get("JoinedActivity");
+        //QueryDocumentSnapshot bd  = list.get(position);
+        viewholder.sted.setText(d.get(position).get("Sted").toString());
+        viewholder.symbol.setText(d.get(position).get("Symbol").toString());
+        viewholder.tid.setText(d.get(position).get("Tid").toString());
 
     }
 

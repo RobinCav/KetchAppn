@@ -82,45 +82,18 @@ public class Grupper extends Fragment  {
             if(task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     ArrayList<HashMap<String, Object>> joinedActivity = (ArrayList<HashMap<String, Object>>) document.get("JoinedActivity");
-
-                    if (joinedActivity != null && LoginAct.CurUser.getEmail().equals(document.getId())) {
-                        for (int i = 0; i < joinedActivity.size(); i++) {
-                            Log.d(USER, " Email: " + document.getId() + " => " + joinedActivity.get(i).get("Name").toString());
-                            if(joinedActivity.get(i).get("Name") != null) {
-                                JoinedActivity_names.add((joinedActivity.get(i).get("Name").toString()));
-                                Log.d("Joined Activity names for active user: ", " => " + JoinedActivity_names);
-
-                            }
+                    if (LoginAct.CurUser.getEmail().equals(document.getId())) {
+                        for(int i = 0; i<joinedActivity.size(); i++) {
+                            Log.d("joined", " =>" + joinedActivity.get(0).get("Name"));
+                            list.add(document);
+                            recyclerView.setAdapter(new recyclerAdapter(getContext(), list, this));
                         }
                     }
-
                 }
             }
             else{
                 Log.d(USER,"Error ",task.getException());
             }
-            database.get()
-                    .addOnCompleteListener(task_Arrangement -> {
-                        if(task_Arrangement.isSuccessful()) {
-
-                            for (QueryDocumentSnapshot document_Arrangement : task_Arrangement.getResult()) {
-                                if(JoinedActivity_names != null) {
-                                    for (int h = 0; h < JoinedActivity_names.size(); h++) {
-                                        if (document_Arrangement.getId().equals(JoinedActivity_names.get(h))) {
-                                            //Log.d("GRUPPER_SOM_SKAL_VISES", "Arrangement: " + JoinedActivity_names.size() + " " + document_Arrangement.getId() + " = " + JoinedActivity_names.get(h));
-                                            list.add(document_Arrangement);
-                                            recyclerView.setAdapter(new recyclerAdapter(getContext(), list, this));
-                                            break;
-                                        }
-
-                                    }
-                                }
-                            }
-                        }
-                        else{
-                            Log.d(ARRAGEMENTER,"Error ",task_Arrangement.getException());
-                        }
-                    });
         });
 
         return view;
