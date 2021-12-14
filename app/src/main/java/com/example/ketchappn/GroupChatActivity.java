@@ -88,6 +88,7 @@ public class GroupChatActivity extends AppCompatActivity {
                     if (joinedActivity.get(i).get("epost").equals(LoginAct.CurUser.getEmail())){
                         tx.setTextColor(Color.BLUE);
                         tx.setGravity(Gravity.RIGHT);
+                        tx.setPadding(0,0,30,0);
                     }
 
                     else {
