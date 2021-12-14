@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -20,15 +19,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ketchappn.R;
-import com.example.ketchappn.database.AccesUser;
+import com.example.ketchappn.database.AccessUser;
 import com.example.ketchappn.database.FireBaseUserCallBack;
-import com.example.ketchappn.database.GetStatusCallback;
-import com.example.ketchappn.models.User;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 
 public class Venner extends Fragment  {
@@ -62,7 +58,7 @@ public class Venner extends Fragment  {
 
 
 
-    private AccesUser accesUser = new AccesUser() ;
+    private AccessUser accessUser = new AccessUser() ;
 
 
     @Override
@@ -93,7 +89,7 @@ public class Venner extends Fragment  {
                     nButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            accesUser.addFriendsTask(nUsername.getText().toString(), fragment);
+                            accessUser.addFriendsTask(nUsername.getText().toString(), fragment);
                         }
                     });
                     mBuilder.setView(blue);
@@ -105,10 +101,10 @@ public class Venner extends Fragment  {
 
 
 
-            accesUser.getFriendsTask(new FireBaseUserCallBack() {
+            accessUser.getFriendsTask(new FireBaseUserCallBack() {
 
                      @Override
-                     public void onCallBack(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
+                     public void onCallBack(ArrayList<HashMap<String, Object>> f) {
                     /*
                     ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
                     lstItems.setAdapter(adapter);
@@ -147,7 +143,7 @@ public class Venner extends Fragment  {
                                             removeFriend.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    accesUser.removeFriendTask(fragment, btn.getText().toString().split(" ")[1]);
+                                                    accessUser.removeFriendTask(fragment, btn.getText().toString().split(" ")[1]);
 
                                                 }
                                             });

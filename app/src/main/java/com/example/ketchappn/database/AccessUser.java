@@ -3,28 +3,22 @@ package com.example.ketchappn.database;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.ketchappn.Fragments.LoginAct;
-import com.example.ketchappn.Fragments.Venner;
-import com.example.ketchappn.Start_Page;
+import com.example.ketchappn.Activities.LoginAct;
+import com.example.ketchappn.Activities.Start_Page;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -33,27 +27,39 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class AccesUser {
+public class AccessUser {
 
 
     private FirebaseFirestore firestore;
-    public ArrayList<User> friends = new ArrayList<>();
 
-    public AccesUser() {
+    public AccessUser() {
         firestore = FirebaseFirestore.getInstance();
-         /*
-        friends = new ArrayList<>();
-        friends.add(new User(1,"yaqub","yaqubsaid@gmail.com","rrr",null));
-        friends.add(new User(2,"robin","robincalv@gmail.com","rrr",null));
-        friends.add(new User(3,"aleks","aleks@gmail.com","rrr",null));
-        user = new User(0, "karrar", "karrara@gmail.com", "okthendude",friends);
-        auth = FirebaseAuth.getInstance();
-        setDocument(user);
-     */
+
     }
 
-    public void setFriends(ArrayList<User> friends) {
-        this.friends = friends;
+    public void createUser(User user) {
+
+        Map<String, Object> userHashMap = new HashMap<>();
+        userHashMap.put("Email", user.getEmail());
+        userHashMap.put("Username", user.getUsername());
+        userHashMap.put("UserFriendList", user.getFriends());
+        userHashMap.put("Status", user.getStatus());
+        userHashMap.put("JoinedActivity", user.getActivities());
+
+        firestore.collection("User").document(user.getEmail())
+                .set(userHashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error writing document", e);
+                    }
+                });
     }
 
     public void getStatusTask(User user, GetStatusCallback callback) {
@@ -192,7 +198,7 @@ public class AccesUser {
 
                                 }
                                 System.out.println(friendsList);
-                                callback.onCallBack(friendsList, friendsStatus);
+                                callback.onCallBack(friendsList);
                             } else {
                                 Log.d("TAG", "Error getting documents: ", task.getException());
                             }
@@ -200,9 +206,6 @@ public class AccesUser {
                     });
         }
 
-        public ArrayList<User> getFriends () {
-            return friends;
-        }
 
         public void changeStatusTask (String status, Activity activity){
 

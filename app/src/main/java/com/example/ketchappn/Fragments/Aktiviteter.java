@@ -20,20 +20,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ketchappn.StartAktivitetActivity;
+import com.example.ketchappn.Activities.StartAktivitetActivity;
 import com.example.ketchappn.R;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 
-import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
-import com.example.ketchappn.models.Arrangement;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;

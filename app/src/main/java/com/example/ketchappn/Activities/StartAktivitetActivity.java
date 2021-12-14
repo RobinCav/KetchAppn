@@ -1,6 +1,5 @@
-package com.example.ketchappn;
+package com.example.ketchappn.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,7 +11,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,20 +21,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.ketchappn.Fragments.Grupper;
-import com.example.ketchappn.Fragments.LoginAct;
-import com.example.ketchappn.Fragments.Venner;
+import com.example.ketchappn.R;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
-import com.example.ketchappn.database.AccesUser;
+import com.example.ketchappn.database.AccessUser;
 import com.example.ketchappn.database.FireBaseUserCallBack;
-import com.example.ketchappn.functions.FirestoreFunctions;
+import com.example.ketchappn.database.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
 import com.example.ketchappn.models.Melding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,7 +40,7 @@ import java.util.stream.Collectors;
 
 public class StartAktivitetActivity extends Activity {
 
-    private final AccesUser accesUser = new AccesUser();
+    private final AccessUser accessUser = new AccessUser();
     private final FirestoreFunctions firestoreFunctions = new FirestoreFunctions();
     private ArrayList<String> venner = new ArrayList();
     private ArrayList<String> epostVenner = new ArrayList<>();
@@ -85,9 +77,9 @@ public class StartAktivitetActivity extends Activity {
 
 
         // Callback for å hente venner til bruker
-        accesUser.getFriendsTask(new FireBaseUserCallBack() {
+        accessUser.getFriendsTask(new FireBaseUserCallBack() {
             @Override
-            public void onCallBack(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
+            public void onCallBack(ArrayList<HashMap<String, Object>> friends) {
 
                 // Hvis bruker ikke har noen venner, vil bruker bli infromert når denne siden bli åpnet
                 if (friends.size() == 0){
@@ -125,6 +117,7 @@ public class StartAktivitetActivity extends Activity {
         TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
         timePicker.setIs24HourView(true);
 
+
         TextView textView = (TextView) findViewById(R.id.textView2);
         textView.setText(valgtAktivitet.getName() + " " + valgtAktivitet.getSymbol());
 
@@ -134,6 +127,7 @@ public class StartAktivitetActivity extends Activity {
         // Lager kalender hvor bruker kan velge når aktiviteten skal ta sted
         */
         Calendar calendar = Calendar.getInstance();
+
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -143,7 +137,7 @@ public class StartAktivitetActivity extends Activity {
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(StartAktivitetActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(StartAktivitetActivity.this, R.style.CalenderDialogTheme, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month = month +1;
@@ -246,7 +240,11 @@ public class StartAktivitetActivity extends Activity {
                     }
 
                     // Her skal bruker bli sendt tilbake til startpage
-                    finish();
+                    Intent intent = new Intent(context, GroupChatActivity.class);
+                    intent.putExtra("Symbol", finalValgtAktivitet.getSymbol());
+                    intent.putExtra("Place",place);
+                    intent.putExtra("Time",dato);
+                    startActivity(intent);
                 }
 
                 // Genererer en feilmelding med Toast hvis bruker trykker på invite uten noen venner på listen sin
