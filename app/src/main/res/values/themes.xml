@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.KetchAppn" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#dc143c</item>
+        <item name="colorPrimary">#ffffff</item>
         <item name="colorPrimaryVariant">#0040fe</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">#dc143c</item>
         <item name="colorAccent">#8c7aa2</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

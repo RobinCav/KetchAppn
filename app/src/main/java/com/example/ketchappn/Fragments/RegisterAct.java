@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.ketchappn.R;
 import com.example.ketchappn.Start_Page;
+import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,6 +36,7 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
     private EditText password;
     private EditText username;
     private FirebaseFirestore firestore;
+    private FirestoreFunctions firestoreFunctions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,10 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        User user = new User("datdude@live.no", "datdude", new ArrayList<>());
+
+        setDocument(user);
 
     }
 

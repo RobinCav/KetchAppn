@@ -6,7 +6,7 @@
     android:gravity="center"
 
     android:id="@+id/RegisterFrag"
-    android:background="@color/primaryVarient"
+    android:background="@color/primary"
     >
 
 
@@ -15,12 +15,13 @@
         android:layout_height="wrap_content"
         android:text="@string/REGISTER"
         android:textAlignment="center"
-        android:textColor="@color/black"
+
+        android:textColor="@color/white"
         android:textSize="30sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_text"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -39,7 +40,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_text"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -50,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter your email"
-            android:inputType="textPassword"
+            android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -58,7 +59,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_text"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -83,7 +84,7 @@
         android:layout_gravity="center"
         android:background="@drawable/custom_button"
         android:backgroundTint="@color/black"
-        android:textColor="@color/white"/>
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/GoLogin"
@@ -94,7 +95,7 @@
         android:text="@string/Login"
         android:layout_gravity="center"
         android:backgroundTint="@color/black"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         />
 
 

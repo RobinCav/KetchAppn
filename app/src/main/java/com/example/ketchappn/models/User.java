@@ -36,7 +36,6 @@ public class User implements Serializable {
         this.friends = friends;
         this.email = email;
         Status = "\uD83E\uDD75";
-
     }
 
     public void removeFriend(User friend){

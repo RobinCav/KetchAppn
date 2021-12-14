@@ -147,7 +147,8 @@ public class Venner extends Fragment  {
                                             removeFriend.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    accesUser.removeFriendTask(fragment, btn.getText().toString());
+                                                    accesUser.removeFriendTask(fragment, btn.getText().toString().split(" ")[1]);
+
                                                 }
                                             });
 

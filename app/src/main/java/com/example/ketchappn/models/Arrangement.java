@@ -13,13 +13,23 @@ public class Arrangement {
     private String tid;
     private String host;
     private ArrayList<User> venner;
+    private ArrayList<Melding> meldinger;
 
-    public Arrangement(Aktivitet aktivitet, String sted, String tid, String host, ArrayList<User> venner) {
+    public Arrangement(Aktivitet aktivitet, String sted, String tid, String host, ArrayList<User> venner, ArrayList<Melding> meldinger) {
         this.aktivitet = aktivitet;
         this.sted = sted;
         this.tid = tid;
         this.host = host;
         this.venner = venner;
+        this.meldinger = meldinger;
+    }
+
+    public Arrangement(Aktivitet aktivitet, String sted, String tid, ArrayList<User> venner, ArrayList<Melding> meldinger) {
+        this.aktivitet = aktivitet;
+        this.sted = sted;
+        this.tid = tid;
+        this.venner = venner;
+        this.meldinger = meldinger;
     }
 
     public Arrangement(Aktivitet aktivitet, String sted) {
@@ -27,6 +37,16 @@ public class Arrangement {
         this.sted = sted;
     }
 
+    public Arrangement() {
+    }
+
+    public ArrayList<Melding> getMeldinger() {
+        return meldinger;
+    }
+
+    public void setMeldinger(ArrayList<Melding> meldinger) {
+        this.meldinger = meldinger;
+    }
 
     public Aktivitet getAktivitet() {
         return aktivitet;
@@ -69,7 +89,7 @@ public class Arrangement {
     }
 
     public String getCollectionname() {
-        return getAktivitet().getName() + "-" + getSted();
+        return getAktivitet().getSymbol() + "-" + getSted();
     }
 
     @Override

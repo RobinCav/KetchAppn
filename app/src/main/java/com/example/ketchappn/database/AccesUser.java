@@ -125,6 +125,7 @@ public class AccesUser {
 
 
 
+
                             HashMap<String, Object> data2 = new HashMap<>();
                             for (HashMap<String, Object> obj : friendsList2) {
                                 if (obj.get("username").equals(LoginAct.CurUser.getUsername())) {

@@ -4,6 +4,7 @@
     <!-- you can use any color you want I used here gray color-->
     <solid android:color="@color/white"/>
     <corners android:radius="10dp"/>
+
     <stroke android:color="@color/black" android:width="2dp"/>
 
 </shape>

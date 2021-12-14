@@ -1,9 +1,8 @@
-
-
 package com.example.ketchappn.Fragments;
 import com.example.ketchappn.GroupChatActivity;
 import com.example.ketchappn.R;
 
+import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.recyclerViewHolder.recyclerAdapter;
 
 import com.google.firebase.firestore.CollectionReference;
@@ -40,14 +39,18 @@ import java.util.List;
 
 public class Grupper extends Fragment  {
     private static final String ARRAGEMENTER = "Arrangement";
+    private static final String USER = "User";
 
     ArrayList<QueryDocumentSnapshot> list;
 
-    RecyclerView recyclerView;
+    RecyclerView  recyclerView;
     LinearLayout linearLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference database = db.collection(ARRAGEMENTER);
-    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();;
+    FirestoreFunctions firestoreFunctions;
+    ArrayList<String> JoinedActivity_names;
+
+    CollectionReference databaseUser = db.collection(USER);
 
     View view;
 
@@ -67,34 +70,29 @@ public class Grupper extends Fragment  {
 
         linearLayout = view.findViewById(R.id.linearLayout_gruppe);
 
-
-        CollectionReference users = firestore.collection("User");
         list = new ArrayList<>();
+        JoinedActivity_names = new ArrayList<>();
 
-        database.get()
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()) {
-                        list.clear();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            List<String> venner = (List<String>) document.get("venner");
-                            System.out.println("Du har email: " + LoginAct.CurUser.getEmail());
-                            if (venner != null) {
-                                for (int i = 0; i < venner.size(); i++) {
-                                    Log.d(ARRAGEMENTER, " => " + venner.get(i));
-                                    if (LoginAct.CurUser.getEmail().equals(venner.get(i)) || LoginAct.CurUser.getEmail().equals(document.get("host").toString())) {
-                                        list.add(document);
-                                        recyclerView.setAdapter(new recyclerAdapter(getContext(), list, this));
-                                        break;
-                                    }
-                                }
-                            }
 
+        //firestoreFunctions.getEventsToDisplay(recyclerView,getContext(),this);
+
+        databaseUser.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    ArrayList<HashMap<String, Object>> joinedActivity = (ArrayList<HashMap<String, Object>>) document.get("JoinedActivity");
+                    if (LoginAct.CurUser.getEmail().equals(document.getId())) {
+                        for(int i = 0; i< (joinedActivity != null ? joinedActivity.size() : 0); i++) {
+                            Log.d("joined", " =>" + joinedActivity.get(0).get("Name"));
+                            list.add(document);
+                            recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
                         }
                     }
-                    else{
-                        Log.d("Nigga","Fisk",task.getException());
-                    }
-                });
+                }
+            }
+            else{
+                Log.d(USER,"Error ",task.getException());
+            }
+        });
 
         return view;
     }

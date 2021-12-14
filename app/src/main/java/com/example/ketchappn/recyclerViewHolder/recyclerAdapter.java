@@ -27,13 +27,11 @@ import java.util.HashMap;
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recyclerviewholder> {
     private Context context;
     private final ArrayList<QueryDocumentSnapshot> list;
-    private Fragment fragment;
     private Grupper grupper;
 
-    public recyclerAdapter(Context ctx, ArrayList<QueryDocumentSnapshot> list, Fragment fragment){
+    public recyclerAdapter(Context ctx, ArrayList<QueryDocumentSnapshot> list){
         this.context = ctx;
         this.list = list;
-        this.fragment = fragment;
     }
 
 
@@ -49,12 +47,11 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull recyclerviewholder viewholder, int position) {
-        HashMap<String, Object> d = (HashMap<String, Object>) list.get(position).get("aktivitet");
-        QueryDocumentSnapshot bd  = list.get(position);
-        //Log.d("bindholder ", " => " + d.get("name").toString());
-        viewholder.sted.setText(bd.get("sted").toString());
-        viewholder.symbol.setText(d.get("symbol").toString());
-        viewholder.tid.setText(bd.get("tid").toString());
+        ArrayList<HashMap<String, Object>> d = (ArrayList<HashMap<String, Object>>) list.get(position).get("JoinedActivity");
+        //QueryDocumentSnapshot bd  = list.get(position);
+        viewholder.sted.setText(d.get(position).get("Sted").toString());
+        viewholder.symbol.setText(d.get(position).get("Symbol").toString());
+        viewholder.tid.setText(d.get(position).get("Tid").toString());
 
     }
 
