@@ -24,9 +24,20 @@ public class Arrangement {
         this.meldinger = meldinger;
     }
 
+    public Arrangement(Aktivitet aktivitet, String sted, String tid, ArrayList<User> venner, ArrayList<Melding> meldinger) {
+        this.aktivitet = aktivitet;
+        this.sted = sted;
+        this.tid = tid;
+        this.venner = venner;
+        this.meldinger = meldinger;
+    }
+
     public Arrangement(Aktivitet aktivitet, String sted) {
         this.aktivitet = aktivitet;
         this.sted = sted;
+    }
+
+    public Arrangement() {
     }
 
     public ArrayList<Melding> getMeldinger() {

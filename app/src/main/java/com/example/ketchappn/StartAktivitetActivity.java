@@ -222,9 +222,7 @@ public class StartAktivitetActivity extends Activity {
                     dato = day + "/" + month + "/" + year + " -- " + hourString + ":" + minuteString;
 
                     ArrayList<Melding> meldinger = new ArrayList<>();
-
                     Melding melding = new Melding(LoginAct.CurUser.getUsername(), "Hey", LoginAct.CurUser.getEmail());
-
                     meldinger.add(melding);
 
                     // Danner et arrangement objekt og legger det til i Arrangement collection i firebase

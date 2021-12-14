@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter your email"
-            android:inputType="textPassword"
+            android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
