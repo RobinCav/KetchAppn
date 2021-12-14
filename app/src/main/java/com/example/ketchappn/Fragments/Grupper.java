@@ -33,7 +33,6 @@ import java.util.HashMap;
 
 
 public class Grupper extends Fragment  {
-    private static final String ARRAGEMENTER = "Arrangement";
     private static final String USER = "User";
 
     ArrayList<QueryDocumentSnapshot> list;
@@ -41,8 +40,6 @@ public class Grupper extends Fragment  {
     RecyclerView  recyclerView;
     LinearLayout linearLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference database = db.collection(ARRAGEMENTER);
-    FirestoreFunctions firestoreFunctions;
     ArrayList<String> JoinedActivity_names;
 
     CollectionReference databaseUser = db.collection(USER);
@@ -67,9 +64,6 @@ public class Grupper extends Fragment  {
 
         list = new ArrayList<>();
         JoinedActivity_names = new ArrayList<>();
-
-
-        //firestoreFunctions.getEventsToDisplay(recyclerView,getContext(),this);
 
         databaseUser.get().addOnCompleteListener(task -> {
             if(task.isSuccessful()) {

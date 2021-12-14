@@ -74,10 +74,10 @@ public class Venner extends Fragment  {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.setMargins(8,8,8,8);
 
-        Button myButton = (Button) v.findViewById(R.id.dialogButton);
+        Button addFriend = (Button) v.findViewById(R.id.dialogButton);
         Fragment fragment = this;
 
-        myButton.setOnClickListener(new View.OnClickListener() {
+        addFriend.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
@@ -105,10 +105,6 @@ public class Venner extends Fragment  {
 
                      @Override
                      public void onCallBack(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
-                    /*
-                    ArrayAdapter<String> allItemsAdapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1,f);
-                    lstItems.setAdapter(adapter);
-                     */
 
                     System.out.println("friendList from venner : " + f);
                         for (int i = 0; i < f.size(); i++) {

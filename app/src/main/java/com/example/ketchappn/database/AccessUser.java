@@ -300,25 +300,6 @@ public class AccessUser {
             }
         }
 
-        public void setDocument (com.example.ketchappn.models.User user){
-            Map<String, Object> userHashMap = new HashMap<>();
-            userHashMap.put("User", user.getUsername());
-            userHashMap.put("UserFriendList", user.getFriends());
-            firestore.collection("User").document(user.getUsername())
-                    .set(userHashMap)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d("TAG", "DocumentSnapshot successfully written!");
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("TAG", "Error writing document", e);
-                        }
-                    });
-        }
     }
 
 

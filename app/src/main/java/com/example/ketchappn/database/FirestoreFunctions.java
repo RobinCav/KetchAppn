@@ -45,21 +45,4 @@ public class FirestoreFunctions {
 
     }
 
-    public void sendMessage(String name, Map<String, Object> data){
-        docReference= getDocRef("Arrangement", name);
-
-        docReference.update("meldinger", FieldValue.arrayUnion(data)).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.d("Message", "Message was sent from ");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("Invite fail", "Could not send message");
-            }
-        });
-
-    }
-
 }

@@ -38,7 +38,8 @@ import java.util.Objects;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-public class Aktiviteter extends Fragment {
+public class
+Aktiviteter extends Fragment {
 
     List<Aktivitet> aktivitetArray = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -95,13 +96,14 @@ public class Aktiviteter extends Fragment {
             }
         });
 
+
+
         return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         generateActivities();
-        findFriendsInEvent();
 
         super.onCreate(savedInstanceState);
 
@@ -129,28 +131,6 @@ public class Aktiviteter extends Fragment {
                 });
     }
 
-    public void findFriendsInEvent(){
-        //eventRef = FirebaseDatabase.getInstance().getReference().child("venner");
-
-        FirebaseFirestore firebore = FirebaseFirestore.getInstance();
-
-
-        firebore.collection("Arrangement").whereEqualTo("host", "karraraaljaber@gmail.com").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-
-                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                ArrayList<String> venner = (ArrayList<String>) document.get("venner");
-                            }
-                        } else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-
-    }
 
     @Override
     public void onStart() {
