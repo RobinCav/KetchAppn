@@ -37,6 +37,30 @@ public class AccessUser {
 
     }
 
+    public void createUser(User user) {
+
+        Map<String, Object> userHashMap = new HashMap<>();
+        userHashMap.put("Email", user.getEmail());
+        userHashMap.put("Username", user.getUsername());
+        userHashMap.put("UserFriendList", user.getFriends());
+        userHashMap.put("Status", user.getStatus());
+        userHashMap.put("JoinedActivity", user.getActivities());
+
+        firestore.collection("User").document(user.getEmail())
+                .set(userHashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error writing document", e);
+                    }
+                });
+    }
 
     public void getStatusTask(User user, GetStatusCallback callback) {
 

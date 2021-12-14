@@ -1,4 +1,4 @@
-package com.example.ketchappn;
+package com.example.ketchappn.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,9 +19,9 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.example.ketchappn.Fragments.LoginAct;
+import com.example.ketchappn.Activities.LoginAct;
+import com.example.ketchappn.R;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
-import com.example.ketchappn.functions.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
 import com.example.ketchappn.models.Melding;
