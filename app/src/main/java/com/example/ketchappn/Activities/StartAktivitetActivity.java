@@ -117,6 +117,7 @@ public class StartAktivitetActivity extends Activity {
         TimePicker timePicker = (TimePicker) findViewById(R.id.datePicker1);
         timePicker.setIs24HourView(true);
 
+
         TextView textView = (TextView) findViewById(R.id.textView2);
         textView.setText(valgtAktivitet.getName() + " " + valgtAktivitet.getSymbol());
 
@@ -126,6 +127,7 @@ public class StartAktivitetActivity extends Activity {
         // Lager kalender hvor bruker kan velge når aktiviteten skal ta sted
         */
         Calendar calendar = Calendar.getInstance();
+
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -135,7 +137,7 @@ public class StartAktivitetActivity extends Activity {
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(StartAktivitetActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(StartAktivitetActivity.this, R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month = month +1;
