@@ -156,8 +156,6 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
         for (ValidationError error : errors) {
             View view = error.getView();
             String message = error.getCollatedErrorMessage(this);
-
-            // Display error messages ;)
             if (view instanceof EditText) {
                 ((EditText) view).setError(message);
             } else {
