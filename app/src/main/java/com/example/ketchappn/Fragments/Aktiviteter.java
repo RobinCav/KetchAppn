@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.ketchappn.Activities.StartAktivitetActivity;
 import com.example.ketchappn.R;
+import com.example.ketchappn.Activities.Start_Page;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 
 import com.example.ketchappn.models.Aktivitet;
@@ -55,6 +56,7 @@ Aktiviteter extends Fragment {
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
 
         aktivitetArray.clear();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
         View view = inflater.inflate(R.layout.fragment_aktiviteter, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
@@ -63,6 +65,7 @@ Aktiviteter extends Fragment {
         recyclerView.setAdapter(new AktivitetBtnAdapter(aktivitetArray));
 
         chosenAkt = (TextView) view.findViewById(R.id.textViewAkt);
+
 
         // Denne funksjonen lagrer aktivitetene fra firebase, dette må skje etter koblingen med firebase
         aktivitetArray = AktivitetBtnAdapter.sendArray();

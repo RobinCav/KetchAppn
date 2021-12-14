@@ -17,18 +17,27 @@
             android:exported="true" />
         <activity
             android:name=".Activities.LoginAct"
-            android:exported="true" />
+            android:exported="true"
+            />
         <activity
             android:name=".Activities.RegisterLoginAct"
-            android:exported="true" />
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.StartAktivitetActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".Activities.Start_Page"
             android:exported="true"
-            android:theme="@style/Theme.KetchAppn.NoActionBar" />
+            android:theme="@style/Theme.KetchAppn.NoActionBar"
+            />
 
         <activity
             android:name=".Activities.GroupChatActivity"

@@ -24,7 +24,7 @@
 
     <style name="Theme.KetchAppn.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-
+    <dimen name="all_padding">30dp</dimen>
 
     <style name="yo" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">cut</item>

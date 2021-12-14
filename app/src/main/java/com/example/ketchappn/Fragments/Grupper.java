@@ -71,7 +71,7 @@ public class Grupper extends Fragment  {
                     ArrayList<HashMap<String, Object>> joinedActivity = (ArrayList<HashMap<String, Object>>) document.get("JoinedActivity");
                     if (LoginAct.CurUser.getEmail().equals(document.getId())) {
                         for(int i = 0; i< (joinedActivity != null ? joinedActivity.size() : 0); i++) {
-                            Log.d("joined", " =>" + joinedActivity.get(0).get("Name"));
+                            Log.d("joined", " =>" + joinedActivity.get(i).get("Name"));
                             list.add(document);
                             recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
                         }
