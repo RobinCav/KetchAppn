@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.ketchappn.Fragments.LoginAct;
@@ -70,6 +72,7 @@ public class GroupChatActivity extends AppCompatActivity {
         Button sendMessage = (Button) findViewById(R.id.btnChat);
         EditText messageInput = (EditText) findViewById(R.id.chatInput);
         LinearLayout chatRecycler = (LinearLayout) findViewById(R.id.chatRecycler);
+        ScrollView scrollView = (ScrollView) findViewById(R.id.chatscroll);
         chatRecycler.setGravity(Gravity.BOTTOM);
 
 
@@ -78,27 +81,52 @@ public class GroupChatActivity extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 chatRecycler.removeAllViews();
+
                 ArrayList<HashMap<String, Object>> joinedActivity = (ArrayList<HashMap<String, Object>>) value.get("meldinger");
                 for (int i = 0; i < joinedActivity.size(); i++){
                     TextView tx = new TextView(context);
+                    TextView from = new TextView(context);
+                    from.setText(joinedActivity.get(i).get("username").toString());
+                    from.setTextColor(Color.WHITE);
+                    from.setTextSize(20);
                     tx.setText(joinedActivity.get(i).get("message").toString());
                     tx.setPadding(20,5,20,5);
                     tx.setTextSize(20);
 
+
+
+
+
                     if (joinedActivity.get(i).get("epost").equals(LoginAct.CurUser.getEmail())){
-                        tx.setTextColor(Color.BLUE);
+                        tx.setTextColor(Color.BLACK);
                         tx.setGravity(Gravity.RIGHT);
-                        tx.setPadding(0,0,30,0);
+                        from.setGravity(Gravity.RIGHT);
+                        tx.setBackgroundColor(Color.rgb(	173, 216, 230));
+                        from.setPadding(100,0,100,0);
+
+                        tx.setPadding(0,0,100,0);
+
                     }
 
                     else {
-                        tx.setTextColor(Color.WHITE);
+                        tx.setTextColor(Color.BLACK);
+                        tx.setBackgroundColor(Color.rgb(	237, 237, 237));
+
+                        from.setGravity(Gravity.LEFT);
                         tx.setGravity(Gravity.LEFT);
 
                     }
 
+                    chatRecycler.addView(from);
                     chatRecycler.addView(tx);
+
                 }
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
                 System.out.println(joinedActivity.get(0).get("message"));
             }
         });
