@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.ketchappn.R;
-import com.example.ketchappn.Start_Page;
 
 public class UserSettingsActivity extends AppCompatActivity {
 

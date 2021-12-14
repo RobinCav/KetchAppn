@@ -13,25 +13,25 @@
             android:name=".Activities.UserSettingsActivity"
             android:exported="true" />
         <activity
-            android:name=".Fragments.RegisterAct"
+            android:name=".Activities.RegisterAct"
             android:exported="true" />
         <activity
-            android:name=".Fragments.LoginAct"
+            android:name=".Activities.LoginAct"
             android:exported="true" />
         <activity
-            android:name=".Fragments.RegisterLoginAct"
+            android:name=".Activities.RegisterLoginAct"
             android:exported="true" />
         <activity
-            android:name=".StartAktivitetActivity"
+            android:name=".Activities.StartAktivitetActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Start_Page"
+            android:name=".Activities.Start_Page"
             android:exported="true"
             android:theme="@style/Theme.KetchAppn.NoActionBar" />
 
         <activity
-            android:name=".GroupChatActivity"
+            android:name=".Activities.GroupChatActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan"
 

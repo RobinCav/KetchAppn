@@ -1,23 +1,14 @@
-package com.example.ketchappn.functions;
+package com.example.ketchappn.database;
 
-import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ketchappn.Fragments.LoginAct;
-import com.example.ketchappn.recyclerViewHolder.recyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class FirestoreFunctions {

@@ -1,44 +1,34 @@
-package com.example.ketchappn;
+package com.example.ketchappn.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 
-import com.example.ketchappn.Activities.UserSettingsActivity;
 import com.example.ketchappn.Fragments.Aktiviteter;
 import com.example.ketchappn.Fragments.Grupper;
-import com.example.ketchappn.Fragments.LoginAct;
 import com.example.ketchappn.Fragments.Minner;
-import com.example.ketchappn.Fragments.RegisterAct;
-import com.example.ketchappn.Fragments.RegisterLoginAct;
 import com.example.ketchappn.Fragments.Venner;
-import com.example.ketchappn.database.AccesUser;
-import com.example.ketchappn.database.FireBaseUserCallBack;
+import com.example.ketchappn.R;
+import com.example.ketchappn.database.AccessUser;
 import com.example.ketchappn.database.GetStatusCallback;
-import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,10 +36,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class Start_Page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, MaterialToolbar.OnMenuItemClickListener {
@@ -83,8 +71,8 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
 
 
         toolbar.setOnMenuItemClickListener(this);
-        AccesUser accesUser = new AccesUser();
-        accesUser.getStatusTask(LoginAct.CurUser, new GetStatusCallback() {
+        AccessUser accessUser = new AccessUser();
+        accessUser.getStatusTask(LoginAct.CurUser, new GetStatusCallback() {
 
 
             @Override
@@ -146,7 +134,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
         Activity ac = this;
         switch (item.getItemId()){
             case R.id.changestatus:
-                AccesUser accesUser = new AccesUser();
+                AccessUser accessUser = new AccessUser();
                 AlertDialog.Builder d = new AlertDialog.Builder(this);
 
                 View v = getLayoutInflater().inflate(R.layout.dialogstatus, null);
@@ -175,7 +163,7 @@ public class Start_Page extends AppCompatActivity implements BottomNavigationVie
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     String s = ( (TextView) view ).getText().toString();
 
-                                    accesUser.changeStatusTask( s ,ac);
+                                    accessUser.changeStatusTask( s ,ac);
 
                                 }
                             });

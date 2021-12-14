@@ -1,18 +1,15 @@
-package com.example.ketchappn;
+package com.example.ketchappn.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,20 +20,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.ketchappn.Fragments.Grupper;
-import com.example.ketchappn.Fragments.LoginAct;
-import com.example.ketchappn.Fragments.Venner;
+import com.example.ketchappn.R;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
-import com.example.ketchappn.database.AccesUser;
+import com.example.ketchappn.database.AccessUser;
 import com.example.ketchappn.database.FireBaseUserCallBack;
-import com.example.ketchappn.functions.FirestoreFunctions;
+import com.example.ketchappn.database.FirestoreFunctions;
 import com.example.ketchappn.models.Aktivitet;
 import com.example.ketchappn.models.Arrangement;
 import com.example.ketchappn.models.Melding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,7 +39,7 @@ import java.util.stream.Collectors;
 
 public class StartAktivitetActivity extends Activity {
 
-    private final AccesUser accesUser = new AccesUser();
+    private final AccessUser accessUser = new AccessUser();
     private final FirestoreFunctions firestoreFunctions = new FirestoreFunctions();
     private ArrayList<String> venner = new ArrayList();
     private ArrayList<String> epostVenner = new ArrayList<>();
@@ -85,7 +76,7 @@ public class StartAktivitetActivity extends Activity {
 
 
         // Callback for å hente venner til bruker
-        accesUser.getFriendsTask(new FireBaseUserCallBack() {
+        accessUser.getFriendsTask(new FireBaseUserCallBack() {
             @Override
             public void onCallBack(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
 

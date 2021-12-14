@@ -1,4 +1,4 @@
-package com.example.ketchappn.Fragments;
+package com.example.ketchappn.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ketchappn.R;
-import com.example.ketchappn.Start_Page;
-import com.example.ketchappn.functions.FirestoreFunctions;
+import com.example.ketchappn.database.FirestoreFunctions;
 import com.example.ketchappn.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
