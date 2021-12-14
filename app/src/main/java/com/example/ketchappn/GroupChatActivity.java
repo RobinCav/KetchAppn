@@ -28,24 +28,15 @@ import com.example.ketchappn.models.Melding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Document;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class GroupChatActivity extends AppCompatActivity {
 
@@ -92,8 +83,6 @@ public class GroupChatActivity extends AppCompatActivity {
                     tx.setText(joinedActivity.get(i).get("message").toString());
                     tx.setPadding(20,5,20,5);
                     tx.setTextSize(20);
-
-
 
 
 
@@ -149,20 +138,6 @@ public class GroupChatActivity extends AppCompatActivity {
                 });
 
                 messageInput.setText("");
-
-               /* tx.setText(LoginAct.CurUser.getUsername());
-                tx.setTextSize(20);
-                tx2.setTextSize(20);
-                tx2.setGravity(Gravity.TOP);
-                tx.setGravity(Gravity.TOP);
-                LinearLayout.LayoutParams textParam = new LinearLayout.LayoutParams
-                        (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0f);
-                tx2.setText(messageInput.getText().toString());
-                tx2.setLayoutParams(textParam );
-
-                chatRecycler.addView(tx);
-                chatRecycler.addView(tx2);
-                messageInput.setText("");*/
             }
         });
 
