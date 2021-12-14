@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="20dp"
     tools:context=".Fragments.Aktiviteter">
 
 
-
-
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textViewAkt"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="122dp"
-        android:baselineAligned="false"
-        android:textSize="42sp"
+        android:layout_marginTop="60dp"
         android:gravity="center"
+        android:orientation="vertical"
         android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+        android:textSize="42sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,27 +26,27 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/button_second"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAkt" />
 
     <Button
         android:id="@+id/videreBtn"
         android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
+        android:text="@string/videre"
         android:textColor="@color/black"
-        android:text="@string/videre" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout >
 
 
 
