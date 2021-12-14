@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.example.ketchappn.Activities.StartAktivitetActivity;
 import com.example.ketchappn.R;
-import com.example.ketchappn.Start_Page;
+import com.example.ketchappn.Activities.Start_Page;
 import com.example.ketchappn.aktivitetFunc.AktivitetBtnAdapter;
 
 import com.example.ketchappn.models.Aktivitet;
