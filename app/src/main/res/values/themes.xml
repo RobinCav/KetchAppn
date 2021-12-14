@@ -31,7 +31,7 @@
         <item name="cornerSize">4dp</item>
     </style>
 
-    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+    <style name="CalenderDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/primary</item>
     </style>
 
