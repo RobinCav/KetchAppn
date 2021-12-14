@@ -62,10 +62,6 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        User user = new User("datdude@live.no", "datdude", new ArrayList<>());
-
-        setDocument(user);
-
     }
 
     public void setDocument(User user) {

@@ -246,7 +246,11 @@ public class StartAktivitetActivity extends Activity {
                     }
 
                     // Her skal bruker bli sendt tilbake til startpage
-                    finish();
+                    Intent intent = new Intent(context, GroupChatActivity.class);
+                    intent.putExtra("Symbol", finalValgtAktivitet.getSymbol());
+                    intent.putExtra("Place",place);
+                    intent.putExtra("Time",dato);
+                    startActivity(intent);
                 }
 
                 // Genererer en feilmelding med Toast hvis bruker trykker på invite uten noen venner på listen sin
