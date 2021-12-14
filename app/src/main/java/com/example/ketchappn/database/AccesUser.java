@@ -37,24 +37,12 @@ public class AccesUser {
 
 
     private FirebaseFirestore firestore;
-    public ArrayList<User> friends = new ArrayList<>();
 
     public AccesUser() {
         firestore = FirebaseFirestore.getInstance();
-         /*
-        friends = new ArrayList<>();
-        friends.add(new User(1,"yaqub","yaqubsaid@gmail.com","rrr",null));
-        friends.add(new User(2,"robin","robincalv@gmail.com","rrr",null));
-        friends.add(new User(3,"aleks","aleks@gmail.com","rrr",null));
-        user = new User(0, "karrar", "karrara@gmail.com", "okthendude",friends);
-        auth = FirebaseAuth.getInstance();
-        setDocument(user);
-     */
+
     }
 
-    public void setFriends(ArrayList<User> friends) {
-        this.friends = friends;
-    }
 
     public void getStatusTask(User user, GetStatusCallback callback) {
 
@@ -200,9 +188,6 @@ public class AccesUser {
                     });
         }
 
-        public ArrayList<User> getFriends () {
-            return friends;
-        }
 
         public void changeStatusTask (String status, Activity activity){
 
