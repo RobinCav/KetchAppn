@@ -38,6 +38,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,21 +82,33 @@ public class GroupChatActivity extends AppCompatActivity {
                 ArrayList<HashMap<String, Object>> joinedActivity = (ArrayList<HashMap<String, Object>>) value.get("meldinger");
                 for (int i = 0; i < joinedActivity.size(); i++){
                     TextView tx = new TextView(context);
+                    TextView from = new TextView(context);
+                    from.setText(joinedActivity.get(i).get("username").toString());
+
                     tx.setText(joinedActivity.get(i).get("message").toString());
                     tx.setPadding(20,5,20,5);
+                    tx.setBackgroundResource(R.drawable.border);
                     tx.setTextSize(20);
 
                     if (joinedActivity.get(i).get("epost").equals(LoginAct.CurUser.getEmail())){
                         tx.setTextColor(Color.BLUE);
+                        from.setTextColor(Color.BLUE);
+
                         tx.setGravity(Gravity.RIGHT);
+                        from.setGravity(Gravity.RIGHT);
                     }
 
                     else {
                         tx.setTextColor(Color.WHITE);
                         tx.setGravity(Gravity.LEFT);
+                        from.setTextColor(Color.WHITE);
+
+                        from.setGravity(Gravity.LEFT);
+
 
                     }
 
+                    chatRecycler.addView(from);
                     chatRecycler.addView(tx);
                 }
                 System.out.println(joinedActivity.get(0).get("message"));
