@@ -198,7 +198,7 @@ public class AccessUser {
 
                                 }
                                 System.out.println(friendsList);
-                                callback.onCallBack(friendsList, friendsStatus);
+                                callback.onCallBack(friendsList);
                             } else {
                                 Log.d("TAG", "Error getting documents: ", task.getException());
                             }
