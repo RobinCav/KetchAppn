@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:orientation="vertical"
-    android:layout_gravity="center"
-    tools:context=".Activities.StartAktivitetActivity">
+    android:layout_gravity="center">
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="85dp"
+        android:layout_width="wrap_content"
         android:background="@drawable/custom_button"
-        android:layout_height="49dp"
+        android:layout_height="wrap_content"
         android:text="@string/back"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
@@ -65,7 +64,7 @@
 
     <TimePicker
         android:id="@+id/datePicker1"
-        android:layout_width="255dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
@@ -73,17 +72,6 @@
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/custom_button" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:text="@string/inviter" />
 
 
 
@@ -114,6 +102,17 @@
             android:orientation="vertical" />
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="@string/inviter" />
 
 
 

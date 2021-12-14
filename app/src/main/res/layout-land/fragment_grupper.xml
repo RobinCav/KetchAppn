@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingTop="80dp"
+    android:paddingTop="150dp"
     android:paddingBottom="80dp"
     tools:context=".Fragments.Grupper">
 

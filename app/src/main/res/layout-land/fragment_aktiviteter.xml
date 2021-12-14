@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="20dp"
     tools:context=".Fragments.Aktiviteter">
 
 
@@ -14,7 +13,9 @@
         android:id="@+id/textViewAkt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="@dimen/all_padding"
+
         android:gravity="center"
         android:orientation="vertical"
         android:textColor="@color/common_google_signin_btn_text_dark_pressed"
@@ -26,9 +27,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="150dp"
+        android:paddingTop="10dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
+        android:paddingTop="5dp"
         android:text="@string/videre"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
