@@ -1,21 +1,18 @@
 package com.example.ketchappn.Fragments;
-import com.example.ketchappn.GroupChatActivity;
+import com.example.ketchappn.Activities.LoginAct;
 import com.example.ketchappn.R;
 
-import com.example.ketchappn.functions.FirestoreFunctions;
-import com.example.ketchappn.recyclerViewHolder.recyclerAdapter;
+import com.example.ketchappn.database.FirestoreFunctions;
+import com.example.ketchappn.Adapters.recyclerAdapter;
 
 import com.google.firebase.firestore.CollectionReference;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.Source;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,12 +26,10 @@ import android.view.View;
 
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class Grupper extends Fragment  {

@@ -7,7 +7,7 @@
     android:background="@color/primary"
     android:orientation="vertical"
     android:layout_gravity="center"
-    tools:context=".StartAktivitetActivity">
+    tools:context=".Activities.StartAktivitetActivity">
 
     <Button
         android:id="@+id/button2"

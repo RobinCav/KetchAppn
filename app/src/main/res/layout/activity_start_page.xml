@@ -8,7 +8,7 @@
     android:background="@color/primary"
     android:configChanges="orientation|screenSize|keyboardHidden"
 
-    tools:context=".Start_Page">
+    tools:context=".Activities.Start_Page">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
