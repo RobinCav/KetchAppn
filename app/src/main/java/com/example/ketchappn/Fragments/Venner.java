@@ -104,7 +104,7 @@ public class Venner extends Fragment  {
             accessUser.getFriendsTask(new FireBaseUserCallBack() {
 
                      @Override
-                     public void onCallBack(ArrayList<HashMap<String, Object>> f, ArrayList<String> status) {
+                     public void onCallBack(ArrayList<HashMap<String, Object>> f) {
 
                     System.out.println("friendList from venner : " + f);
                         for (int i = 0; i < f.size(); i++) {
