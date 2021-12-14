@@ -98,7 +98,7 @@ public class FirestoreFunctions {
                                         if (document_Arrangement.getId().equals(JoinedActivity_names.get(h))) {
                                             //Log.d("GRUPPER_SOM_SKAL_VISES", "Arrangement: " + JoinedActivity_names.size() + " " + document_Arrangement.getId() + " = " + JoinedActivity_names.get(h));
                                             list.add(document_Arrangement);
-                                            view.setAdapter(new recyclerAdapter(context, list, fragment));
+                                            view.setAdapter(new recyclerAdapter(context, list));
                                             break;
                                         }
 

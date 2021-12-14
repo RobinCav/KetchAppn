@@ -84,7 +84,7 @@ public class Grupper extends Fragment  {
                         for(int i = 0; i<joinedActivity.size(); i++) {
                             Log.d("joined", " =>" + joinedActivity.get(0).get("Name"));
                             list.add(document);
-                            recyclerView.setAdapter(new recyclerAdapter(getContext(), list, this));
+                            recyclerView.setAdapter(new recyclerAdapter(getContext(), list));
                         }
                     }
                 }
