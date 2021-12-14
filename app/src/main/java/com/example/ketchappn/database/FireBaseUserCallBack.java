@@ -6,6 +6,6 @@ import java.util.HashMap;
 public interface FireBaseUserCallBack {
 
 
-    void onCallBack(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status);
+    void onCallBack(ArrayList<HashMap<String, Object>> friends);
 
 }

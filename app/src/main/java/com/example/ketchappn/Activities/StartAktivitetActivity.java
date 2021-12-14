@@ -79,7 +79,7 @@ public class StartAktivitetActivity extends Activity {
         // Callback for å hente venner til bruker
         accessUser.getFriendsTask(new FireBaseUserCallBack() {
             @Override
-            public void onCallBack(ArrayList<HashMap<String, Object>> friends, ArrayList<String> status) {
+            public void onCallBack(ArrayList<HashMap<String, Object>> friends) {
 
                 // Hvis bruker ikke har noen venner, vil bruker bli infromert når denne siden bli åpnet
                 if (friends.size() == 0){
