@@ -33,6 +33,7 @@
         <activity
             android:name=".GroupChatActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustPan|adjustResize"
             android:theme="@style/Theme.KetchAppn.NoActionBar" />
 
     </application>
