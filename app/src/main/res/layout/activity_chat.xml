@@ -62,12 +62,9 @@
 
     <ScrollView
         android:id="@+id/chatscroll"
-        android:layout_width="409dp"
+        android:layout_width="wrap_content"
         android:layout_height="494dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="8dp"
+
         android:background="@color/primary"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/chatInput"

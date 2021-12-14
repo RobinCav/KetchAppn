@@ -53,12 +53,15 @@
     <string name="name">name</string>
     <string name="symbol">symbol</string>
     <string name="tid_gruppe">tid</string>
-    <string name="grupper">Grupper</string>
-    <string name="eventer">Eventer</string>
     <string name="videre">Videre</string>
     <string name="login">Login</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="legg_til_venner">legg til venner</string>
     <string name="backBtn">Back</string>
     <string name="send_message">Send message</string>
+    <string name="minner">Minner</string>
+    <string name="venner">Venner</string>
+    <string name="aktivitet">Aktivitet</string>
+    <string name="eventer">Eventer</string>
+    <string name="Eventer">Eventer</string>
 </resources>

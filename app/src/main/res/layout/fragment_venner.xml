@@ -9,7 +9,6 @@
     android:tag="Venner"
     tools:context=".Fragments.Venner">
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -32,6 +31,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/dialogButton"
